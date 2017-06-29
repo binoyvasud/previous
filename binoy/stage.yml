@@ -1,0 +1,4073 @@
+#  X 38.113.206.0/27     - for TOR assignments (split into /30s)
+# 10 38.113.206.32/27    - CloudBuilder/NAT
+# 11 38.113.206.64/27    - Public Services
+# 12 38.113.206.96/27    - Public Services (Storage)
+# 13 38.113.206.128/27   - DLR Network
+# 38.113.207.0/24        - Floating IPs (192-254)
+# 10.20.0.2/24           - MaaS
+# 10.21.0.2/24           - Cobbler
+# 10.22.0.2/24           - OPS Physical
+# 10.23.0.2/24           - OPS Virtual
+# 10.24.0.2/24           - Storage
+# 10.25.0.2/24           - Tunnels
+
+chef:
+
+  chef_ip: &chef_ip 10.20.0.10
+
+  chef_url: &chef_url https://10.20.0.10:8443/
+
+  chef_admin_client_key: &chef_admin_client_key |-
+    -----BEGIN RSA PRIVATE KEY-----
+    MIIEowIBAAKCAQEA2LW6OoMl9xaYoQA3/cUOMnwLZd1GWXlN65Li0vDXnQSjWfKF
+    nnB0gx6Fmfrs7xY36OnvRzsWVl8nvv5vo1uwgRM4UnWm5fHijIUgPxg05PEbJQZ4
+    ktWJjsfgQ8tZo7wDQHzBAMiH9ymdHPWWiV5t+oGy3NYyGr4PHKfpYcfQtqBpVbGT
+    zB8td99Eqt8UnkfEGWOPU/hsZF/xtC5emJC7dZbH4cf30Iu6xUuOJ9Rx+SrANNXv
+    OZBropffxHneqBLHHRnvw5RqnVPHAz0lzQvP8ssF36HacZB8zEddcMeLnSWTvqLo
+    5yZcOGdNlHkEvAF4Ek3yRXfp+LM5KNryyLpYhQIDAQABAoIBACsDZwNWJKL2iTTr
+    pjFoe3jpxhlh4iTAPwcTEJJt213/Ha0sxfi8uWONG1eExqJt9or0Y9nvkG90U59F
+    QUNbX50/A17am1XovN7HTa84TsdiU9D1h9kdKUB9y7WpFxG4r6yNFoHhS5tzVwv4
+    cvixFYMzWx0aJrfIIZe+fEQ8NOEKeFHNTr6yBqg5jv3xTnQ1AiTutJzEOoLnffzM
+    xXhggPHn+eUi8NzuxnNMrX8qyhSfu+j3XZfL/KieidLSvucU/jRMWIhVKbQQrSqD
+    aF4Srqv9tO3/znu77JAvNHrcssY1z+MNpn69PHpxNcnli7J8La8tMMZEUc436/rz
+    0V6TpgECgYEA8vtvZoiaLJxog6QAqSSa95A5efZgBmSG3SorB5b0sFyJtR8cLtOh
+    LmtHfP2hSn1nMzpdhYrOuY51lzbKyHHmAZIjlfM0SlanbBQSyj9Q9rIuQ41MHkmE
+    VvAXy3+jMG5bAd/Rf7vrlIdEXY0hfJb1wW4FUzyBMKQ2/+PECvJdcN0CgYEA5FH1
+    9t4cq/O0pNrHgRf+Ooycg1lT7PGjiFTmpA0khOkDZQBzTY5mOxIpNSSvCUQmuncZ
+    gQAfcW/cBDJvckdqsxjEWMb5byFQEfncNb0PTSfOzq/DEZPY+Tko3aF0EXFgpinP
+    BMrNS3oT0ZTQ93SOYvlnKnXQJjrJzJQhDeQed8kCgYAg8vWVStrVR9RoXXn1ddBJ
+    19XjcwRseX9MSGaTXeYKcFIALJrOwsXtnICSM3aGumCfMr/x1vPXd7j8a2KuMbvF
+    5MJMmDE0D3Iels5BfLqG6XyajnOO+9slSuN/JezEKYLPy0EGeD4m4vzjTrsGwRXM
+    SBYSxnaiWPJYWtN/xIPlRQKBgEvWDWSaEdvrbqzzHiD63y6DVdkq6n1hJXg6+wCy
+    fNbIrp/1rlasXbhxJ87HCHyDbnmw5X+7krYS+XlLZ0kF/6LNLyptrJwE7JuL6mDP
+    Ey4FcuOj7Z8BBKiDG9fBsNO6XOfUKzbkRZw0SDDsxRvsUv786A9qYmDQVgbljLUY
+    eCZBAoGBAK+SBaP0wdN/rKITWUyP7jmRyej8JXu0yl9xtWZNk/4dT4ylUmLZqDMM
+    flcpzwM4DT8nO2G0mz5bVJADGW/2DC1TGMFhr+YhzM/ThNBbkmpzONqyPwlO7moP
+    Cr2IqxH2IlFZ8DRbUw0uNZRhaezCN0148rXxIw+cXgjr9NWGDOoj
+    -----END RSA PRIVATE KEY-----
+
+
+  chef_validation_key: &chef_validation_key |-
+    -----BEGIN RSA PRIVATE KEY-----
+    MIIEogIBAAKCAQEA6QNeisn7RrokPA2lNpTMcPQvLZd7QJcOMcr2tS2h5xY4MxZy
+    73BlvtZ4Cu73AJTTl2/vm01+V1G1xAJbHP+EB0+BTHPI5V3uupSTxF27RF22CEGb
+    DQyOrCO+h52JeCs7+lf9/sfH2WbqLEyQkZOw/PF4QModX6mg40PoSu2xnZXBg2+x
+    XShNTG2Mm7mOHtHx4HUcg4OEEdG78MDf1YwFXGVl+6xs90hHbUbuVXHQMtQ5MEvN
+    L7TeuAZa/1NAsSzMHicvD4nN81IxuONzIrjh7+lAM2P6+IDGULLQQZ/FBcdn8THL
+    Bs4RbmYlNIbBjdrWQF0nVCiUQNPw23TC4Yq23wIDAQABAoIBABu7gu0RzQ5F6Toc
+    haVRYGOxLExI0yqEz/OtLF+z5qkSQ+4Qpe1Je1KTRAZJGqy/Cc/kSqg5OOg7mV6S
+    yTVSU+xq0gC/ZxGldFxQgqXEYh1o6dlhtYqADBsAxhRt84aR3rmU7237aRW+4fAT
+    zMEGyvHP63gKliRkk/l4g5UnZRRUHGNbXuyoA1p7PTP+eIosukFoXvCU0fcQVGsv
+    UqP8ByrM31f7uj698a2C2SgJzivqOnoISvY6mYimXcLhsrJXqKAITK1R/IlJQWf7
+    pFeYETCM1WvpGe5Zc4K5SvycWkdR2grEnijWpr4h5N2DeCxWJtle82g8jUhAi1VM
+    d3GqtYECgYEA+va/aZBg7D+tNn/Yukz7a27H6JK0F/4frTnsXPH6VGIR/7mzJKAr
+    vvxJ14iOwsHPUiP/hf3jWzGIkcEvnE6KIMJbwN0gsJ0sT1qzXOHCjBuKCkpgGMA4
+    cfGLIJU4El6Y/vvEJs9p/BgIWl1U+7FitUsFbqdHe8X+sn9TakMKqHkCgYEA7bBn
+    vOcR8m2vBHoEpl/5kDhZ9WtN5P3T0F8Cyz+Cnyl0aYL9Jd0DUCOlb7b/NKNrF77A
+    KuLd3LDEd86RNfnLiC9kFpQg2TmZ2WZsmOeLtWH1dr03J44HrYGn5ISEWpLUCxJa
+    tNdlrCeb6/FwmgT1h6L4QPkGMtdTroupMt8FNBcCgYBmg/Lu2VZuSxijgZfzikzN
+    tuQcYgkFH/6qkVW3JfV/EMyPbLj8Bh24l3BGhfbjIa5hvGi9wFdmQhaqi4K6U+7i
+    sOIwJ2QaISofhEpub548A2fhCj60/ZhRGz0c4zeTcWcICao3vFRr8RlAaI21fuF2
+    cx3V9Kkjq15+ZbqaVqZ86QKBgBYAB/oSITUhNdviN1/27jCNJrZykikp3VsiEC4j
+    2MFGowHJIAlLJa1bP0rR01lZ7uWpwDu39/UfX2//bK1kS5R1XnxAhbHVhQn8Uvzs
+    IaBOStwMs3gzyz4iDBo4sc94W6wSrNakQULn/6SdGmEHKHq/eN76rboy+Anl32lX
+    /zFNAoGAV5JI/eOcD1T5QIxOpDxaw/iGgISoge4FDNFyU1NVLN+YGuvkr4iG8dF9
+    AbkpqeSa4yz+HzDYwi2PUGvVDfF4XL2cJKsfO6E3Am4gGbUtSvRSORmagvG3WcAq
+    8TAL1yy6Ysm4F2iuzIOnoVsPu2YWMPC1a8Dzt7zXvky4jQwkt4E=
+    -----END RSA PRIVATE KEY-----
+
+maas: 
+  api_key: &maas_api_key Cfh7E8DMG5KFcGfWB2:XbusEZ8R6hpmZaqqN7:ucs9eBd8TPLJusDMNb6NEmLxh2WjBqDR
+  api_url: &maas_api_url http://38.113.206.36/MAAS/api/1.0  
+
+openstack:
+
+  # credentials used to sync flavors, users, and instantiate rates
+  credentials:
+
+    api: &lb_vip_public_os_api_name api.stage1.nephoscale.com
+    auth_url: !!python/object/apply:string.join [["https://", *lb_vip_public_os_api_name, ':35357/v3'], '']
+    tenant_name: admin
+    username: admin
+    password: &admin_password 5d6baead492b
+    region: stage1
+
+  certificates:
+
+    wildcard: &certificate_wildcard |-
+      -----BEGIN PRIVATE KEY-----
+      MIIJQwIBADANBgkqhkiG9w0BAQEFAASCCS0wggkpAgEAAoICAQC3BGv+BqVswjSd
+      xy6vbRt2ckrSQgEYOcSndhBdel97TC9p6OyceLP7L6beLgyBjW5cN5tyfFavT10t
+      mzOxITpcvJpETnzY2hZjdNfhNHho3FRrnU4uC/IKGGrHLjUE7ra8Iiqb2+b0geDw
+      zclQ249Ym8XK74EZ8ZJ809ips9rCtVXrOH5lor+Nnfsnh9WUbwbbEtVQOy/EyU9g
+      EwSE57lgOd58kaBYEjmMlA32C15YDgvPq3Mp7DGEMIh6XCIKjznKC9drX372yaC/
+      iDhwRPIfmu1qf4q7tVvXHVLYWlk+8YpvL9Nyuk6GioosjOqK1Oyln6MNM0uQPno3
+      xROnHSk2gy4YZt0Oe4cGfom+BS5Pa4nmqe9Ny0pH1C2ftB78SkdWAXTKOKZW5FPw
+      D/e3dbzN8gy6qVNqC6XcilSEbiw2P/rSfI69PqupUY52IBq7ft74qL1oYqY36rB+
+      R+aLs/xd91fW+rSSZjw4rrUKY8scAv8R5tMT+DOHa7kffXcNSdz7be86wR2Pa0gf
+      nG6HvqXy3uO6Zlp2hGjtwylXyoRuNVRkNXbe/RgB+Gk2uw9d2ekNsBd323gS+0NF
+      6eQo/g9BplFebHDoGwvbXw1zpdODINLnK9flCkDlI/mg5pw4tf8dvPGjVysMrDoT
+      jwZMl+BX1J4aCggnfJ3joaTrHiZNEQIDAQABAoICAQCa9z+JxI7l3Ds5LaK2H6iV
+      TolUJ1dN7/w335xTyn52pDexceyHQR0En4CnuE4WlG7R3rPc6LNtlcHMEBJg9UW5
+      qGjnVZ4Y7/DtHc59fjRGdel1hajhDHRRYANpzBJQruBDxJpXhoe0mRSiUV0Y/hAO
+      czezccDa+tWSpL5cU1H0dB7gIOHFpVyUySQUgMuz957SeMvuN29nLR3st62n653n
+      gJiG2bfvWt8nzWVU5KNp49rUaNQGt1vmFkI5eTHJxySjlAs/e4jB5lAaXXmMdpSd
+      dk15U61g61tsdgPj9fyDc3pIUzKzflVnTn9Y4ajnDQuj4dvqHXjqFjzeZB0T73ko
+      pFKQITF0N7ZBb2H9NKm552ORY+Cl9jYorU/BTgKkS8hQOLOEP1mBgvtnm16sEZRN
+      mW9WWbFaXnZ2YMY3J8gW3II0P6nPV/cUJGuK84SouQn3Wbvu9zetyuNx8NDSPPVn
+      aKTxAEl7hH2fTN+hae+/+kzl/q7Lu22PzK53U1u4QB02hjCzcEXvaXrkgIdTWyzY
+      /NT/f/FkwxSlzqtMf4xiJ0UxpkcUeDjKuVN3GdEV2mclNz3d7u5iMCtFchUXsyCj
+      Bi5mup9tJUklLnB7E7dJS2iZXKQDjHWEb87/92Qtkojz2q2Hz2XINKzD1xJBsZ1c
+      hz/qoQ3E5sRVIa88Nka70QKCAQEA4n5gpQ085XM4XKpPd3DlAkCRIRU9P/s8GaFe
+      YO1tUtWJ2TV0Qlri74dA6p7fQ+wnEa2X1dyRH3HfNxD79xZ5yQCkxBvw+vAlM9Og
+      Fm5doU9mEgC//BwRQ5dxZj7qKnd3asX2TzTh+btV94XapCJWdB6Ld3Vcv9P+vgE3
+      RyE/6a45c84YY72TeSJpO5ldxiQeClhu/7FF0gylwRgR5nSYIDQ5bDuqC+yGRk/b
+      +4ePloEyWUmYozXUAhLTPvbRtjSrwnxq2GyQBMQNFPJjnWeUpfjD1oW/u5QCw9zj
+      vcrC7K1gk39CTz0w+07qGYiTUPlbyha7l0td35gOufuOpbdccwKCAQEAztwYbx24
+      oduEltATfmkJRNptZaJFuzZlyEZl6MsPKuhNqA4LDDV9Yi9zo+gLEZNkLcvrCZtn
+      FhZ6qYw9F+z6wnuDUNyTYkeX2EYWDlNGIH8OJvhCFPuwNXU4Q3ZF9vKe/zenG+dX
+      V3F1s5dFHDI9EceFEkjx31S5VD9MKhF44TM2EX6g7h1jakjuJW7S0tfqFJqqGRkt
+      zCIKBviMuB71v+mF8mWUt4jz+1RPaXuXXh8GLRq5RseoJPQLHvxHnOvPj7dLCozA
+      JA3s7G4YOaTDMeXxx+1C/wbbhfGYuNNbOEje0nPTSdFeTy+7OIfjS5f+zmgQVOpW
+      2dtj1Vq5SFlzawKCAQEAwiRx0wi12jgZZ9TUqR0sL/IIdMMv7Vf8/DtGGu9pdkd0
+      EauwK/Cb9ZWKH5Ju7lnOY2jZbYfTHZEONLVqRTIO0iyrDy6kMXUHbpVH8/JGb68P
+      Xv8lkYS9h6KYoXvsXNpqkit+Jga+bMIXvkQOVgLY+E/2XD9NcWDWSyffqijmD/g3
+      ZvySC2zErGDCs0OTDfSHi3aiLqpVnucYbZukPFZUz8X0MsIx0Ga98ich+UkJ24iD
+      D+X14HCTefOI/7+xou0jDWJ4c2sbR/qE/B+JI7NVx66kr42V+8OzWxBMZrMWwqka
+      z1OWEzXwdnn+UESxggc8ls1FnzoLDU3Z0bG/ZGz34QKCAQB9n7xW/r25zg5faE3u
+      Xut6HQyCxGGEqCx3zAjnrymu7RT8EkszRui2UAryZ2ERc2lLRqOeWfnouA4WGUyg
+      0xIWOdwtp0b6UHAur6GFYZ0c7wwxLmMzSwZf8KgSkCk9J2rXo3ygvYWVXRoVzq/x
+      x7C+s2RlDleVQWareyVOBv5aBTe4uCYTdVWCnnfB0+PEl8tYZ/UU+O2PIrzkLt2G
+      k4a63Z6y7m26aDmDUFhJvvzV9BFUIv6RtX6vsmVuk9cJvUt4A+BWr9OgEbTogJPF
+      rgG8s+B5geVF62w1k9sjo3eqXtazCBQwqC2V+W7BjgTDS7M6tof0ibvk4g9m6onL
+      HkexAoIBAFrszSU62nl7bnkVUIIusETqQ0R8LFErMEitTbdQXCgMv1dHikSmIu+H
+      mar/zZRGPxyEzSag+18r8sgNpL3i6oDXdPYhSZ3RqsEiL2Jb9ciqHHw6ZlpPQMLr
+      C+/xQcW73sfae3rkGXO6R9i0QZ8YxwWvA81rN5xM/co4W3Ekzo4bTicWvqvw2tZu
+      N/A9wjUJwE1XK1lwK1LUz+l5fPhzG3GGSjhkthbLDNqVOxB7IMrqHIGKJSdDJit2
+      bCyRKgOc7AbaN6jQls+uv0xJmTz2HCTa/sAw5d20v7RUS9JQXjFkBJiU1v/SDEmy
+      9JVQPfDEuaX/st8d3CkFA39sXDhcibE=
+      -----END PRIVATE KEY-----
+      -----BEGIN CERTIFICATE-----
+      MIIIaDCCB1CgAwIBAgIMeFllZjNdGxaod1GiMA0GCSqGSIb3DQEBCwUAMEwxCzAJ
+      BgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMSIwIAYDVQQDExlB
+      bHBoYVNTTCBDQSAtIFNIQTI1NiAtIEcyMB4XDTE3MDQwNzExNTMwNFoXDTE4MDUw
+      ODExNTMwNFowRTEhMB8GA1UECxMYRG9tYWluIENvbnRyb2wgVmFsaWRhdGVkMSAw
+      HgYDVQQDDBcqLnN0YWdlMS5uZXBob3NjYWxlLmNvbTCCAiIwDQYJKoZIhvcNAQEB
+      BQADggIPADCCAgoCggIBALcEa/4GpWzCNJ3HLq9tG3ZyStJCARg5xKd2EF16X3tM
+      L2no7Jx4s/svpt4uDIGNblw3m3J8Vq9PXS2bM7EhOly8mkROfNjaFmN01+E0eGjc
+      VGudTi4L8goYascuNQTutrwiKpvb5vSB4PDNyVDbj1ibxcrvgRnxknzT2Kmz2sK1
+      Ves4fmWiv42d+yeH1ZRvBtsS1VA7L8TJT2ATBITnuWA53nyRoFgSOYyUDfYLXlgO
+      C8+rcynsMYQwiHpcIgqPOcoL12tffvbJoL+IOHBE8h+a7Wp/iru1W9cdUthaWT7x
+      im8v03K6ToaKiiyM6orU7KWfow0zS5A+ejfFE6cdKTaDLhhm3Q57hwZ+ib4FLk9r
+      ieap703LSkfULZ+0HvxKR1YBdMo4plbkU/AP97d1vM3yDLqpU2oLpdyKVIRuLDY/
+      +tJ8jr0+q6lRjnYgGrt+3viovWhipjfqsH5H5ouz/F33V9b6tJJmPDiutQpjyxwC
+      /xHm0xP4M4druR99dw1J3Ptt7zrBHY9rSB+cboe+pfLe47pmWnaEaO3DKVfKhG41
+      VGQ1dt79GAH4aTa7D13Z6Q2wF3fbeBL7Q0Xp5Cj+D0GmUV5scOgbC9tfDXOl04Mg
+      0ucr1+UKQOUj+aDmnDi1/x288aNXKwysOhOPBkyX4FfUnhoKCCd8neOhpOseJk0R
+      AgMBAAGjggRPMIIESzAOBgNVHQ8BAf8EBAMCBaAwgYkGCCsGAQUFBwEBBH0wezBC
+      BggrBgEFBQcwAoY2aHR0cDovL3NlY3VyZTIuYWxwaGFzc2wuY29tL2NhY2VydC9n
+      c2FscGhhc2hhMmcycjEuY3J0MDUGCCsGAQUFBzABhilodHRwOi8vb2NzcDIuZ2xv
+      YmFsc2lnbi5jb20vZ3NhbHBoYXNoYTJnMjBXBgNVHSAEUDBOMEIGCisGAQQBoDIB
+      CgowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xvYmFsc2lnbi5jb20vcmVw
+      b3NpdG9yeS8wCAYGZ4EMAQIBMAkGA1UdEwQCMAAwPgYDVR0fBDcwNTAzoDGgL4Yt
+      aHR0cDovL2NybDIuYWxwaGFzc2wuY29tL2dzL2dzYWxwaGFzaGEyZzIuY3JsMDkG
+      A1UdEQQyMDCCFyouc3RhZ2UxLm5lcGhvc2NhbGUuY29tghVzdGFnZTEubmVwaG9z
+      Y2FsZS5jb20wHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMB0GA1UdDgQW
+      BBRU9XWLCxsxs+UipPdxQ7uNYrTGtTAfBgNVHSMEGDAWgBT1zdU8CFD5ak86t5fa
+      VoPmadJo9zCCAm0GCisGAQQB1nkCBAIEggJdBIICWQJXAHYA3esdK3oNT6Ygi4Gt
+      gWhwfi6OnQHVXIiNPRHEzbbsvswAAAFbSEK/1AAABAMARzBFAiEA239+2P2909Nv
+      b1wKFKKj+fpLnbPuPvkTKpIvfY5vuP8CIH/El9E9lRjFQhHN+c8l2iImlN9Z4GAU
+      6lj8gtIXouomAHYAu9nfvB+KcbWTlCOXqpJ7RzhXlQqrUugakJZkNo4e0YUAAAFb
+      SELAgAAABAMARzBFAiEAqLUh1j+rhKbzA+NAPhOXxRRVfSGlk5w5JbWAvqhU/2YC
+      IAj+wCpuhfULLkUNM6tmvKx6B9xMC9gtI5syesXA6FbBAHcAVhQGmi/XwuzT9eG9
+      RLI+x0Z2ubyZEVzA75SYVdaJ0N0AAAFbSELANwAABAMASDBGAiEAl3C224drTpRE
+      9nQ1TrnB5R0wL429jpy/nS4Uznm8mwECIQCFiln56ERgi7nk1Wx3F1FxUniHWqeP
+      7hIoiyg0PdCGEgB1AKS5CZC0GFgUh7sTosxncAo8NZgE+RvfuON3zQ7IDdwQAAAB
+      W0hCwrgAAAQDAEYwRAIgLF/SvcXbqQ5fh2HW1UWLLqD4i58VESCCR4LLwD+6QioC
+      IGWtyHb0lVhFM6VifWUhptuNAk5alJmFgbGKBucmNKnCAHUA7ku9t3XOYLrhQmkf
+      q+GeZqMPfl+wctiDAMR7iXqo/csAAAFbSELFwQAABAMARjBEAiAMf0JpoRTZEU1y
+      tQZ6HtDlSbgMpoNAxK7MFGtJWn0L4QIgasVS/7mlpOfhRvGQPVY6IKa9lkDRfQ/N
+      v7VqOXq++H4wDQYJKoZIhvcNAQELBQADggEBAKk1NnqbRqpRmQwWWPnn75n59GEQ
+      XiMGFO75WEG109UE0mXqlBeEd2dLYqfqWgeVsecasz3upHID/6GwgsZ/teyEw45I
+      OckLOQAmmgUwkwjha5MIBRs16sZsdNQgNFtuVWS5tN0z3QN5F7l6AyhcpSKzRxZP
+      wV04rKO2Ov/iwoyb/1AfSKl3Ay4Yt/KQwoYC9AFWuzZWXw27r6h2DQikFvEDULPA
+      a8shu97Uo7q7OomBWOot1P8IL61MBGwai2H/F01cIRDfGaIYjURpYX03lXe3BHSF
+      kGtu22Yj/gf/5wjfq272U+WLg1cI3/TdHrmTe6pg1Z3cAMDfufa1Jws0F2E=
+      -----END CERTIFICATE-----
+      -----BEGIN CERTIFICATE-----
+      MIIETTCCAzWgAwIBAgILBAAAAAABRE7wNjEwDQYJKoZIhvcNAQELBQAwVzELMAkG
+      A1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNVBAsTB1Jv
+      b3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xNDAyMjAxMDAw
+      MDBaFw0yNDAyMjAxMDAwMDBaMEwxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9i
+      YWxTaWduIG52LXNhMSIwIAYDVQQDExlBbHBoYVNTTCBDQSAtIFNIQTI1NiAtIEcy
+      MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2gHs5OxzYPt+j2q3xhfj
+      kmQy1KwA2aIPue3ua4qGypJn2XTXXUcCPI9A1p5tFM3D2ik5pw8FCmiiZhoexLKL
+      dljlq10dj0CzOYvvHoN9ItDjqQAu7FPPYhmFRChMwCfLew7sEGQAEKQFzKByvkFs
+      MVtI5LHsuSPrVU3QfWJKpbSlpFmFxSWRpv6mCZ8GEG2PgQxkQF5zAJrgLmWYVBAA
+      cJjI4e00X9icxw3A1iNZRfz+VXqG7pRgIvGu0eZVRvaZxRsIdF+ssGSEj4k4HKGn
+      kCFPAm694GFn1PhChw8K98kEbSqpL+9Cpd/do1PbmB6B+Zpye1reTz5/olig4het
+      ZwIDAQABo4IBIzCCAR8wDgYDVR0PAQH/BAQDAgEGMBIGA1UdEwEB/wQIMAYBAf8C
+      AQAwHQYDVR0OBBYEFPXN1TwIUPlqTzq3l9pWg+Zp0mj3MEUGA1UdIAQ+MDwwOgYE
+      VR0gADAyMDAGCCsGAQUFBwIBFiRodHRwczovL3d3dy5hbHBoYXNzbC5jb20vcmVw
+      b3NpdG9yeS8wMwYDVR0fBCwwKjAooCagJIYiaHR0cDovL2NybC5nbG9iYWxzaWdu
+      Lm5ldC9yb290LmNybDA9BggrBgEFBQcBAQQxMC8wLQYIKwYBBQUHMAGGIWh0dHA6
+      Ly9vY3NwLmdsb2JhbHNpZ24uY29tL3Jvb3RyMTAfBgNVHSMEGDAWgBRge2YaRQ2X
+      yolQL30EzTSo//z9SzANBgkqhkiG9w0BAQsFAAOCAQEAYEBoFkfnFo3bXKFWKsv0
+      XJuwHqJL9csCP/gLofKnQtS3TOvjZoDzJUN4LhsXVgdSGMvRqOzm+3M+pGKMgLTS
+      xRJzo9P6Aji+Yz2EuJnB8br3n8NA0VgYU8Fi3a8YQn80TsVD1XGwMADH45CuP1eG
+      l87qDBKOInDjZqdUfy4oy9RU0LMeYmcI+Sfhy+NmuCQbiWqJRGXy2UzSWByMTsCV
+      odTvZy84IOgu/5ZR8LrYPZJwR2UcnnNytGAMXOLRc3bgr07i5TelRS+KIz6HxzDm
+      MTh89N1SyvNTBCVXVmaU6Avu5gMUTu79bZRknl7OedSyps9AsUSoPocZXun4IRZZ
+      Uw== 
+      -----END CERTIFICATE-----
+
+  flavors:  
+    - name: m1.small
+      ram: 2048
+      vcpus: 1
+      disk: 20
+      id: 2
+      ephemeral: 0
+      swap: 2
+      rxtx-factor: 2
+      is-public: true
+    - name: m1.medium
+      ram: 4096
+      vcpus: 2
+      disk: 40
+      id: 3
+      ephemeral: 0
+      is-public: true
+    - name: m1.large
+      ram: 8192
+      vcpus: 4
+      disk: 80
+      id: 4w
+      ephemeral: 0
+      is-public: true
+    - name: m1.xlarge
+      ram: 16384
+      vcpus: 8
+      disk: 160
+      id: 5
+      ephemeral: 0
+      is-public: true
+
+  rating:
+
+    # define pricing here for each flavor (by name), images (by name)
+    # and any other thing we can bill on, like cinder and object storage
+    # and floating IPs
+    # cloud storage price per GB        
+    # volume price per GB
+
+    # one of the most important parameters for rating
+    # which is the frequency at which all of the periodic
+    # pricing values below are applied - to keep this
+    # familiar, this is set to one hour or 3600 seconds
+    # so that a m1.tiny price of 0.008 equates to $0.008 
+    # per hour of usage
+    - period: &rating_period 3600
+
+    - instance_size_section:
+        m1.tiny: 0.01
+        m1.small: 0.02
+        m1.medium: 0.03
+        m1.large: 0.04
+        m1.xlarge: 0.05
+
+    - image_section:
+        precise: 0.05
+
+    - floating_ip_section:
+        cost_floating_ip: 0.001388889
+
+    - network_inbound_section:
+        cost_network_inbound: 0.001388889
+
+    - network_outbound_section:
+        cost_network_outbound: 0.001388889
+
+    - cloud_storage_section:
+        cost_cloud_storage: 0.001388889
+
+    - volume_section:
+        cost_volume: 0.001388889
+
+    - instance_addon_section:
+        14731bf3-80fc-4419-b4c0-6cf7d93c07c0: 0.001388889
+
+    - tenant_addon_section:
+        5a4fb03113d44f7590789f9aa9ff3619: 0.001388889
+        
+    - image_snapshot_section:
+        cost_image_snapshot: 0.001388889        
+
+  roles: 
+    # note that admin, service, and _member_ are 
+    # created automatically so do not need to exist
+    # here - any roles here should be created
+    - operator
+    - read-only
+
+  tenants:
+    - name: tuliva
+      description: some description
+      extra:
+        street: 95 S Market
+        state: California
+        postal_code: 94541
+        country: USA
+        timezone: PST
+        cost_center: accountingDepartment
+      quotas:
+        neutron:
+          floatingip: 100
+          port: 300
+        nova:
+          instances: 30
+          key_pairs: 200
+
+  users:
+    - name: alanmeadows
+      tenant: tuliva # matches above
+      password: foobar
+      email: alan.meadows@gmail.com
+      extra:
+        # i'm assuming we can store extra info in users as well
+        # otherwise, the first_name and last_name items do not
+        # make sense at a tenant level
+        first_name: Alan
+        last_name: Meadows
+      roles: operator, _member_
+
+network:
+
+  # these are administrative 
+  # cidr blocks we will whitelist
+  # for various things
+  cidr_whitelist: &cidr_whitelist
+    - 127.0.0.0/8
+    - 10.0.0.0/9
+    - 38.113.206.0/24
+
+  # load balancer vips
+  lb_vip_public_cidr: &lb_vip_public_cidr 38.113.206.64/27
+  lb_vip_private_cidr: &lb_vip_private_cidr 10.23.0.0/24 
+  lb_vip_public_os_api: &lb_vip_public_os_api 38.113.206.68
+  lb_vip_public_os_api_name: *lb_vip_public_os_api_name
+  lb_vip_public_os_monitoring: &lb_vip_public_os_monitoring 38.113.206.69
+  lb_vip_public_ns_api: &lb_vip_public_ns_api 38.113.206.70
+  lb_vip_public_ns_api_name: &lb_vip_public_ns_api_name ns-api.compute.stage1.cloud.tuliva.com
+  lb_vip_public_ns_gui: &lb_vip_public_ns_gui 38.113.206.71
+  lb_vip_public_os_signup: &lb_vip_public_os_signup 38.113.206.72
+  lb_vip_public_ns_docs: &lb_vip_public_ns_docs 38.113.206.73
+  lb_vip_private: &lb_vip_private 10.23.0.254
+
+dns:
+
+  public_dns_servers: &id001
+    - 8.8.8.8
+    - 4.4.2.2
+  dns_infra_servers: &id002
+    - dns1.stage1.nephoscale.com,38.113.206.74
+    - dns2.stage1.nephoscale.com,38.113.206.75
+    - dns3.stage1.nephoscale.com,38.113.206.76
+  dns_tenant_servers: &id003
+    # these should be inside the public domain but outside
+    # the tenant domain
+    - tenant-dns1.stage1.nephoscale.com,38.113.206.77
+    - tenant-dns2.stage1.nephoscale.com,38.113.206.78
+    - tenant-dns3.stage1.nephoscale.com,38.113.206.79
+  domain_name_templates: &id004
+    public: &domain_name_templates_public stage1.nephoscale.com
+    internal: int.stage1.nephoscale.com
+    tenant: dns.stage1.nephoscale.com
+    contact: support@nephoscale.com
+    # the auto domain must be inside the tenant zone above
+    auto: auto.dns.stage1.nephoscale.com
+    global_ttl: 300
+  bind_zones: &id005
+    - stage1.nephoscale.com
+    - in-addr.arpa    
+  records: &id006
+    - !!python/object/apply:string.join [["docs         IN A", *lb_vip_public_ns_docs], ' ']      
+    - !!python/object/apply:string.join [["signup       IN A", *lb_vip_public_os_signup], ' ']    
+    - !!python/object/apply:string.join [["api          IN A", *lb_vip_public_os_api], ' ']    
+    - !!python/object/apply:string.join [["monitoring   IN A", *lb_vip_public_os_monitoring], ' ']  
+    - !!python/object/apply:string.join [["dashboard    IN A", *lb_vip_public_os_api], ' ']
+    - !!python/object/apply:string.join [["ns-api       IN A", *lb_vip_public_ns_api], ' ']
+    - !!python/object/apply:string.join [["mailrelay    IN A", *lb_vip_private], ' ']
+    # TODO discover this or put it behind the LB using a TCP connection type
+    - !!python/object/apply:string.join [["vpn          IN A", '38.113.206.80'], ' ']
+    # TODO discover this as it is the cloudbuilder VIP
+    - !!python/object/apply:string.join [["cloudbuilder IN A", '38.113.206.36'], ' ']
+
+power_credentials: &id010
+  username: &power_credentials_username ADMIN
+  password: &power_credentials_password GSmRC6X6XSIA
+
+
+chef_environment:
+
+  data_bags:
+
+    users:
+      items:
+        - id: alan
+          password: "$6$Tdgp9L39$sBdBBqRtkAl18cP7AKbwESFGDaeqfCtzAgUR/tv4GBQAbZuvfqIIBEBBZo3HY299onP13d../RtCZ8oEIxYYO0"
+          ssh_keys: ["ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAupcvPIO0FlZee1Hg8bh6mIK2cSIsd+yzrILdku35AZRDprw1gBsr6cZwMwcAcfJ8K9b09yVrNtlM98HUdxaegxJZxBuL6+aS8FVhuu7PHw5wcusPAXqXgPrkbLBoLy3yC96kT5BlwxPtsDoCQJINTT2lZEYjeFBpkdBPewrSPry9WJwEeOd70k6cFOQ4+n/pxN87vm8M4Nkgt4RwDdcQRo73emsen7IDxOe4QHd3P6Qd6VdO37jxwqfEjB+bgn/IICdOs0be99ZGGzozw5iuluT2Whwrkt2cSu0C3fM5Z45NTfAd6tF+4TkjUiz/ZZCaP4VJw60Mg/fyXTxVNEhwYw== alan@alan-laptop" ]
+          htpasswd: "$6$Tdgp9L39$sBdBBqRtkAl18cP7AKbwESFGDaeqfCtzAgUR/tv4GBQAbZuvfqIIBEBBZo3HY299onP13d../RtCZ8oEIxYYO0"
+#          nagios:
+#            email: alan.meadows@gmail.com
+          groups: [ "sysadmin" ]
+          shell: "/bin/bash"
+          action: create
+        - id: telemachus
+          password: "$6$P.LW6rYe$7mlGmNw6nYyywp5pZ22Y8dwbIyC1EybbBrSNrOsWPN7LWVlm.8q5m0h/9LYKwRetRGWa.nSGzbOPMbl4iROR/0"
+          ssh_keys: ["ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA0yIYuA4Qn13bmhO5uZ+qFeyNDtVQuSl0OPsI05PISHAyJlqqCPZVZfX9Rgn9XvIMG5WbtD/7lrygqUsHMda7JBe0VJ/cKhTr+kfnGR+xIW6NwrgJctnhKUH0zgzhNvLUlF+mknqBxdVcWLXP1ieG6zV0ckKVWzq2tlfWgR9DTMd4aEMAYbNOAqhPlb/7H/ywvvrcAqtWdLZxzB1Zf0Pci/EfjkSuiVPgIH9NyLBBYzuWY2zHh5TJAQ5Y++am55aNJc1dPjHPYozxs7UR1+ZAtWzLA0l+kqg/8GKB7kbOHoelzBQo8zAeiZ474i1nZrSIlemJmfkL7KLQLFw01jqLZQ== telemachus@teletest" ]
+          htpasswd: "$6$P.LW6rYe$7mlGmNw6nYyywp5pZ22Y8dwbIyC1EybbBrSNrOsWPN7LWVlm.8q5m0h/9LYKwRetRGWa.nSGzbOPMbl4iROR/0"
+          groups: [ "sysadmin" ]
+          shell: "/bin/bash"
+          action: create
+        - id: montgom
+          password: "$1$Qd.17o4y$/gG4lLUptH.HGWwKzdbVf."
+          ssh_keys: ["ssh-dss AAAAB3NzaC1kc3MAAACBAMfqBzFigVZ/KxqFpSM3w/v1lzRiv5RCaTYHpepQFQRTNNqVyXWtnXtDedxqLMoDLHOe3ZfJKUykjXLu0Iqgsy95K4+mxnWH3SgKdcIiDuPRUXVMLWuwfDKOabULzNtbJ2C9ZaWnmDxO4OuayUkDHkbfQO2kWDXmWV6wXl3DaawdAAAAFQCGLA6wInFdbMriuevK1CF6SlKVlQAAAIA3GbNaLRZTOpOXSpm7uFEP99+unEebZZfGrZ8ngcrAjwkd9Tqd2Ye9PYpX6Fp/gLX5OlTCsQO2rQAK+h5mSfjXiz57ExdYUJccJDVfoP9q77xAxsPl0OjMZ3PTRQNFJhX28mAqLtVz5R4r6/GiDK73DBUt82fgjrdxOSP6Kb3D2gAAAIB+5OF1ayeoA2IPOBpPKl937o6EAgmWMT0U37FG6eOBebw6EQSjzUiq+xeoQL/AYY6ZBZ+Ywu0kzgdZnKTccDr1WCoyqeN/+NSftrFqCUz8Kafoh4UaqN91vnZ6D2KBqR506VAliRb6GR1vhAWi626D9blJlgwd3ct8yedhZJMUow== montgom@nepho"]
+          htpasswd: "$1$Qd.17o4y$/gG4lLUptH.HGWwKzdbVf."
+ #         nagios:
+ #           email: michael@nephoscale.com
+          groups: [ "sysadmin" ]
+          shell: "/bin/bash"
+          action: create
+        - id: zev
+          password: "$6$ZKMHs2Sg$lmyxTMogXsdAD1K6mh10IwNflqUXswgBDHb18hSp59otRycnwngMRtXj8B2oINMZihkTa8.BDJxbmYHPDMDOJ1"
+          ssh_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABBADFooxW9eGqikxa5jSPOR6/FDjQD38iZzdfc9tkNBmd566GHYdGCEJvvl1Q6waMR4U0oEOMaezzRoi1z3sAbtGPr6pS4kTCTkrtl8NmUI2MQCALesJm6Y0j69FWno8+HKMCPg8UCFZcIazbIAZJEmclwQd05XpnyYlEJNVliecrZrZ2G+1n1idrRUX5Bdyhz60EjPRsSQvVhg8QN6MxR2w8wIeRbcBDeixNb/V7hq36Y7+e0vAX4WWYb3NDqpzHwgXMEGfP/v24UZJ0CwNMBJS8meb2IKi6H6QX0crsQN8nJgQDrIdj1JMIVwUAqsKHOuNTKrMkSuhdau/aeN2HWnpFzOiN zev@nephoscale.com" ]
+          htpasswd: "$6$ZKMHs2Sg$lmyxTMogXsdAD1K6mh10IwNflqUXswgBDHb18hSp59otRycnwngMRtXj8B2oINMZihkTa8.BDJxbmYHPDMDOJ1"
+#          nagios:
+#            email: zev1236ace@gmail.com
+          groups: [ "sysadmin" ]
+          shell: "/bin/bash"
+          action: create
+        - id: mdolgikh
+          password: "$6$GrCcXRvN$UrTQrawHGk5WQVBDTFPnAKmy3lSuhKSqZk13ZxjwfpnZLrcp6IFbuLbLlXOkmdQzZXPUfU70rwQ9cGKCZagmz0"
+          ssh_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAxWfpILS0DurnSVRUposh2jEF+pVhfcyfdZg6E3WxUSnaznmuARaXezQGrcN8KJSfBy9ANkplr9ljZpvQm53OxbwDK7OXkfNsNaQ2QrwHx/sP1dEglfnY54n9laa8B8j+SWUNmT+3uQgsu9gz/d9n7j3fxc7UlS9TTVoxDLnS7+kDqxGJYLIekUnQoLLC+FaeXiAZ9cquxFDEnlzwvBMHIo+gGsgx1agxcXSc9yc7MFZTEE9aS0Zp/KiFiVHTrK5H1kpQk0vbsDRI5hD7I6Q5a8PFyKjkzvgLbtyDiLmECQbUX/FlHmTDHpos1I6GM4ikm/bRWi1LPJlsTHpjohtFRQ== max@dell" ]
+          htpasswd: "$6$GrCcXRvN$UrTQrawHGk5WQVBDTFPnAKmy3lSuhKSqZk13ZxjwfpnZLrcp6IFbuLbLlXOkmdQzZXPUfU70rwQ9cGKCZagmz0"
+          groups: [ "sysadmin" ]
+          shell: "/bin/bash"
+          action: create
+        - id: manly
+          password: "$1$Y8Z3xrYY$sQLz54Efx4KBe8FOj/2BU0"
+          ssh_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEArNVVOs68negUMOivhygZrpzKLY5yiQJOZVCLZyUN12Wxf0SZagRY2H+isppUEMcIJIxUXUEj9sfvtlCSxh5T0BzHnIU3yv5ort8BErOi1Lur5rQIEjDwfaX5CGBimQ8Hc2VUMP4pyq774GYwJXSmibAdVoZHeZiCzQOuM9krB9Jt5AbA/dXXfvvqoejvVO+m//DiVXkd6+6zYVnUIj+ZwrbW+ffnnB9HINn7Y6M1knXY9RrrZ7qd0lhqPrLD10Kh8MDr5mY8C2/cnjngloht0+if1oP+J/jO4pZ9AFP/tt81Hn6F63bOPYqneF1Ba9aGzYeeX0Zm2vfmZTsCj8lnIQ== manly@macbook.local", "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCtTM6G10PvTKj8R8ZdirkMEjKNgsEM1MWomHfvmFGeYX4do/PrFWs9imekL8qh4mNqxYaBwiakoWh1iRQi0tuIOfgHC5O7y/0GJ+qi38trnplPwkPlzAeKT5DIjLa3riHQwLSFdLj4n8q6CLtmX9pzGVT25DcKC+IvscruLbdSHMf7mo91p3Izj16t8htoZf6oFYSEIPsySlhNPocF7Tq6dz58KZHRROuNKx/1WWdPgIzruWgeFMBfacaJsrSb0SacKJBykHOtSCWg/e4kSTa3kWWpXnCfQuR+nc5PDcsBKvC0rsJLUmAXr9PXbTN3T1hprtT0Q7I5L+puCP/SLeML man" ]
+          htpasswd: "$1$Y8Z3xrYY$sQLz54Efx4KBe8FOj/2BU0"
+ #         nagios:
+ #           email: manly@nephoscale.com          
+          groups: [ "sysadmin" ]
+          shell: "/bin/bash"
+          action: create          
+        - id: div
+          password: "$6$bA7yIq.S$6z3UT/WYcpwRoALoafuWDlYG5NN8bnGaCUJkPgAbK9laeedq8RmwqJU5tj/DALn9BWpXBnd9RVqtkuhaiRnrH/"
+          ssh_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCdlnkQ7JQRtZTOZI4w9DuPu+kCfao+Z2zZ4euaEREbWHtb6/f9Nx4clRl1C51LmgAtTekFJEA5e6nVEvhpl+/81S7r5ZftRPxU/0Z54uTG+42f/GNX1I4OA83GC7qHjY39KgQClo+EVlS1aLPO8mGjGWQdxFnR3i+7NOosD8X+OW16iQjYZ3Xaz6gdIsJRrefZeUq6uzM1iQR5bBcdT/yOcuIlxIsoGlykqEGaH066BtAluCwjhYapLEy0UWNH9OstAwP/Edc8Fv/POtixSez6XLfMTy8IkQdhwe9XDSnrDkvfZBUP8Gi52a9z/Lov9FTFWZ9u8G13ehm6kyI2o9PR div@nephoscale.com" ]
+          htpasswd: "$6$bA7yIq.S$6z3UT/WYcpwRoALoafuWDlYG5NN8bnGaCUJkPgAbK9laeedq8RmwqJU5tj/DALn9BWpXBnd9RVqtkuhaiRnrH/"
+          groups: [ "sysadmin" ]
+          shell: "/bin/bash"
+          action: create
+        - id: yad
+          password: "$1$wBnnhB.h$76ZUXrfaTgqOpGP0M0mS3."
+          ssh_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDl+OCCro4dApVDnMlWKPyuENPohVFjDQ/PZoDBoJrrwhj5ei3r/5+ypbwl7gvoetbu5j4byUjsyC3qpxqhev9dXHIKP8fDrBnJkMnBy+5yKF1ezSCVVWgcJHk/6DRoLtcTa5IRkFGqnhQl4ZeyG2NvMFSHNEigj4u9z6j2Y/1sjThXggDDAH3l5IGCgIJ5oS8dqlC+K1Rbe1aF7Swhilk8jvUpavKX4vM5XZNQUHfhfqACWpc+WHKlp4mtX6dIPRvgxUq53N5h54vXHZmq7jmCY5vKoXyZcTsMXXd2bvd/8bbm6ZoRTbNjTbAc5kW2yTRv+nXarZYQeYb2FxG5VM7v yad@yad-nb" ]
+          htpasswd: "$1$wBnnhB.h$76ZUXrfaTgqOpGP0M0mS3."
+          groups: [ "sysadmin" ]
+          shell: "/bin/bash"
+          action: create
+        - id: poornam
+          password: "$6$7Ja7vbm7$yJj2mVDySk4eVFbGiFX3xVwEZzDtaguzT4RuWBhp1CDvveun/BIZEMOUGw5Ju1LgoJ037nBKnSkKDMdwei3mN1"
+          ssh_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDZG9o1kBMmTZaueBGMF6s5ASC0+kriqrXjgPo9xgK0aHTQ9nP9+TulRKfw5t4UDODM28F1wUXyB0thes/qvznYv0OIzEdA9bqT5BmtYsQEN6RAz/8mpNOOkq2ZtD5IwCK182r5lYU48CCOIT7GhLrze/IFDEBfMtPE0zon7m2JO3o15nek7SusMUuS/ai98KItLvJOQqIjjf4fmmxi0JVwTOOLR5smMQYDvC8KZ4vMEKYXhpkxBZhx3GtG2jW8py1wlBxUl6hAy9l2oibv4njPpQ5zqF2/p57ry8Xbbpo+zAv/le2zmRJ4J6RtHITdycwL9g7+FamK4k4vs58wbmUh alan@hpdesktop" ]
+          htpasswd: "$6$7Ja7vbm7$yJj2mVDySk4eVFbGiFX3xVwEZzDtaguzT4RuWBhp1CDvveun/BIZEMOUGw5Ju1LgoJ037nBKnSkKDMdwei3mN1"
+          groups: [ "sysadmin" ]
+          shell: "/bin/bash"
+          action: create          
+
+    db_passwords:
+      encrypt: yes
+      items:
+        - id: horizon
+          horizon: cc3b90747ee5 
+        - id: glance
+          glance: 57be90747ee5
+        - id: keystone
+          keystone: 13958e5861ec
+        - id: neutron
+          neutron: ea1512157320
+        - id: nova
+          nova: db2128e4509a
+        - id: ironic
+          ironic: db2128e4509a
+        - id: heat
+          heat: cc3129e4509d
+        - id: ceilometer
+          ceilometer: ce2128e4999b
+        - id: designate
+          designate: dd2128e4888c
+        - id: designate-pool
+          designate-pool: dd2128e4888c
+        - id: cinder
+          cinder: aa2128e4888e
+        - id: cloudkitty
+          cloudkitty: dd2128e4888c
+        - id: nephoscale
+          nephoscale: 13958e5861dd
+        - id: nephoscale_statistics
+          nephoscale_statistics: 13958e5861dd
+        - id: urbane
+          urbane: 44458e5861dd
+        - id: sidecar
+          sidecar: 22258e5861dd          
+
+    user_passwords:
+      encrypt: yes
+      items:
+        - id: admin
+          admin: *admin_password
+        - id: guest
+          guest: 5d6baead492b
+        - id: mysqlroot
+          mysqlroot: b12aeb1b72e2
+        - id: openstackmq
+          openstackmq: 13958e58cedf
+        - id: nephoscalemq
+          nephoscalemq: 13958e58cedf
+
+    service_passwords:
+      encrypt: yes
+      items:
+        - id: rabbit_cookie
+          rabbit_cookie: 999a42f99efc09ef9
+        - id: openstack-image
+          openstack-image: 2d41e99efc09a
+        - id: openstack-network
+          openstack-network: 2d41e99efc09a
+        - id: openstack-compute
+          openstack-compute: 2d41e99efc09a
+        - id: openstack-dashboard
+          openstack-dashboard: 2d41e99efc09a
+        - id: openstack-bare-metal
+          openstack-bare-metal: 2d41e99efc09a
+        - id: openstack-object-storage
+          openstack-object-storage: 2d41e99efc09a
+        - id: openstack-ceilometer
+          openstack-ceilometer: 2d41e99efc09a
+        - id: openstack-orchestration
+          openstack-orchestration: 2d41e99efc09a
+        - id: openstack-designate
+          openstack-designate: 2d41e99efc09a
+        - id: openstack-cloudkitty
+          openstack-cloudkitty: 2d41e99efc09a
+        - id: openstack-block-storage
+          openstack-block-storage: 2d41e99efc09a
+        - id: openstack-urbane
+          openstack-urbane: 2d41e99efc09a
+        - id: openstack-sidecar
+          openstack-sidecar: 2d41e99efc09c
+
+    secrets:
+      encrypt: yes
+      items:
+        - id: ipmi
+          ipmi: GSmRC6X6XSIA
+        - id: openstack_data_bag_secret
+          openstack_data_bag_secret: ath3naw1zd0m
+        - id: neutron_metadata_secret
+          neutron_metadata_secret: 2def8affc
+        - id: openstack_identity_bootstrap_token
+          openstack_identity_bootstrap_token: 2d41e9960e66
+        - id: swift_admin_auth_key
+          swift_admin_auth_key: 2d41e9960e66
+        - id: swift_hash_path_suffix
+          swift_hash_path_suffix: 2def9c
+        - id: openstack_metering_secret
+          openstack_metering_secret: 2d99cbex48
+          # this key must be 32 characters exactly
+        - id: orchestration_auth_encryption_key
+          orchestration_auth_encryption_key: 84e410795bf945919302f04887bdc9c8
+        - id: pando_log_slice_password
+          pando_log_slice_password: none
+        - id: pdu_snmp_community
+          pdu_snmp_community: none
+
+        # nephoscale secrets
+        - id: auth_net_login
+          auth_net_login: 49Db5yKzsu
+        - id: auth_net_transaction_key
+          auth_net_transaction_key: 87pD5T4PaMg648bZ
+        - id: console_auth_user_password
+          console_auth_user_password: DDD9666sAQbsuf00911Yuasqw1
+        - id: console_key
+          console_key: "-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA02Nrgd0xjfdGNX45tlBeJ7OH5SCamA+hK8CN5ytcsLQ7KyMK\npWni8KUsUsHE+cOoixvWGXioJCXNK6O0DouLVeeFEvcnRecl8cJPngfCkpReg7mE\nAjTEP1r16L52U0TOeqIRurIsZuY/k8QvwN0PziqMRZyVuZN9l3tUVR4VAfYBEc8m\n13j9k9d3xdsSljbJL3yLikTwHmMkIEcFIFtHywjdPdigsNrolmpwMOaoCVSMGUt7\nZWwFYVq0fN60D4d1QhV7icsDhLK7dRZ7wzivQZ8bYJ9oWDLJISoRspd5H8jv8mRu\nYO0g/nksg8g3UQU58EyAhbqu8lmeOMGrg+HHFwIDAQABAoIBAFUmRCUAk7iK9aYQ\nnXC5+ONnJwN92agNC7ATFVYcGm83emoK6HvvJjInZq5DTXQKg3bdlKWX+6rr6zR7\n8ci2Hz9QTkNweUpoLNmwmt+eYpsm1teav/kfhjm7Czlgl0s9eSre4+NfaBFfCBce\nvNmkcnxqmSxlQc6KAdomHLdYsb+ivCrS2yH5qNkllrUDUryj7ieJbF100WVtnEmu\n1YCccELkCR4tB+PnLS+ZRi8WUMt4jgI3ECYWeVvZjODaXQK6wssQO3Hcath3u+0r\nZtPsVzv4vke6M/RImRBJ60GFPUwygifmAAM9Q7KbwGyXGWkhdOnXKsiLKwesNaVl\nZ/b29XECgYEA6kWt+p6a9pGtcQOs/fySXkeftXaje7XUgfRIxFl/DAKct6Mz6JaD\nYj2gu/iM+7ufwSqoIGn0YpGFX7jmONlOyXPUARNbu3BBOwldcRyQpxzU4k6bknbu\nDl7yY4/taGbZcJL48S0kQIZi8DxtVjUitGeX76hUhMFE8UElB/KomQ8CgYEA5v5o\n+OVRKmLfGLPT4NYM2aeLVzyXKFcSouprKXq/GCHeKIzNy+LX6C95CLCrhQ0AkCOz\nhG/bwbRVIox9ZPIg/q5LCPbPM2WEZd7TuBC5ZfFp5ZdUTB/jdj0GVbrv0e2LpAFd\nKELQF5575G/bDwiFQwvSftmZI13IfYMldwEhoXkCgYBMTuQLpUvukqb/D+ZyWKnI\ngeX4sqsvqZuNtOda5ZfnbpZjjopi8VvcTRyk/aHWgVfZEK7w1/JdhO7/rfd3fvkV\nz1+39flERZ1JwJQqOta3SEHjcR1liM2j6rNjUMdQ4WdkLstdq4mKZvulKtmmYepq\n/u9The35zAZL2x9Xxme6awKBgFSlxjHvVt8BfF/BBlPOHMdl7ln5iiruPZYV8U8x\n+/UL9C1H6+JbLmOXgfL9St1m9l3bt11A4HcLbmdKtGjZkd3CYRzX1PYwrWPnVA6P\nkmEZJoVL/0gmJ2Sc2EVyS4/STOm81jZ6xWbiXORJWS0ZIjx/iJOTidq780yLUp9Z\nesmBAoGAVxDDCHKvBeENIy58CmoALa1A/xANDt0ZGLc3i6fMrJsXDynafS8cjYiT\nWkx4cDE7g1W9Q4LqrCWJvDWQaydmrj5apz7ObREIhHIcIy+3f0qw5VDe3RAvrtJR\nUd7t4Vwh0xXGm1i8xrCjb1q2h7gDudjk/7Ovy0R55W2aLI9f+B8=\n-----END RSA PRIVATE KEY-----"
+        - id: console_sshrsa
+          console_sshrsa: "-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEA02Nrgd0xjfdGNX45tlBeJ7OH5SCamA+hK8CN5ytcsLQ7KyMK\npWni8KUsUsHE+cOoixvWGXioJCXNK6O0DouLVeeFEvcnRecl8cJPngfCkpReg7mE\nAjTEP1r16L52U0TOeqIRurIsZuY/k8QvwN0PziqMRZyVuZN9l3tUVR4VAfYBEc8m\n13j9k9d3xdsSljbJL3yLikTwHmMkIEcFIFtHywjdPdigsNrolmpwMOaoCVSMGUt7\nZWwFYVq0fN60D4d1QhV7icsDhLK7dRZ7wzivQZ8bYJ9oWDLJISoRspd5H8jv8mRu\nYO0g/nksg8g3UQU58EyAhbqu8lmeOMGrg+HHFwIDAQABAoIBAFUmRCUAk7iK9aYQ\nnXC5+ONnJwN92agNC7ATFVYcGm83emoK6HvvJjInZq5DTXQKg3bdlKWX+6rr6zR7\n8ci2Hz9QTkNweUpoLNmwmt+eYpsm1teav/kfhjm7Czlgl0s9eSre4+NfaBFfCBce\nvNmkcnxqmSxlQc6KAdomHLdYsb+ivCrS2yH5qNkllrUDUryj7ieJbF100WVtnEmu\n1YCccELkCR4tB+PnLS+ZRi8WUMt4jgI3ECYWeVvZjODaXQK6wssQO3Hcath3u+0r\nZtPsVzv4vke6M/RImRBJ60GFPUwygifmAAM9Q7KbwGyXGWkhdOnXKsiLKwesNaVl\nZ/b29XECgYEA6kWt+p6a9pGtcQOs/fySXkeftXaje7XUgfRIxFl/DAKct6Mz6JaD\nYj2gu/iM+7ufwSqoIGn0YpGFX7jmONlOyXPUARNbu3BBOwldcRyQpxzU4k6bknbu\nDl7yY4/taGbZcJL48S0kQIZi8DxtVjUitGeX76hUhMFE8UElB/KomQ8CgYEA5v5o\n+OVRKmLfGLPT4NYM2aeLVzyXKFcSouprKXq/GCHeKIzNy+LX6C95CLCrhQ0AkCOz\nhG/bwbRVIox9ZPIg/q5LCPbPM2WEZd7TuBC5ZfFp5ZdUTB/jdj0GVbrv0e2LpAFd\nKELQF5575G/bDwiFQwvSftmZI13IfYMldwEhoXkCgYBMTuQLpUvukqb/D+ZyWKnI\ngeX4sqsvqZuNtOda5ZfnbpZjjopi8VvcTRyk/aHWgVfZEK7w1/JdhO7/rfd3fvkV\nz1+39flERZ1JwJQqOta3SEHjcR1liM2j6rNjUMdQ4WdkLstdq4mKZvulKtmmYepq\n/u9The35zAZL2x9Xxme6awKBgFSlxjHvVt8BfF/BBlPOHMdl7ln5iiruPZYV8U8x\n+/UL9C1H6+JbLmOXgfL9St1m9l3bt11A4HcLbmdKtGjZkd3CYRzX1PYwrWPnVA6P\nkmEZJoVL/0gmJ2Sc2EVyS4/STOm81jZ6xWbiXORJWS0ZIjx/iJOTidq780yLUp9Z\nesmBAoGAVxDDCHKvBeENIy58CmoALa1A/xANDt0ZGLc3i6fMrJsXDynafS8cjYiT\nWkx4cDE7g1W9Q4LqrCWJvDWQaydmrj5apz7ObREIhHIcIy+3f0qw5VDe3RAvrtJR\nUd7t4Vwh0xXGm1i8xrCjb1q2h7gDudjk/7Ovy0R55W2aLI9f+B8=\n-----END RSA PRIVATE KEY-----"
+        - id: console_token_user_password
+          console_token_user_password: 1Kst61FgaIUq9oPPoOsjhdY679
+        - id: console_websocket
+          console_websocket: "-----BEGIN RSA PRIVATE KEY-----\nMIIEpAIBAAKCAQEAu0C0oP5cKJWQ9NPZpl7e8JX4J3dKxkZAioWDCoQzPkRaHvz6\n5HwAXMwgPeCQBTmeLhHQQ1CaZfL5cI9j+XQCSfSx3Ft0eGXOX3838bV6CFz5uWDd\nSU3zNHERnj3pz+zG1d0y05x6DHYJFdPQST2BCswl94NHnhmuSKF6wp6mAESxXnQn\nh4w5ysq7LMktGTdudkdliMkjbLCvq96DfPeVSUGas/snH06jHt3YUhuG3J2toAiQ\nXdvFlvFhcuPTMdHo7fFjURuSAPTN7CMrlLEj9U6RHYe24Pi1kN/bNHG6jcVcfTbA\nEl9UEggmS0JEazQVsPve2vt8X1ySyu0CncKArQIDAQABAoIBABL7uFQp9UXYA94O\nLB6Ft6xER+gYW+hF7v0cE/DY/ijt3QUPOJA5UgAWYZ5kSbV95d9dxvNMFJsJSuhy\nYPxFGoZM3EsuqlwaVhWwXAeRElIOuvJkM4re8Cz82YBlXnLJ2k6MIj75uhXRUZJ4\n6sDCD3b8w0yYboZErDqIxF0+oC2enJPv45bPHPUAIaP0RdT2eptmT8T/goGSlCSf\nwjnbsYwcIZdlTqkr6zRWvDyi71fHZqmxuJqz3e3RFs1eWO/1052iVgrCUjoe+7dg\nQpUkFUvab+4UZIOegkEjx44kBPI4l6kPvGHCMM8T8T8thcquH8QeefamphP2NzD9\n0hEhDzECgYEA8PIz9mqyHhquYDos2gwQZJpC4sl/lAs5xalAlsS2FIutOjJ7s6kf\nYh7SVpmFpBtrSZocX5ZqMxY47hYgQDvkMgCQIiM8XY9j2AIIs2MvenKTnXb3eZTI\nAKuRiPBSWyeLPL08sMD1KXX0GIf25k166hXgHEaoVyQ5wsodSSYyYRcCgYEAxvO1\nMLNTuJTxaDL19K4Lxm9TJV/pj1bJxEfShnklKr811VmfRoQcSDvsqOSK8Zmipy3T\ncS/Ed3dbVfvuBgCcWnk/0nnXTnk5z0rk6bqS+/gu3IMaPBBtg296ENfxogx3s326\nCvHprqUkiFNLLRjLarXW8MXt25z+UVgBsmr1XtsCgYAkCIS+4Fv85o6Xc3vLrCwz\nb2J7WhkLQdaE+fff1FFKp0zjvDMFvlAkM2nPa6wxy6vy2OpPXUZKl5Mx//sYwBwz\nYiQsBsr7TvtmjX9RnI64KDRtQyJle1uhxgbAzPf0C+jlz4MpB+JiLfKwTH0fGg08\nvsLCV8rLJW7B88oHa3/zRwKBgQCYgWZKD5zEqD+pDS9mwSe7k8ibpLsHqpJ9yESD\n2kd4Thx5D/s89bYsVOsjyBUOACQjnMgxQlmK7k5wSe76YOt5muomcElwGRMMaK+y\nztcvGN7rIAAzPLCGCST71lyeSIpVZ7H+A9SKkILBkX/V8OS1RvCdnkunhd+ZASpD\n1yOB8wKBgQDUTUbhUpbgH66dMG6r3ydLOB/SV32okdYqiQDDYNRMpjo6pcK4pY7H\nlGdFwbj4gw/a688G2eKD6f/eQaBIn2/3QJhw+l40n5WP8eso/QB/gD6aVHMacyEj\nzL1qWSi4B3F+tsDghXY7MzcLMwjR73a6k6+LwTVxx2IYBuk9xqPaHw==\n-----END RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIE/jCCA+agAwIBAgISESEGvjauu1YznQWwwAesG2s/MA0GCSqGSIb3DQEBCwUA\nMGAxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTYwNAYD\nVQQDEy1HbG9iYWxTaWduIERvbWFpbiBWYWxpZGF0aW9uIENBIC0gU0hBMjU2IC0g\nRzIwHhcNMTQwODIyMTM0MDU3WhcNMTUxMDA1MDE1MjEyWjA+MSEwHwYDVQQLExhE\nb21haW4gQ29udHJvbCBWYWxpZGF0ZWQxGTAXBgNVBAMMECoubmVwaG9zY2FsZS5j\nb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC7QLSg/lwolZD009mm\nXt7wlfgnd0rGRkCKhYMKhDM+RFoe/PrkfABczCA94JAFOZ4uEdBDUJpl8vlwj2P5\ndAJJ9LHcW3R4Zc5ffzfxtXoIXPm5YN1JTfM0cRGePenP7MbV3TLTnHoMdgkV09BJ\nPYEKzCX3g0eeGa5IoXrCnqYARLFedCeHjDnKyrssyS0ZN252R2WIySNssK+r3oN8\n95VJQZqz+ycfTqMe3dhSG4bcna2gCJBd28WW8WFy49Mx0ejt8WNRG5IA9M3sIyuU\nsSP1TpEdh7bg+LWQ39s0cbqNxVx9NsASX1QSCCZLQkRrNBWw+97a+3xfXJLK7QKd\nwoCtAgMBAAGjggHSMIIBzjAOBgNVHQ8BAf8EBAMCBaAwSQYDVR0gBEIwQDA+BgZn\ngQwBAgEwNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xvYmFsc2lnbi5jb20v\ncmVwb3NpdG9yeS8wKwYDVR0RBCQwIoIQKi5uZXBob3NjYWxlLmNvbYIObmVwaG9z\nY2FsZS5jb20wCQYDVR0TBAIwADAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUH\nAwIwQwYDVR0fBDwwOjA4oDagNIYyaHR0cDovL2NybC5nbG9iYWxzaWduLmNvbS9n\ncy9nc2RvbWFpbnZhbHNoYTJnMi5jcmwwgZQGCCsGAQUFBwEBBIGHMIGEMEcGCCsG\nAQUFBzAChjtodHRwOi8vc2VjdXJlLmdsb2JhbHNpZ24uY29tL2NhY2VydC9nc2Rv\nbWFpbnZhbHNoYTJnMnIxLmNydDA5BggrBgEFBQcwAYYtaHR0cDovL29jc3AyLmds\nb2JhbHNpZ24uY29tL2dzZG9tYWludmFsc2hhMmcyMB0GA1UdDgQWBBS4PB5TeSM7\nXkTNxrBPyDAkMWjnRzAfBgNVHSMEGDAWgBTqTnzUgC3lFYGGJoyCbcCYpM+XDzAN\nBgkqhkiG9w0BAQsFAAOCAQEAXJ20UeqfswrBnerrOti217gngez+u5HAz+ppohdm\nSQUHZ5e1brkwaB2+6ck4slH2r5+ag+6oRZsGIkLkOD02De/K4yiUHBc9LDWvAP1B\n0CqTGPR9Ex3YbRQH7DrU2IgAikk3tQDE4vt6MRiB1MtxUnWbHugeVnFQLGLUnW9I\nIWPIGjzMum9qIYCXcFe2elKhVMAn7qmYrvcHzm+ctErHVpEoHYPgX6H9JOZzfrRD\nwOfUfT/CBQqHHzQl1gyHy4x9YRvunbWXhsBp8W5OZsVIsiut1FyzjEHKKVm+cW80\nhR5Aags9ph4P49HXMdaKNnR18zVNqoRKDnduPieMExURDg==\n-----END CERTIFICATE-----"
+        - id: default_root_convert_password
+          default_root_convert_password: ath3naw1zd0m
+        - id: default_system_user_password
+          default_system_user_password: 447e8a9
+        - id: django_secret_key
+          django_secret_key: 'w_j(#t5b+$om-#x@1bxz!yyalo#(3ibu@u=za5^qdaufd9f%pi'
+        - id: fraud_license_key
+          fraud_license_key: DgAhwlqaECOx
+        - id: nepho_db_enc_key
+          nepho_db_enc_key: 2211bf92-cc27-49db-9314-08c45b239c36
+        - id: scribe_password
+          scribe_password: K22ca64736RTyeuus7w6te5asd898
+        - id: signup_password
+          signup_password: X22ca64736RTyeuus7w6te5asd898
+        - id: twilio_auth_token
+          twilio_auth_token: 11fefeac8a164ae3a0cde56cc01566ef
+
+    nagios_servicegroups:
+      items:
+        - id: database
+          alias: Database
+        - id: disks
+          alias: Disks
+        - id: networking
+          alias: Networking
+        - id: openstack-http
+          alias: OpenStack-HTTP
+        - id: openstack-services
+          alias: OpenStack-Services
+        - id: ops
+          alias: Operations
+
+    nagios_services:
+      items:
+
+        - id: ObjectStore_usage
+          hostgroup_name: os-object-storage-node
+          description: ObjectStore_usage
+          command_line: "$USER1$/check_nrpe -H $HOSTADDRESS$ -c check_swift-diskusage -t 20"
+          servicegroups: openstack-services
+          obsess_over_service: 1
+
+        - id: Service_glance-api
+          hostgroup_name: os-image
+          description: Service_glance-api
+          command_line: "$USER1$/check_nrpe -H $HOSTADDRESS$ -c check_glance-api -t 20"
+          servicegroups: openstack-services
+          obsess_over_service: 1
+
+        - id: Service_keystone-api
+          hostgroup_name: os-identity
+          description: Service_keystone-api
+          command_line: "$USER1$/check_nrpe -H $HOSTADDRESS$ -c check_keystone-api -t 20"
+          servicegroups: openstack-services
+          obsess_over_service: 1
+
+        - id: all_disks
+          hostgroup_name: base
+          description: FileSpace
+          command_line: "$USER1$/check_nrpe -H $HOSTADDRESS$ -c check_all_disks -t 20"
+          obsess_over_service: 1
+
+        - id: bind
+          hostgroup_name: infra-dns
+          description: DNS-Status_localhost
+          command_line: "$USER1$/check_nrpe -H $HOSTADDRESS$ -c check_bind -t 20"
+          obsess_over_service: 1
+
+        - id: check_linux_bonding
+          hostgroup_name: physical-host
+          description: Network_bondstatus
+          command_line: "$USER1$/check_nrpe -H $HOSTADDRESS$ -c check_linux_bonding -t 20"
+          obsess_over_service: 1
+
+        - id: mysql_check_connections
+          description: DB-Check-MySQL-Connections
+          hostgroup_name: os-ops-database
+          command_line: "$USER1$/check_nrpe -H $HOSTADDRESS$ -c check_mysql_connections -t 20"
+          servicegroups: database
+          obsess_over_service: 1
+
+        - id: chef_checkins
+          hostgroup_name: chef-server
+          description: Chef_checkins
+          command_line: "$USER1$/check_nrpe -H $HOSTADDRESS$ -c check_chef_checkins -t 20"
+          obsess_over_service: 1
+
+        - id: conntrack
+          hostgroup_name: ns-dlr
+          description: Network_connections
+          command_line: "$USER1$/check_nrpe -H $HOSTADDRESS$ -c check_conntrack -t 20"
+          obsess_over_service: 1
+
+        - id: disk_io_checks_sda
+          hostgroup_name: physical-host
+          description: Disk_IO-sda
+          command_line: "$USER1$/check_nrpe -H $HOSTADDRESS$ -c check_diskio_sda -t 20"
+          servicegroups: disks
+          service_template: 05minutechecks
+          obsess_over_service: 1
+
+        - id: disk_io_checks_sdb
+          hostgroup_name: physical-host
+          description: Disk_IO-sdb
+          command_line: "$USER1$/check_nrpe -H $HOSTADDRESS$ -c check_diskio_sdb -t 20"
+          servicegroups: disks
+          service_template: 05minutechecks
+          obsess_over_service: 1
+
+        - id: disk_smart_checks
+          hostgroup_name: ns-dlr
+          description: Disk_smart-check
+          command_line: "$USER1$/check_nrpe -H $HOSTADDRESS$ -c disk_smart_checks -t 600"
+          servicegroups: disks
+          service_template: 15minutechecks
+          obsess_over_service: 1
+
+        - id: dlr_check
+          hostgroup_name: ops
+          description: dlr check
+          command_line: "$USER1$/check_nrpe -H $HOSTADDRESS$ -c dlr_check -t 20"
+          servicegroups: ops
+          obsess_over_service: 1
+
+        - id: glance-api-port
+          hostgroup_name: os-image
+          description: Port_9292_Glance-API
+          command_line: "$USER1$/check_http -H $HOSTADDRESS$ -p 9292"
+          servicegroups: "openstack-http"
+          obsess_over_service: 1
+
+        - id: glance-registry-port
+          hostgroup_name: os-image
+          description: Port_9191_Glance-Registry
+          command_line: "$USER1$/check_tcp -H $HOSTADDRESS$ -p 9191"
+          servicegroups: openstack-services
+          obsess_over_service: 1
+
+        - id: ipmi-sensors
+          hostgroup_name: physical-host
+          description: IPMI Check
+          command_line: "$USER1$/check_nrpe -H $HOSTADDRESS$ -c check_ipmi_sensors -t 20"
+          service_template: 15minutechecks
+          obsess_over_service: 1
+
+        - id: keystone-admin-port
+          hostgroup_name: os-identity
+          description: Port_35357_Keystone-API-Admin
+          command_line: "$USER1$/check_tcp -H $HOSTADDRESS$ -p 35357"
+          obsess_over_service: 1
+
+        - id: keystone-port
+          hostgroup_name: os-identity
+          description: Port_5000_Keystone-API-Public
+          command_line: "$USER1$/check_tcp -H $HOSTADDRESS$ -p 5000"
+          servicegroups: "openstack-http"
+          obsess_over_service: 1
+
+        - id: lock
+          hostgroup_name: ops
+          description: NephoScale_Lock_Service_Check
+          command_line: "$USER1$/check_nrpe -H $HOSTADDRESS$ -c lock_check -t 20"
+          servicegroups: ops
+          obsess_over_service: 1
+
+        - id: mysql_innodb
+          description: DB-InnoDBPool
+          hostgroup_name: os-ops-database
+          command_line: "$USER1$/check_nrpe -H $HOSTADDRESS$ -c check_mysql_innodb -t 20"
+          servicegroups: database
+          obsess_over_service: 1
+
+        - id: ping
+          hostgroup_name: linux
+          description: Host Alive
+          use_existing_command: check-host-alive
+          obsess_over_service: 1
+
+        - id: chefrun
+          hostgroup_name: base
+          description: Chef_chefrun
+          command_line: "$USER1$/check_nrpe -H $HOSTADDRESS$ -c check_chefrun -t 20"
+          service_template: 15minutechecks          
+          obsess_over_service: 1 
+
+        - id: kernel_panic
+          hostgroup_name: base
+          description: Kernel_panic
+          command_line: "$USER1$/check_nrpe -H $HOSTADDRESS$ -c check_kernel_panic -t 20"
+          service_template: 15minutechecks          
+          obsess_over_service: 1           
+
+        - id: proc_cron
+          hostgroup_name: base
+          description: Proc_cron
+          command_line: "$USER1$/check_nrpe -H $HOSTADDRESS$ -c check_proc_cron -t 20"
+          service_template: 15minutechecks          
+          obsess_over_service: 1
+
+        - id: proc_ntpd
+          hostgroup_name: base
+          description: Proc_ntpd
+          command_line: "$USER1$/check_nrpe -H $HOSTADDRESS$ -c check_proc_ntpd -t 20"
+          service_template: 15minutechecks          
+          obsess_over_service: 1          
+
+        - id: load_avg
+          hostgroup_name: base
+          description: CPU_Load-average
+          command_line: "$USER1$/check_nrpe -H $HOSTADDRESS$ -c check_load_avg -t 20"
+          service_template: 15minutechecks          
+          obsess_over_service: 1       
+
+    nagios_templates:
+      items:
+        - id: 05minutechecks
+          check_interval: 300
+          retry_interval: 60
+        - id: 10minutechecks
+          check_interval: 600
+          retry_interval: 120
+        - id: 15minutechecks
+          check_interval: 900
+          retry_interval: 180
+        - id: 30minutechecks
+          check_interval: 1800
+          retry_interval: 300
+        - id: hourlychecks
+          check_interval: 3600
+          retry_interval: 300
+        - id: dailychecks
+          check_interval: 86400
+          retry_interval: 3600
+
+    nagios_timeperiods:
+      items:
+        - id: annually
+          alias: Yearly
+          times: [ "january 1 00:00-00:01" ]
+        - id: monthly
+          alias: Monthly
+          times: [ "day 1 00:00-00:01" ]
+        - id: never
+          alias: Never
+          times: []
+        - id: weekly
+          alias: Weekly
+          times: [ "monday 00:00-00:01" ]
+
+
+
+  roles:
+
+    - name: stage1
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "This is a role that is used by all servers in this environment to override site specific settings"
+      run_list: []
+      env_run_lists: 
+        production: []
+        _default: []
+      override_attributes: 
+
+        python:
+          setuptools_version: 28.8.0
+
+        erlang:
+          install_method: package
+
+        # the network settings for this environments, namely the
+        # vlan ids - a nil value means the network is untagged
+        # these values are overrides for the cookbook-networking
+        # cookbook
+        #
+        # keep in mind, for internal_node_vlans, the interface is not
+        # used here, but rather defined on each internal nodes
+        # networking settings that builds the bridge->phys link
+        # connectivity
+        networking:
+          internal_node_vlans:
+            haproxy-services:
+              vlan: 11
+              interface: bond0.11
+            #haproxy-storage:
+            #  vlan: 12
+            #  interface: bond0.12
+            maas:
+              vlan: 20
+              interface: bond0.20
+            cobbler:
+              vlan: 21
+              interface: bond0.21
+            ops-virtual:
+              vlan: 23
+              interface: bond0.23
+            storage:
+              vlan: 24
+              interface: bond0.24
+
+          # the network settings for this environments, namely the
+          # vlan ids - a nil value means the network is untagged
+          # these values are overrides for the cookbook-networking
+          # cookbook
+          bond_mtu: 9126
+          vlans:
+            maas: nil
+            ops: 22
+            vops: 23
+            storage: 24
+            overlay: 25
+            pub: 10
+          interface:
+            maas: eth0
+
+        rabbitmq:
+          # The Erlang runtime automatically appends .config extension to the value
+          config: /etc/rabbitmq/rabbitmq
+          enabled_plugins: []
+          job_control: upstart
+          use_distro_version: false
+          open_file_limit: 4096
+          version: 3.5.4
+          max_file_descriptors: 1048576
+          cluster: true
+          clustering:
+            use_auto_clustering: true
+
+        zone: stage1
+
+        nagios:
+          url: monitoring.stage1.nephoscale.com
+          sysadmin_email: support@nephoscale.com
+          # all the cloudbuilder IPs - .36 is a VIP and likely would never
+          # be the source of any traffic but we put it here anyways
+          allowed_hosts: 
+            - 127.0.0.1
+            - 10.23.0.39
+            - 10.23.0.40
+            - 38.113.206.36
+            - 38.113.206.37
+            - 38.113.206.38
+
+        nephoscale:
+
+          github:
+            branch:
+              tools: nephoscale/testing
+              openstack: nephoscale/testing/liberty
+
+          release: stage
+          docs:
+            image-prefix: 'nephoscale'
+            target: 'nephoscale'
+          db:          
+            username: nephoscale
+          db_statistics:
+            username: nephoscale        
+          dns:
+            public_server_list:
+              - tenant-dns1.stage1.nephoscale.com
+              - tenant-dns2.stage1.nephoscale.com
+              - tenant-dns3.stage1.nephoscale.com
+            reverse_tenant_name: admin
+          gui:
+            url: https://portal.stage1.nephoscale.com
+          api:
+            chef_admin_client_key: *chef_admin_client_key
+            chef_validation_key: *chef_validation_key
+            url: https://ns-api.stage1.nephoscale.com
+            os:
+              insecure: 'True'
+            proxy:
+              enabled: 'False'
+              host: ''
+              port: '0'
+            debug: 'True'
+            debug_template: 'True'
+            email_mock: 'False'
+            mq:
+              vhost: '/nephoscale'
+              user: 'nephoscalemq'
+            twilio:
+              account_sid: AC1a30fc8b60bbf326ac4807a945febe72
+              phone_number: "+17204109014"
+            dlr:
+              image: Ubuntu Server 10.04 LTS 64-bit
+            node:
+              image: Ubuntu Server 10.04 LTS 64-bit
+              management:
+                vlan: 22
+            pxeboot_vlan: 21
+            blackhole_vlan: 28
+            servicenet:
+              cidr: 10.127.0.0
+              prefix_length: 16
+              vlan: 28
+            console:
+              host: *lb_vip_public_ns_api
+              port: 9000
+            db:
+              database_engine: django.db.backends.mysql
+              database_name: nephoscale
+              database_user: nephoscale
+              database_host: *lb_vip_private
+              database_port: '' # default
+            db_stats:
+              database_engine: django.db.backends.mysql
+              database_name: nephoscale_statistics
+              database_user: nephoscale
+              database_host: *lb_vip_private
+              database_port: '' # default
+            environment: tuliva
+            noreply_email: noreply@stage1.nephoscale.com
+          console:
+            cert: 'wildcard.stage1.nephoscale.com.pem'
+          signup:
+            noreply_email: noreply@stage1.nephoscale.com
+            no_auto_create_for_high_risk: 'False'
+            force_review_for_all_accounts: 'False'
+            email_host: *lb_vip_private
+            media_url: '/media/'
+            welcome_subject: "Welcome to NephoScale!"
+            welcome_html: |-
+              '<br />Thank you for choosing NephoScale as your cloud computing services provider. ' + \
+              '<br /><br />To login to the NephoScale Customer Portal, go to <a href="https://dashboard.stage1.nephoscale.com">https://dashboard.stage1.nephoscale.com</a>. Your login ' + \
+              'credentials are the username and password you selected during signup. ' + \
+              '<br /><br />We\'re here to assist you in any way we can and your satisfaction with our services is our first priority.' + \
+              '<br /><br />Best Regards,<br />' + \
+              'The NephoScale Team<br />' + \
+              '<br />Portal Login: <a href="https://dashboard.stage1.nephoscale.com">https://dashboard.stage1.nephoscale.com</a><br />' + \
+              'Technical Documentation: <a href="http://docs.stage1.nephoscale.com">http://docs.stage1.nephoscale.com</a><br />'
+            welcome_plain: |-
+              'Welcome to NephoScale!\r\n' + \
+              '\r\nThank you for choosing NephoScale as your cloud computing services provider. ' + \
+              '\r\n\r\nTo login to the NephoScale Customer Portal, go to https://dashboard.stage1.nephoscale.com. Your login ' + \
+              'credentials are the username and password you selected during signup. ' + \
+              '\r\n\r\nWe\'re here to assist you in any way we can and your satisfaction with our services is our first priority. ' + \
+              '\r\nBest Regards,\r\n' + \
+              'The Tuliva Team\r\n' + \
+              '\r\nPortal Login: https://dashboard.stage1.nephoscale.com\r\n' + \
+              'Technical Documentation: http://docs.stage1.nephoscale.com/\r\n'
+          portal:
+            brand_name: NephoScale, Inc.
+            brand_domain: 'stage1.nephoscale.com'
+            brand_logo: nephoscale-logo.png
+            brand_favicon: nephoscale-favicon.ico
+            brand_style: nephoscale-theme.css
+            show_pricing_tables: 'False'
+            allow_storage_slices: 'False'
+            vnc_host: portal.stage1.nephoscale.com
+            vnc_port: 6080
+            disabled_workzones:
+              - 'server/dedicated'
+              - 'dashboard/nodestats'
+              - 'datacenter/virtualrack'
+              - 'datacenter/physicalrack'
+            disable_videos_link: 'True'
+            disable_managed_services: 'True'
+            debug: 'True'
+            template_debug: 'True'
+            powered_by_logo: powered-by-tuliva-logo.png
+            contacts_file: nephoscale-contacts.html
+          mobile:
+            url: 
+              https://m.stage1.nephoscale.com
+          monitoring:
+            graphite_server_ip: 1.2.3.4
+          agent:
+            resolvers: ['8.8.8.8', '4.2.2.2']
+            chef_server: *chef_url
+            chef_client_rb: |-
+              log_level              :info
+              ssl_verify_mode        :verify_none
+              validation_client_name "chef-validator"
+              validation_key         "/etc/chef/validation.pem"
+              client_key             "/etc/chef/client.pem"
+              chef_server_url        "https://10.20.0.10:8443/"
+              node_name              "$node_name.int.stage1.nephoscale.com"
+              json_attribs           "/etc/chef/firstboot.json"
+              file_cache_path        "/var/cache/chef"
+              file_backup_path       "/var/backups/chef"
+              pid_file               "/var/run/chef/client.pid"
+              Chef::Log::Formatter.show_time = true      
+            chef_firstboot_json: '{"run_list":["role[booted]"]}'
+            install_url: https://install.nephoscale.com/nephoscale-admin
+            apiuser: Chef
+
+        # used by cloudmaker
+        dnsmasq:
+          enable_dhcp: true
+          enable_dns: false
+          dhcp_options:
+            - 'dhcp-option=option:router,10.21.0.5'
+            - 'dhcp-option=6,8.8.8.8,4.2.2.2'
+            - 'enable-tftp'
+            - 'tftp-no-blocksize'
+          dhcp:
+            dhcp-range: 'eth1,10.21.0.100,10.21.0.200,12h'
+            interface: eth1
+            dhcp-boot: pxelinux.0
+            tftp-root: /var/lib/tftpboot
+          # we cant seem to stop dnsmasq from overwriting cloudbuilders resolv.conf
+          # so if its going to overwrite it, we put in something useful
+          dns:
+            server: 8.8.8.8
+
+        monitoring:
+          db_role: os-ops-database
+          ipmi:
+            user: *power_credentials_username
+            exclusion_ids: '1746,1880'
+          extra_monitor_interfaces: 
+            - eth0
+            - eth1
+            - eth2
+            - bond0.10
+            - bond0.25
+
+        # (TODO): password not in secret file for
+        # admin user or ceilometer - also with
+        # a replication set, it seems the user
+        # management recipe fails
+        mongodb:
+          config:
+            auth: false
+            replSet: rs_default
+            logpath: /var/log/mongo/mongodb.log
+            dbpath: /var/lib/mongodb
+          cluster_name: ceilometer
+          default_init_name: mongodb
+          instance_name: mongodb
+          dbconfig_file: /etc/mongodb.conf
+          create_databases: ['ceilometer']
+          # this does not take effect as we do
+          # not use the user management recipe
+          # since it fails with a replSet
+          admin: 
+            username: admin
+            password: xef239dced
+            roles: ["root", "userAdminAnyDatabase", "dbAdminAnyDatabase"]
+            database: admin
+          users:
+            - username: ceilometer
+              password:  xef239d333
+              roles: ["dbOwner"]
+              database: ceilometer
+
+        swift:
+          service_pass: notUsedButRequired
+
+        openvpn:
+          gateway: "vpn.stage1.nephoscale.com"
+          subnet: 10.5.0.0
+          netmask: 255.255.255.0
+          routes:
+            - push 'route 10.0.0.0 255.128.0.0'
+          key:
+            country: US
+            province: CA
+            city: San Sancisco
+            org: NephoScale
+            email: support@nephoscale.com
+
+        bind:
+          zonesource: null
+          acl-role: external-acl
+          ipv6_listen: true
+          zonetype: master
+          options:
+            - "recursion no;"
+            - "allow-query { any; };"
+            - "listen-on-v6 { any; };"
+          zones:
+            attribute: *id005
+          dns_infra_servers: *id002
+          dns_tenant_servers: *id003
+          domain_name_templates: *id004
+          records: *id006
+
+        openstack:
+
+          # nephoscale openstack service settings (sidecar)
+          nephoscale:
+            sidecar:
+              failure_threshold: 600
+              dead_time: 300
+
+          # do not change this 
+          release: liberty
+
+          # liberty reached EOL. this is used by hopper-repo::os-dashboard-server recipe
+          tag-name: liberty-eol
+
+          region: stage1
+
+          api:
+            auth:
+              version: 'v2.0'
+
+          # required to support keystone v3
+#          misc_openrc:
+#            - export OS_PROJECT_DOMAIN_ID=default
+#            - export OS_USER_DOMAIN_ID=default
+
+          orchestration: 
+            clients:
+              insecure: true
+            api:
+              auth: 
+                insecure: true
+
+          signup:
+            branding:
+              brand_id: default
+              organization: 'NephoScale, Inc.'
+              brand_logo: logo.png
+              brand_domain: nephoscale.com
+              contact_local_phone: '855-NEPHOS-9'
+              contact_inter_phone: '408-599-7008'
+            allowed_roles: ['admin', 'billing-admin', 'signup-admin']
+            min_username_length: 3
+            min_password_length: 6
+            verify: ['authnet', 'minfraud']
+            signup_auto_verify: 'True' # verify on create
+            signup_auto_accept: 'True'
+            signup_auto_accept_score: 1
+            signup_auto_reject: 'False'
+            signup_auto_reject_score: -1
+            signup_auto_expire: 1d
+            email:
+              subject: 'Welcome to the NephoScale Cloud'
+              sender: 'noreply@nephoscale.com'
+            database:
+              cipher_key: 6c548135c2201ff0bd5d6283fa62acf2
+
+
+
+
+          rating:
+            collector: ceilometer
+            period: *rating_period
+            window: 1800
+            wait_periods: 2
+            services: 'compute,image,volume,network.bw.in,network.bw.out,network.floating'
+
+          mysql:
+            max_connections: 10000
+
+          auth:
+            strategy: uuid
+
+          object-storage:
+            dispersion:
+              auth_user: dispersion
+              auth_key: 8fde9ceed112
+            swift_hash: 8594698ff85a
+            disk_enum_expr: >-
+              Hash[('c'..'z').to_a.collect{|x| [ "vd#{x}", {} ]} + ('aa'..'az').to_a.collect{|x| [ "vd#{x}", {} ]}]
+            network:
+              proxy-cidr: 10.24.0.0/16
+              object-cidr: 10.24.0.0/16
+
+          compute:
+            vif_plugging_is_fatal: 'False' # ensures evacuate succeeds under librty
+            config:
+              notification_topics: ['notifications', 'notifications_designate', 'trackinstance']
+              notification_drivers: ['messagingv2', 'messaging', 'log']
+              notify_on_state_change: vm_and_task_state
+            ec2_workers: 24
+            metadata_workers: 24
+            osapi_compute_workers: 24
+            libvirt:
+              max_workers: 10
+            conductor:
+              workers: 8
+            api:
+              auth:
+                insecure: True
+            network:
+              service_type: neutron
+              neutron:
+                insecure: True
+              floating:
+                # this is both the cidr, and implies
+                # where to start the allocation as it will go from
+                # ip to end-of-cidr, so in the example below
+                # we start allocating floaters from 38.113.207.0/24
+                # at .10, and we always use the first IP as the gw
+                ipv4_cidr: 38.113.207.10/24
+                public_network_name: public
+            image:
+              glance_insecure: True
+            block-storage:
+              cinder_insecure: True
+
+          block-storage:
+            notification_driver: 'messagingv2'
+            misc_cinder: ['nova_api_insecure=true']
+            volume:
+              multi_backend: {}
+              #multi_backend:
+              #  Pure-1:
+              #    volume_backend_name: "pure-1"
+              #    volume_driver: cinder.volume.drivers.pure.PureFCDriver
+              #    san_ip: 10.3.0.100
+              #    pure_api_token: f875096a-9db6-cbf7-8d4a-60ce35be6424
+              #    use_multipath_for_image_xfer: 'True'
+              #    use_chap_auth: 'True'
+              #    reserved_capacity: 0
+              # 
+              # default test configuration
+              driver: cinder.volume.drivers.lvm.LVMVolumeDriver
+              # 'file' for basic 600g file for testing
+              # for real storag, we would use type
+              # 'block_devices' for block devices
+              # and then specify 'block_devices' as '/dev/sd[k-m]1'
+              # we could use as part of our LVM group
+              create_volume_group: true
+              create_volume_group_type: file
+              volume_group_size: 600
+            api:
+              auth:
+                insecure: True
+            image:
+              glance_api_insecure: True
+
+          network:
+            lbaas:
+              enabled: 'True'
+              periodic_interval: 30
+              device_driver: 'neutron_lbaas.services.loadbalancer.drivers.haproxy.namespace_driver.HaproxyNSDriver'
+            service_plugins: ["router", "lbaas"]
+            dhcp:
+              # Override the default mtu setting given to virtual machines
+              # to 1454 to allow for tunnel and other encapsulation overhead.  You
+              # can adjust this from 1454 to 1500 if you do not want any lowering
+              # of the default guest MTU which is appropriate in a network
+              # that has > 1500 mtu on the tunnel network (VLAN 25) which we do
+              dhcp-option: '26,1500'
+              dhcp_agents_per_network: 2
+            rpc_workers: 24
+            api_workers: 24
+            use_namespaces: 'True'
+            allow_overlapping_ips: True
+            nova:
+              insecure: True
+            wsgi:
+              api_workers: 23
+            openvswitch:
+              bridge_mappings: 'local:br-local'
+              bridge_mapping_interface: 'br-local:bond0'
+              enable_tunneling: True
+              local_ip_interface: bond0.25
+              tunnel_type: gre
+              tunnel_types: gre
+              tunnel_id_ranges: 1:32000
+              tenant_network_type: gre
+              network_vlan_ranges: local:500:2000
+            l3:
+              ha:
+                l3_ha: True
+                max_l3_agents_per_router: 2            
+              external_network_bridge_interface: bond0.14
+            ml2:
+              mechanism_drivers: openvswitch
+              type_drivers: vlan,gre
+              tenant_network_type: gre
+              tenant_network_types: gre,vlan
+              network_vlan_ranges: local:500:2000
+              tunnel_id_ranges: 1:32000
+            api: 
+              auth:
+                insecure: True
+
+          telemetry:
+            dbsync_timeout: 30
+            api:
+              auth:
+                insecure: True
+            service-credentials:
+              insecure: True
+
+          image:
+            upload_images: [precise, centos]
+            service_tenant_name: service
+            service_user: glance
+            ssl: # disable glance utilizing certificates
+              cert_file: ''
+              key_file: ''
+            registry:
+              auth:
+                insecure: True
+            upload_image:
+              precise: http://cloud-images.ubuntu.com/precise/current/precise-server-cloudimg-amd64-disk1.img
+              cirros: http://download.cirros-cloud.net/0.3.4/cirros-0.3.4-x86_64-disk.img
+              natty: http://cloud-images.ubuntu.com/natty/current/natty-server-cloudimg-amd64-disk1.img
+              oneiric: http://cloud-images.ubuntu.com/oneiric/current/oneiric-server-cloudimg-amd64-disk1.img
+              centos: http://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud.qcow2
+            # The following disk format types are supported: qcow vhd vmdk vdi iso raw
+            upload_image_min_disk:
+              precise: 20
+              centos: 20
+            upload_image_type: 
+              precise: qcow
+              centos: qcow
+            api:
+              stores: ['file','http','swift']
+              swift:
+                insecure: True
+              auth:
+                insecure: True
+              default_store: swift
+              container: glance
+              large_object_size: 200
+              large_object_chunk_size: 200
+              enable_snet: 'False'
+              image_cache_max_size: 10737418240
+
+          identity:
+            token:
+              expiration: 86400
+            saml:
+              idp_sso_endpoint: None
+              idp_lang: None
+              idp_organization_name: None
+              idp_organization_display_name: None
+              idp_organization_url: None
+              idp_contact_email: None
+              idp_contact_telephone: None
+              idp_contact_type: other
+              idp_contact_name: None
+              idp_contact_company: None
+              idp_contact_surname: None
+              idp_metadata_path: /etc/keystone/saml2_idp_metadata.xml
+
+          dns:
+            servers: *id003
+            user: designate
+            group: designate
+            zone_manager:
+              workers: 3
+            agent:
+              workers: 3
+            mdns:
+              workers: 3
+            sink:
+              enabled_notification_handlers: 'nova_fixed, neutron_floatingip'
+
+          dashboard:
+            signup:
+              contact_extra_label: Cost Center
+              roles: "['admin', 'signup', 'signup-admin']"
+              admin_domain: '' # only required for v3
+            zendesk:
+              support_enabled: 'True'
+              admin_email: 'alan@nephoscale.com'
+              admin_password: 'ath3naw1zd0m'
+              admin_timezone: 'US/Pacific'
+              subdomain: 'nephoscale-stage'
+            billing:
+              admin_role: billing-admin
+            # used for encrypting credit data
+            cipher_key: '749dd86f607fa53a5890bb8a0f790474'
+            # alternative is 3 and change multidomain below
+            identity_api_version: 2.0
+            keystone_multidomain_support: False
+            custom_theme_path: 'themes/hds'
+            branding:
+              title: Hitachi Data Systems, Inc.
+              link: http://www.hds.com
+            use_ssl: false
+            ssl_offload: true
+            ssl_no_verify: 'True'
+            chef:
+              chef_url: *chef_url
+              chef_key: *chef_validation_key
+              chef_admin_client_key: *chef_admin_client_key
+              chef_key_path: /usr/share/openstack-dashboard/chef-validation.key
+              chef_admin_client_key_path: /usr/share/openstack-dashboard/chef-admin.key
+              chef_user: admin
+            maas:
+              maas_key: *maas_api_key
+              maas_url: *maas_api_url
+
+          endpoints:
+            bind-host: 0.0.0.0
+            host: *lb_vip_public_os_api_name
+            scheme: 'https'
+            identity-api:
+              path: /v2.0
+            identity-internal:
+              path: /v2.0
+            identity-admin:
+              path: /v2.0
+            object-storage-api:
+              port: 8443
+            compute-novnc:
+              scheme: 'http'
+            compute-xvpvnc:
+              scheme: 'http'
+            db:
+              bind_interface: eth1
+              host: *lb_vip_private
+            mq:
+              host: *lb_vip_private
+              bind_interface: eth1
+          db:
+            host: *lb_vip_private
+            identity:
+              migrate: true # allows db_sync to run
+            # we hijack the telemetry service as this uses
+            # an unauthenticated mongo cluster we setup
+            telemetry:
+              host: *lb_vip_private
+              port: 27017
+            # this allows us to create the cloudkitty database
+            # which is not included in openstack-common              
+            rating:
+              host: *lb_vip_private
+              port: 3306
+              username: cloudkitty
+              db_name: cloudkitty
+              service_type: mysql
+              options:
+                mysql: "?charset=utf8"
+            # allows us to setup urbane database
+            signup:
+              host: *lb_vip_private
+              port: 3306
+              username: urbane
+              db_name: urbane
+              service_type: mysql
+              options:
+                mysql: "?charset=utf8"
+            nephoscale:
+              host: *lb_vip_private
+              port: 3306
+              username: sidecar
+              db_name: sidecar
+              service_type: mysql
+              options:
+                mysql: "?charset=utf8"                
+            # this allows us to create the designate database
+            # which is not included in openstack-common
+            dns:
+              host: *lb_vip_private
+              port: 3306
+              username: designate
+              db_name: designate
+              service_type: mysql
+              options:
+                mysql: "?charset=utf8"
+            dns-pool:
+              host: *lb_vip_private
+              port: 3306
+              username: designate-pool
+              db_name: designate-pool
+              service_type: mysql
+              options:
+                mysql: "?charset=utf8"
+          mq:
+            server_role: os-ops-messaging
+            dns:
+              rabbit:
+                heartbeat_timeout_threshold: 60
+                heartbeat_rate: 3
+            rating:
+              rabbit:
+                heartbeat_timeout_threshold: 60
+                heartbeat_rate: 3
+            # to cluster rabbit, all of the following is necessary
+            cluster: true
+            search_for_cluster_disk_nodes: true
+            rabbit:
+              ha: true
+            ha: true
+            rabbitmq:
+              ha: true
+              heartbeat_timeout_threshold: 60
+              heartbeat_rate: 3
+            block-storage:
+              rabbit:
+                notification_topic: 'notifications,trackinstance'
+            network:
+              notification_topics: 'notifications,notifications_designate,trackinstance'
+            user: openstackmq
+            vhost: /openstack
+            bind_interface: eth1
+            host: *lb_vip_private
+
+        haproxy:
+
+          certdata:
+            wildcard.pem: *certificate_wildcard
+
+          vip_public_interface: eth1
+          vip_private_interface: eth2
+          vip_public_cidr: *lb_vip_public_cidr
+          vip_private_cidr: *lb_vip_private_cidr
+          public_vip_list:
+            - *lb_vip_public_os_api
+            - *lb_vip_public_os_monitoring
+            - *lb_vip_public_ns_api
+            - *lb_vip_public_ns_gui
+            - *lb_vip_public_os_signup
+            - *lb_vip_public_ns_docs
+          private_vip_list:
+            - *lb_vip_private
+          mysql-check-user: mysqlcheck_e50d
+          stats:
+            port: 9999
+            uri: /
+            auth: stats:ath3naw1zd0m
+
+          # TODO: discover these based on os-haproxy* roles
+          # and use a failover IP - and need a separate
+          # ip for object storage
+
+          vips:
+            ns_lock_admin: !!python/object/apply:string.join [[*lb_vip_private, '9001'], ':']
+            ns_lock_service: !!python/object/apply:string.join [[*lb_vip_private, '4001'], ':']
+            ns_console_tcp: !!python/object/apply:string.join [[*lb_vip_public_ns_api, '9000'], ':']
+            ns_console_ssh: !!python/object/apply:string.join [[*lb_vip_public_ns_api, '2222'], ':']
+            ns_api_insecure: !!python/object/apply:string.join [[*lb_vip_public_ns_api, '80'], ':']
+            ns_api_ssl: !!python/object/apply:string.join [[*lb_vip_public_ns_api, '443'], ':']
+            ns_portal_insecure: !!python/object/apply:string.join [[*lb_vip_public_ns_gui, '80'], ':']
+            ns_portal_websocket: !!python/object/apply:string.join [[*lb_vip_public_ns_gui, '6080'], ':']
+            ns_portal_ssl: !!python/object/apply:string.join [[*lb_vip_public_ns_gui, '443'], ':']
+            os_signup_webapp_insecure: !!python/object/apply:string.join [[*lb_vip_public_os_signup, '80'], ':']
+            os_signup_webapp_ssl: !!python/object/apply:string.join [[*lb_vip_public_os_signup, '443'], ':']
+            ns_docs: !!python/object/apply:string.join [[*lb_vip_public_ns_docs, '80'], ':']
+            os_ops_monitoring: !!python/object/apply:string.join [[*lb_vip_public_os_monitoring, '80'], ':']
+            os_ops_monitoring_ssl: !!python/object/apply:string.join [[*lb_vip_public_os_monitoring, '443'], ':']
+            os_ops_database: !!python/object/apply:string.join [[*lb_vip_private, '3306'], ':']
+            os_ops_mailserver: !!python/object/apply:string.join [[*lb_vip_private, '25'], ':']
+            os_ops_mongodb: !!python/object/apply:string.join [[*lb_vip_private, '27017'], ':']
+            os_ops_messaging: !!python/object/apply:string.join [[*lb_vip_private, '5672'], ':']
+            os_object_storage_public: !!python/object/apply:string.join [[*lb_vip_public_os_api, '8080'], ':']
+            os_object_storage_private: !!python/object/apply:string.join [[*lb_vip_public_os_api, '8443'], ':']
+            os_identity_admin: !!python/object/apply:string.join [[*lb_vip_public_os_api, '35357'], ':']
+            os_identity_public: !!python/object/apply:string.join [[*lb_vip_public_os_api, '5000'], ':']
+            os_image_registry: !!python/object/apply:string.join [[*lb_vip_public_os_api, '9191'], ':']
+            os_block_storage_api: !!python/object/apply:string.join [[*lb_vip_public_os_api, '8776'], ':']
+            os_image_api: !!python/object/apply:string.join [[*lb_vip_public_os_api, '9292'], ':']
+            os_network_api: !!python/object/apply:string.join [[*lb_vip_public_os_api, '9696'], ':']
+            os_dashboard_ssl: !!python/object/apply:string.join [[*lb_vip_public_os_api, '443'], ':']
+            os_dashboard: !!python/object/apply:string.join [[*lb_vip_public_os_api, '80'], ':']
+            os_compute_api: !!python/object/apply:string.join [[*lb_vip_public_os_api, '8774'], ':']
+            os_compute_metadata: !!python/object/apply:string.join [[*lb_vip_public_os_api, '8775'], ':']
+            os_compute_ec2: !!python/object/apply:string.join [[*lb_vip_public_os_api, '8773'], ':']
+            os_compute_xvpvnc: !!python/object/apply:string.join [[*lb_vip_public_os_api, '6081'], ':']
+            os_compute_novnc: !!python/object/apply:string.join [[*lb_vip_public_os_api, '6080'], ':']
+            os_telemetry_api: !!python/object/apply:string.join [[*lb_vip_public_os_api, '8777'], ':']
+            os_dns_api: !!python/object/apply:string.join [[*lb_vip_public_os_api, '9001'], ':']
+            os_rating_api: !!python/object/apply:string.join [[*lb_vip_public_os_api, '8888'], ':']
+            os_signup_server: !!python/object/apply:string.join [[*lb_vip_public_os_api, '6996'], ':']
+            os_nephoscale_api: !!python/object/apply:string.join [[*lb_vip_public_os_api, '9090'], ':']
+            os_orchestration_api: !!python/object/apply:string.join [[*lb_vip_public_os_api, '8004'], ':']
+            os_orchestration_api_cfn: !!python/object/apply:string.join [[*lb_vip_public_os_api, '8000'], ':']
+            os_orchestration_api_cloudwatch: !!python/object/apply:string.join [[*lb_vip_public_os_api, '8003'], ':']
+
+          certs:
+            ns_api_ssl: wildcard.pem
+            ns_portal_ssl: wildcard.pem
+            os_signup_webapp_ssl: wildcard.pem
+            os_ops_monitoring_ssl: wildcard.pem
+            os_object_storage_private: wildcard.pem
+            os_identity_admin: wildcard.pem
+            os_identity_public: wildcard.pem
+            os_block_storage_api: wildcard.pem
+            os_image_api: wildcard.pem
+            os_image_registry: wildcard.pem
+            os_network_api: wildcard.pem
+            os_dashboard_ssl: wildcard.pem
+            os_compute_api: wildcard.pem
+            os_compute_metadata: wildcard.pem
+            os_compute_ec2: wildcard.pem
+            os_telemetry_api: wildcard.pem
+            os_dns_api: wildcard.pem
+            os_rating_api: wildcard.pem
+            os_signup_server: wildcard.pem
+            os_nephoscale_api: wildcard.pem
+            os_orchestration_api: wildcard.pem
+            os_orchestration_api_cfn: wildcard.pem
+            os_orchestration_api_cloudwatch: wildcard.pem
+
+        dns:
+          public_forward_domain: &public_forward_domain stage1.nephoscale.com
+
+        internal_node: 
+            uvt_root_password: ubuntu
+            uvt_ssh_public_key: |-
+              ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAupcvPIO0FlZee1Hg8bh6mIK2cSIsd+yzrILdku35AZRDprw1gBsr6cZwMwcAcfJ8K9b09yVrNtlM98HUdxaegxJZxBuL6+aS8FVhuu7PHw5wcusPAXqXgPrkbLBoLy3yC96kT5BlwxPtsDoCQJINTT2lZEYjeFBpkdBPewrSPry9WJwEeOd70k6cFOQ4+n/pxN87vm8M4Nkgt4RwDdcQRo73emsen7IDxOe4QHd3P6Qd6VdO37jxwqfEjB+bgn/IICdOs0be99ZGGzozw5iuluT2Whwrkt2cSu0C3fM5Z45NTfAd6tF+4TkjUiz/ZZCaP4VJw60Mg/fyXTxVNEhwYw== alan@alan-laptop
+
+        cumulus:
+
+          quagga:
+            # this controls whether we template them
+            # or manage the config files by hand - a
+            # yes will have chef generate and overwrite
+            # bgpd.conf, zebra.conf, etc.
+            daemons:
+              zebra: 'no'
+              bgpd: 'no'
+              ospfd: no
+              ospf6d: no
+              ripd: no
+              ripngd: no
+            # this controls whether we enable them
+            # i.e. we start them
+            enabled:
+              zebra: 'yes'
+              bgpd: 'yes'
+
+          bridge-vids: 1-3299
+          peerlink:
+            interfaces: [swp32]
+            mac: 44:38:39:ff:00:01          
+            mtu: 9126
+
+          # bonds that do not span both switches
+          bonds:
+
+            # we will move this to a clag
+            dlr:
+                mtu: 9126
+                trunk: true
+                mstpctl-portadminedge: "yes"
+                mstpctl-bpduguard: "yes"
+                interfaces: [swp21s0, swp21s1]
+
+            # vmware ovsvapp non-data path
+            # vmware node which cannot support LACP
+            # so therefore cannot support clag
+            node2:
+                bridge-pvid: 21
+                trunk: true
+                bond-mode: balance-xor
+                bond-xmit-hash-policy: layer2
+                mstpctl-portadminedge: "yes"
+                mstpctl-bpduguard: "yes"
+                interfaces: [swp1s2]
+                mtu: 9126
+
+            # vmware ovsvapp data path
+            # node which cannot support LACP
+            # so therefore cannot support clag
+            node2-dvs:
+                bridge-pvid: 21
+                trunk: true
+                bond-mode: balance-xor
+                bond-xmit-hash-policy: layer2
+                mstpctl-portadminedge: "yes"
+                mstpctl-bpduguard: "yes"
+                interfaces: [swp1s3]
+                mtu: 9126
+
+          # bonds that span both switches
+          clag_bonds:
+            border1:
+                bridge-pvid: 4093
+                bridge-vids: 4093
+                trunk: yes
+                mtu: 1500
+                clag_id: 2000
+                interfaces: [swp22s0]
+            cloudbuilder1:
+                bridge-pvid: 1
+                trunk: true
+                bond-lacp-bypass-allow: 1
+                bond-lacp-bypass-all-active: 1
+                mstpctl-portadminedge: "yes"
+                mstpctl-bpduguard: "yes"
+                interfaces: [swp21s2]
+                clag_id: 1000
+                mtu: 9126
+            cloudbuilder2:
+                bridge-pvid: 1
+                trunk: true            
+                bond-lacp-bypass-allow: 1
+                bond-lacp-bypass-all-active: 1
+                mstpctl-portadminedge: "yes"
+                mstpctl-bpduguard: "yes"
+                interfaces: [swp21s3]
+                clag_id: 1001
+                mtu: 9126                
+            node1:
+                bridge-pvid: 20
+                trunk: true
+                bond-lacp-bypass-allow: 1
+                bond-lacp-bypass-all-active: 1
+                mstpctl-portadminedge: "yes"
+                mstpctl-bpduguard: "yes"
+                bridge-vids: 1-30
+                interfaces: [swp1s0, swp1s1]
+                clag_id: 1
+                mtu: 9126
+            node3:
+                bridge-pvid: 20
+                trunk: true
+                bond-lacp-bypass-allow: 1
+                bond-lacp-bypass-all-active: 1
+                mstpctl-portadminedge: "yes"
+                mstpctl-bpduguard: "yes"
+                interfaces: [swp2s0, swp2s1]
+                clag_id: 3
+                mtu: 9126
+            node4:
+                bridge-pvid: 20
+                trunk: true
+                bond-lacp-bypass-allow: 1
+                bond-lacp-bypass-all-active: 1
+                mstpctl-portadminedge: "yes"
+                mstpctl-bpduguard: "yes"
+                interfaces: [swp2s2, swp2s3]
+                clag_id: 4
+                mtu: 9126
+            node5:
+                bridge-pvid: 20
+                trunk: true
+                bond-lacp-bypass-allow: 1
+                bond-lacp-bypass-all-active: 1
+                mstpctl-portadminedge: "yes"
+                mstpctl-bpduguard: "yes"
+                interfaces: [swp3s0, swp3s1]
+                clag_id: 5
+                mtu: 9126
+            node6:
+                bridge-pvid: 20
+                trunk: true
+                bond-lacp-bypass-allow: 1
+                bond-lacp-bypass-all-active: 1
+                mstpctl-portadminedge: "yes"
+                mstpctl-bpduguard: "yes"
+                interfaces: [swp3s2, swp3s3]
+                clag_id: 6
+                mtu: 9126
+            node7:
+                bridge-pvid: 20
+                trunk: true
+                bond-lacp-bypass-allow: 1
+                bond-lacp-bypass-all-active: 1
+                mstpctl-portadminedge: "yes"
+                mstpctl-bpduguard: "yes"
+                interfaces: [swp20s0]
+                clag_id: 7
+                mtu: 9126                
+
+          port:
+            1: 4x10G
+            2: 4x10G
+            3: 4x10G
+            4: 4x10G
+            5: 4x10G
+            6: 4x10G
+            7: 4x10G
+            8: 4x10G
+            9: 4x10G
+            10: 4x10G
+            11: 4x10G
+            12: 4x10G
+            13: 4x10G
+            14: disabled
+            15: disabled
+            16: disabled
+            17: 4x10G
+            18: 4x10G
+            19: 4x10G
+            20: 4x10G
+            21: 4x10G
+            22: 4x10G
+            23: 4x10G
+            24: 4x10G
+            25: 4x10G
+            26: 4x10G
+            27: 4x10G
+            28: 4x10G
+            29: 40G
+            30: 40G
+            31: 40G
+            32: 40G         
+
+
+        chef:
+
+          # cloned from the settings above, used to build chef fqdn client names
+          # e.g. server.int.stage1.nephoscale.com
+          domain_name_templates: *id004
+
+          # the chef server ip
+          ip: *chef_ip
+
+          # the chef validation key needs to be extracted from the chef server
+          validation_key: *chef_validation_key 
+
+        # the raid CfgSpanAdd command passed to megacli on internal nodes
+        # to build the lvm volume
+        raid:
+          span_command: "-CfgAllFreeDrv -r10 -SpanCount 3 WT NORA -strpsz64 -a0"
+
+    - name: chef-server
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "Chef Server Role"
+      run_list: []
+      default_attributes: {}
+
+    - name: physical-host
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "Used by Nagios - Real Physical Host"
+      run_list: []
+      default_attributes:
+        nagios:
+          server:
+            monitored_client_interface: bond0.22
+
+    - name: virtual-host
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "Used by Nagios - Virtual Host"
+      run_list: []
+      default_attributes:
+        nagios:          
+          server:
+            monitored_client_interface: eth1
+
+    - name: os-ops-mailclient
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "Mail Client Role (uses relay host)"
+      default_attributes:
+        postfix:
+          mail_type: client
+          main:
+            mydomain: *public_forward_domain
+            myorigin: *public_forward_domain
+            smtp_use_tls: "no"
+      run_list: 
+        - recipe[postfix]
+
+    - name: os-ops-mailserver
+      chef_type: "role"
+      json_class: "Chef::Role"
+      description: "Mail Server Role"
+      default_attributes:
+        postfix:
+          mail_type: master
+          main:
+            mynetworks: *cidr_whitelist
+            inet_interfaces: "all"
+            mydomain: *public_forward_domain
+            myorigin: *public_forward_domain
+      run_list:
+        - recipe[postfix::server]
+
+    - name: base
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "Base role for all systems"
+      run_list:
+        - recipe[hopper-repo::defaults]
+        - recipe[ohai]
+        - recipe[apt]
+        - recipe[sudo]
+        - recipe[chef-client::cron]
+        - recipe[hopper-repo::base]
+        - recipe[users::sysadmins]
+        - recipe[ntp::default]
+        - recipe[monitoring::client]
+        - role[os-ops-mailclient]
+
+    - name: booted
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "All nodes initially use this role when they are initially provisioned"
+      override_attributes:
+        omnibus_updater:
+          kill_chef_on_upgrade: false
+          version: 11.18.12
+      run_list:
+        - recipe[hopper-repo::defaults]
+        - recipe[apt]
+        - recipe[ohai]
+        - recipe[bash]
+        - recipe[chef-client::cron]
+        - recipe[hopper-repo::base]
+        - recipe[sudo]
+        - recipe[users::sysadmins]
+        - recipe[reboot-handler]
+        - recipe[networking]
+        - recipe[omnibus_updater]
+        - recipe[raid]
+
+    - name: internal-node
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "Internal Node Role"
+      run_list:
+        - role[base]
+        - role[physical-host]
+        - recipe[hopper-repo::internal-node]
+
+    - name: cloudbuilder-primary
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "Primary Cloudbuilder"
+      run_list:
+        - role[base]
+        - role[physical-host]
+        - recipe[hopper-repo::cloudbuilder]
+
+
+    - name: cloudbuilder-secondary
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "Secondary Cloudbuilder"
+      run_list:
+        - role[base]
+        - role[physical-host]
+        - recipe[hopper-repo::cloudbuilder]
+
+    - name: infra-dns
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "Infra DNS Server"
+      run_list:
+        - role[base]
+        - recipe[hopper-repo::infra-dns]
+
+    - name: infra-caching
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "Infra Caching Server (memcached)"
+      run_list: []
+
+    - name: infra-vpn
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "Infra VPN Server"
+      run_list:
+        - role[base]
+        - recipe[hopper-repo::infra-vpn]
+
+    - name: os-ops-database-primary
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "Database Primary Role"
+      run_list: []
+      override_attributes:
+        mysql:
+          auto-increment-offset: 2
+          auto-increment-increment: 1
+          server_id: 1
+
+    - name: os-ops-database-secondary
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "Database Secondary Role"
+      run_list: []
+      override_attributes:
+        mysql:
+          auto-increment-offset: 2
+          auto-increment-increment: 2
+          server_id: 2
+
+    - name: os-ops-mongodb
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "Database MongoDB"
+      run_list: []
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[mongodb::replicaset]
+        - recipe[hopper-repo::os-ops-mongodb]
+
+    - name: os-ops-database
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "Database Server"
+      override_attributes:      
+        mysql:
+          server_repl_password: b597efe3a9aa
+          relay_log: /var/lib/mysql/mysql-db-relay
+          log_bin: /var/lib/mysql/log-bin.log
+          log_slave_updates: "true"          
+          replicate_do_db: [keystone,glance,nova,neutron,cinder,cloudkitty,designate,designate-pool,heat,horizon,ironic,sidecar,urbane]
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[openstack-ops-database::server]
+        - recipe[hopper-repo::os-db-repl]
+        - recipe[hopper-repo::os-db-create]
+
+    - name: os-ops-loadbalancer
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "RabbitMQServer"
+      override_attributes:
+        apache:
+          listen_addresses: [127.0.0.1]
+          listen_ports: [8081]
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[hopper-repo::loadbalancer]
+
+    - name: os-ops-messaging
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "RabbitMQServer"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[openstack-ops-messaging::server]
+        - recipe[hopper-repo::os-ops-mq-setup]
+
+    - name: os-ops-monitoring
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "Monitoring Server"
+      override_attributes:
+        apache:
+          mpm: prefork
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[hopper-repo::infra-monitoring]
+        - recipe[monitoring::client]
+        - recipe[postfix]
+
+    - name: os-ops-monitoring-standby
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "Monitoring Server (Standby)"
+      run_list: []
+
+    - name: cumulus-tor-switch
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "Cumulus TOR Switch Role"
+      run_list:
+        - recipe[hopper-repo::defaults]
+        - recipe[hopper-repo::cumulus]
+        - recipe[ohai]
+        - recipe[apt]
+        - recipe[sudo]
+        - recipe[chef-client::cron]
+        - recipe[users::sysadmins]
+        - recipe[ntp::default]
+        - recipe[cumulus::default]
+
+    - name: os-base
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Base Role"
+      run_list:
+        - recipe[openstack-common]
+        - recipe[openstack-common::logging]
+        - recipe[openstack-common::sysctl]
+        - recipe[openstack-common::client]
+        - role[os-client]
+
+    - name: os-client
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Client"
+      run_list:
+        - recipe[openstack-common::client]
+        - recipe[openstack-block-storage::client]
+        - recipe[openstack-compute::client]
+        - recipe[openstack-identity::client]
+        - recipe[openstack-image::client]
+        - recipe[openstack-network::client]
+        - recipe[openstack-object-storage::client]
+        - recipe[openstack-orchestration::client]
+        - recipe[openstack-telemetry::client]
+
+    - name: os-register
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Identity"
+      run_list:
+        - recipe[openstack-identity::registration]
+        - recipe[openstack-image::identity_registration]
+        - recipe[openstack-network::identity_registration]
+        - recipe[openstack-compute::identity_registration]
+        - recipe[openstack-bare-metal::identity_registration]
+        - recipe[openstack-telemetry::identity_registration]
+        - recipe[openstack-orchestration::identity_registration]
+        - recipe[hopper-repo::os-block-storage-registration]
+        - recipe[hopper-repo::os-designate-registration]
+        - recipe[hopper-repo::os-cloudkitty-registration]
+        - recipe[hopper-repo::os-signup-registration]
+        - recipe[hopper-repo::os-nephoscale-registration]
+        - recipe[hopper-repo::os-compute-setup]
+        - recipe[hopper-repo::os-image-upload]
+
+    - name: os-identity
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Identity"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[hopper-repo::os-identity-server]
+
+    - name: os-image
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Image"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[hopper-repo::os-image-api]
+        - recipe[openstack-image::registry]
+
+    - name: os-orchestration
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Orchestration APIs and Engine"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[hopper-repo::os-orchestration-api]
+
+    - name: os-compute-api
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Compute API"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[hopper-repo::os-compute-api]
+
+    - name: os-dns-api
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack DNS API"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[hopper-repo::os-designate-api]
+
+    - name: os-rating-api
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Cloudkitty API"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[hopper-repo::os-cloudkitty-api]
+
+    - name: os-dns-public
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack DNS Public DNS Server"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[hopper-repo::os-designate-public]
+
+    - name: os-telemetry-api
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Telemetry API"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[openstack-telemetry::api]
+
+    - name: os-telemetry-collector
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Telemetry Collector"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[hopper-repo::os-telemetry-collector]
+
+    - name: os-telemetry-alarm-notifier
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Telemetry Alarm Notifier"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[openstack-telemetry::alarm-notifier]
+
+    - name: os-telemetry-alarm-evaluator
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Telemetry Alarm Evaluator"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[openstack-telemetry::alarm-evaluator]
+
+    - name: os-telemetry-agent-notification
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Telemetry Agent Notification"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[openstack-telemetry::agent-notification]
+
+    - name: os-telemetry-agent-compute
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Telemetry Agent Compute"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[openstack-telemetry::agent-compute]
+
+    - name: os-telemetry-agent-central
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Telemetry Agent Central"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[openstack-telemetry::agent-central]
+
+    - name: os-telemetry-controller
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Telemetry Controller"
+      run_list:
+        - role[os-telemetry-agent-central]
+        - role[os-telemetry-agent-notification]
+        - role[os-telemetry-alarm-evaluator]
+        - role[os-telemetry-alarm-notifier]
+        - role[os-telemetry-collector]
+        - role[os-telemetry-api]
+
+    - name: os-network-server
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Network API Server"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[hopper-repo::os-network-server]
+
+    - name: os-controller
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Global Controller Role"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - role[infra-caching]
+        - recipe[openstack-common::set_endpoints_by_interface]
+        - role[os-identity]
+        - role[os-image]
+        - role[os-network-server]
+        - role[os-compute-api]
+        - role[os-telemetry-controller]
+        - role[os-dns-api]
+        - role[os-rating-api]
+        - role[os-signup-server]
+        - role[os-nephoscale-api]
+        - role[os-orchestration]
+        - role[os-block-storage-api]
+        - role[os-block-storage-scheduler]
+        - role[os-block-storage-backup]
+        # - role[os-block-storage-volume] # only for pure storage
+        - recipe[openstack-common::openrc]
+
+    - name: os-dashboard
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Dashboard"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[hopper-repo::os-dashboard-server]
+
+    - name: os-network-router
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Network Router"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - role[physical-host]
+        - recipe[hopper-repo::os-network-router]
+
+    - name: os-compute-worker
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Compute Node"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - role[physical-host]
+        - recipe[hopper-repo::os-compute-worker]
+        - role[os-telemetry-agent-compute]
+        - role[os-block-storage-volume]
+
+    - name: os-block-storage-volume
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Block Storage volume service"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[hopper-repo::os-block-storage-volume]
+
+    - name: os-block-storage-backup
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Block Storage Backup service"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[openstack-block-storage::backup]
+
+    - name: os-block-storage-api
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Block Storage API service"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[hopper-repo::os-block-storage-api]
+
+    - name: os-block-storage-scheduler
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Block Storage Scheduler service"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[openstack-block-storage::scheduler]
+
+    - name: os-signup-server
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "NephoScale Signup Service"
+      run_list:
+        - role[base]
+        - recipe[hopper-repo::os-signup-server]
+
+    - name: os-nephoscale-api
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "NephoScale Sidecar API Service"
+      run_list:
+        - role[base]
+        - recipe[hopper-repo::os-nephoscale-api]
+
+    - name: os-signup-webapp
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "NephoScale Signup WebApp"
+      run_list:
+        - role[base]
+        - recipe[hopper-repo::os-signup-webapp]
+
+    - name: os-object-storage-account
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Object Storage Account Service"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[openstack-object-storage::account-server]
+
+    - name: os-object-storage-container
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Object Storage Container Service"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[openstack-object-storage::container-server]
+
+    - name: os-object-storage-object
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Object Storage Object Service"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[openstack-object-storage::object-server]
+
+    - name: os-object-storage-management
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Object Storage Management Service"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[openstack-object-storage::management-server]
+
+    - name: os-object-storage-setup
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Object Storage Setup Service"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[openstack-object-storage::setup]
+
+    - name: os-object-storage-proxy
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "OpenStack Object Storage Proxy Service"
+      run_list:
+        - role[base]
+        - role[os-base]
+        - recipe[openstack-object-storage::proxy-server]
+
+    - name: os-object-storage-node
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "Run All OpenStack Object Storage Object Services"
+      run_list:
+        - role[os-object-storage-container]
+        - role[os-object-storage-account]
+        - role[os-object-storage-object]
+        - role[os-object-storage-proxy]
+
+    - name: os-object-storage-admin
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "Run OpenStack Object Storage Object Management Services"
+      run_list:
+        - role[os-object-storage-setup]
+        - role[os-object-storage-management]
+
+    #----------------------------
+    # nephoscale 2.0 roles
+    #----------------------------
+
+    - name: ns-api
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "NephoScale API"
+      run_list:
+        - role[base]
+
+    - name: ns-api-primary
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "NephoScale API Primary Node"
+      run_list:
+        - role[base]
+
+    - name: ns-docs
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "NephoScale Documentation Server"
+      run_list:
+        - role[base]
+        - recipe[hopper-repo::ns-docs]
+
+    - name: ns-portal
+      chef_type: "role"
+      json_class: "Chef::Role"
+      default_attributes: {}
+      description: "NephoScale Portal"
+      run_list:
+        - role[base]
+
+switches:
+- chef:
+    normal:
+      cumulus:
+        vlan:
+          # border MLAG
+          4093:
+            address: 38.113.206.3/28
+            address-virtual: 00:00:5e:00:01:01 38.113.206.2/28
+            gateway: 38.113.206.1
+            mtu: 1500          
+          2:
+            description: Network Management Network
+            address: 10.2.0.2/24
+            address-virtual: 00:00:5e:00:01:01 10.2.0.1/24
+            mtu: 1500            
+          3:
+            description: IPMI Network
+            address: 10.3.0.2/24
+            address-virtual: 00:00:5e:00:01:01 10.3.0.1/24        
+            mtu: 1500          
+          10:
+            description: CloudBuilder Public Network (NAT)
+            address: 38.113.206.34/27
+            address-virtual: 00:00:5e:00:01:01 38.113.206.33/27
+            mtu: 1500            
+          11:
+            description: HAPROXY for Services
+            address: 38.113.206.66/27
+            address-virtual: 00:00:5e:00:01:01 38.113.206.65/27
+            mtu: 1500            
+          12:
+            description: "HAPROX for Storage Services"
+            address: 38.113.206.98/27
+            address-virtual: 00:00:5e:00:01:01 38.113.206.97/27
+            mtu: 1500            
+          13:
+            description: "DLR Public Network"
+            address: 38.113.206.130/27
+            address-virtual: 00:00:5e:00:01:01 38.113.206.129/27
+            mtu: 1500            
+          14:
+            description: "Floating Network"
+            address: 38.113.207.2/24
+            address-virtual: 00:00:5e:00:01:01 38.113.207.1/24
+            mtu: 1500            
+          20:
+            description: MaaS Provisioning Network
+            address: 10.20.0.2/24
+            address-virtual: 00:00:5e:00:01:01 10.20.0.1/24
+            mtu: 1500            
+          21:
+            description: Cobbler Provisioning Network
+            address: 10.21.0.2/24
+            address-virtual: 00:00:5e:00:01:01 10.21.0.1/24
+            mtu: 1500            
+          22: 
+            description: OPS Network (Physical)
+            address: 10.22.0.2/24
+            address-virtual: 00:00:5e:00:01:01 10.22.0.1/24
+            mtu: 1500            
+          23: 
+            description: OPS Network (Virtual)
+            address: 10.23.0.2/24
+            address-virtual: 00:00:5e:00:01:01 10.23.0.1/24
+            mtu: 1500            
+          24: 
+            description: Storage Network
+            address: 10.24.0.2/24
+            address-virtual: 00:00:5e:00:01:01 10.24.0.1/24            
+            mtu: 1500  
+          25: 
+            description: Tunnel (Overlay) Network
+            address: 10.25.0.2/24
+            address-virtual: 00:00:5e:00:01:01 10.25.0.1/24
+            mtu: 9000           
+        peerlink:
+          address: 38.113.206.17/30
+          peer_ip: 38.113.206.18
+        common_routing:
+            hostname: e9-sw1
+    override: {}
+    run_list:
+    - role[stage1]
+    - role[cumulus-tor-switch]
+  name: e9-sw1    
+- chef:
+    normal:
+      cumulus:
+        vlan:
+          4093:
+            address: 38.113.206.4/28
+            address-virtual: 00:00:5e:00:01:01 38.113.206.2/28
+            gateway: 38.113.206.1
+            mtu: 1500        
+          10:
+            description: CloudBuilder Public Network (NAT)
+            address: 38.113.206.35/27
+            address-virtual: 00:00:5e:00:01:01 38.113.206.33/27
+            mtu: 1500            
+          11:
+            description: HAPROXY for Services
+            address: 38.113.206.67/27
+            address-virtual: 00:00:5e:00:01:01 38.113.206.65/27
+            mtu: 1500            
+          12:
+            description: "HAPROX for Storage Services"
+            address: 38.113.206.99/27
+            address-virtual: 00:00:5e:00:01:01 38.113.206.97/27
+            mtu: 1500            
+          13:
+            description: "DLR Public Network"
+            address: 38.113.206.131/27
+            address-virtual: 00:00:5e:00:01:01 38.113.206.129/27
+            mtu: 1500            
+          14:
+            description: "Floating Network"
+            address: 38.113.207.3/24
+            address-virtual: 00:00:5e:00:01:01 38.113.207.1/24
+            mtu: 1500            
+          20:
+            description: MaaS Provisioning Network
+            address: 10.20.0.3/24
+            address-virtual: 00:00:5e:00:01:01 10.20.0.1/24
+            mtu: 1500            
+          21:
+            description: Cobbler Provisioning Network
+            address: 10.21.0.3/24
+            address-virtual: 00:00:5e:00:01:01 10.21.0.1/24
+            mtu: 1500            
+          22: 
+            description: OPS Network (Physical)
+            address: 10.22.0.3/24
+            address-virtual: 00:00:5e:00:01:01 10.22.0.1/24
+            mtu: 1500            
+          23: 
+            description: OPS Network (Virtual)
+            address: 10.23.0.3/24
+            address-virtual: 00:00:5e:00:01:01 10.23.0.1/24
+            mtu: 1500            
+          24: 
+            description: Storage Network
+            address: 10.24.0.3/24
+            address-virtual: 00:00:5e:00:01:01 10.24.0.1/24            
+            mtu: 1500            
+          25: 
+            description: Tunnel (Overlay) Network
+            address: 10.25.0.3/24
+            address-virtual: 00:00:5e:00:01:01 10.25.0.1/24
+            mtu: 9000           
+        peerlink:
+          address: 38.113.206.18/30
+          peer_ip: 38.113.206.17
+        common_routing:
+            hostname: e9-sw2
+    override: {}
+    run_list:
+    - role[stage1]
+    - role[cumulus-tor-switch]
+  name: e9-sw2
+
+# these hosts are slightly special, they are built on the
+# cloudbuilder host, and their fqdn in chef is their name
+# as they are instantiated before the full fqdn, and chef
+# is instantiated, so their chef nodename is "chef" and
+# "maasrc", not "maasrc.<internal domain>" like all other
+# hosts - mostly we use this simply to define chef roles
+# on these hosts and any overrides
+
+seed:
+
+  - name: chef
+    chef:
+      normal:
+        nagios:
+          ping_interface_override: eth1
+      run_list:
+      - role[stage1]
+      - role[virtual-host]
+      - role[base]
+      - role[chef-server]
+  - name: maascc
+    chef:
+      normal:
+        nagios:
+          ping_interface_override: eth1
+      run_list:
+      - role[stage1]
+      - role[virtual-host]
+      - role[base]
+  - name: maasrc
+    chef:
+      normal:
+        nagios:
+          ping_interface_override: eth1
+      run_list:
+      - role[stage1]
+      - role[virtual-host]
+      - role[base]
+  - name: cobbler
+    chef:
+      normal:
+        nagios:
+          ping_interface_override: eth1
+      run_list:
+      - role[stage1]
+      - role[virtual-host]
+      - role[base]
+      # - TBD
+  - name: cloudbuilder1
+    chef:
+      normal:
+        nagios:
+          ping_interface_override: bond0.10
+      run_list:
+      - role[stage1]
+      - role[physical-host]
+      - role[base]
+      - role[cloudbuilder-primary]
+      - role[os-ops-mailserver]
+
+  - name: cloudbuilder2
+    chef:
+      normal:
+        nagios:
+          ping_interface_override: bond0.10
+      run_list:
+      - role[stage1]
+      - role[physical-host]
+      - role[base]
+      - role[cloudbuilder-secondary]
+      - role[os-ops-mailserver]
+
+# note that the boot_disk_tag is important
+# as it instructs maas which disk to target
+# for os installation - in the case of our
+# standard nodes, these can easily be identified
+# as they contain a maas assigned 'sata' tag
+
+nodes:
+
+# internal node 
+- chef:
+    normal:
+      networking:
+        interfaces:
+          eth0:
+            address: 10.20.0.12
+            gateway: 10.20.0.1
+            netmask: 255.255.255.0
+          bond0.22:
+            force_gateway: true
+            address: 10.22.0.12
+            dns-nameservers: *id001
+            dns-search: int.stage1.nephoscale.com
+            gateway: 10.22.0.5
+            netmask: 255.255.255.0
+          bond0.11:
+            bridge: vlan-11
+            type: manual
+          bond0.23:
+            bridge: vlan-23
+            type: manual
+          bond0.24:
+            bridge: vlan-24
+            type: manual
+        udev:
+          bus_order:
+          - '0000:02:00.0'
+          - '0000:06:00.0' 
+          - '0000:06:00.1'
+          - '0000:83:00.0'
+          - '0000:83:00.1'
+    override: {}
+    run_list:
+    - role[stage1]
+    - role[internal-node]
+  name: o22r1
+  netboot_ip: 10.20.0.12
+  netboot_mac: 00:25:90:ca:44:e2
+  node_type: INTERNAL_NODE
+  ops_ip: 10.22.0.12
+  overlay_ip: 10.23.0.12
+  position_in_rack: 22
+  power_ip: 23.252.243.231
+  power_mac: 00:25:90:ce:53:25
+  rack_num: 1
+  storage_ip: 10.25.0.12
+  vendor: supermicro
+  vendor_model: SuperMicro ABCD
+  boot_disk_tag: sata
+
+# network router (1)
+- chef:
+    normal:
+      networking:
+        interfaces:
+          eth0:
+            address: 10.20.0.31
+            gateway: 10.20.0.1
+            netmask: 255.255.255.0
+          bond0.13:
+            force_gateway: true
+            address: 38.113.206.132
+            netmask: 255.255.255.224
+            gateway: 38.113.206.129
+          bond0.14:
+            promisc: true
+          bond0.22:
+            address: 10.22.0.31
+            dns-nameservers: *id001
+            dns-search: int.stage1.nephoscale.com
+            netmask: 255.255.255.0
+            routes: 
+              10.0.0.0/9: 
+                10.22.0.1
+          bond0.25:
+            address: 10.25.0.31
+            netmask: 255.255.255.0
+            routes:
+              10.25.0.0/16: 
+                10.25.0.1
+        udev:
+          bus_order:
+          - '0000:05:00.0'
+          - '0000:02:00.0'
+          - '0000:02:00.1' 
+      raid:
+        configured: true
+    override: {}
+    run_list:
+    - role[stage1]
+    - role[os-network-router]
+  name: o31r1
+  netboot_ip: 10.20.0.31
+  netboot_mac: 00:25:90:ca:44:e2
+  node_type: DLR
+  ops_ip: 10.22.0.31
+  overlay_ip: 10.23.0.31
+  position_in_rack: 31
+  power_ip: 23.252.243.226
+  power_mac: 00:25:90:75:a6:e6
+  rack_num: 1
+  storage_ip: 10.25.0.31
+  vendor: supermicro
+  vendor_model: SuperMicro ABCD
+  boot_disk_tag: sata  
+
+# network router (2)
+- chef:
+    normal:
+      networking:
+        interfaces:
+          eth0:
+            address: 10.20.0.34
+            gateway: 10.20.0.1
+            netmask: 255.255.255.0
+          bond0.13:
+            force_gateway: true
+            address: 38.113.206.133
+            netmask: 255.255.255.224
+            gateway: 38.113.206.129
+          bond0.14:
+            promisc: true
+          bond0.22:
+            address: 10.22.0.34
+            dns-nameservers: *id001
+            dns-search: int.stage1.nephoscale.com
+            netmask: 255.255.255.0
+            routes: 
+              10.0.0.0/9: 
+                10.22.0.1
+          bond0.25:
+            address: 10.25.0.34
+            netmask: 255.255.255.0
+            mtu: 9000
+            routes:
+              10.25.0.0/16:
+                10.25.0.1
+        udev:
+          bus_order:
+          - '0000:05:00.0'
+          - '0000:02:00.0'
+          - '0000:02:00.1' 
+      raid:
+        configured: true
+    override: {}
+    run_list:
+    - role[stage1]
+    - role[os-network-router]
+  name: o34r1
+  netboot_ip: 10.20.0.34
+  netboot_mac: 00:00:00:00:00:00
+  node_type: DLR
+  ops_ip: 10.22.0.34
+  overlay_ip: 10.23.0.34
+  position_in_rack: 34
+  power_ip: 23.252.243.227
+  power_mac: 00:25:90:71:d3:0a
+  rack_num: 1
+  storage_ip: 10.25.0.34
+  vendor: supermicro
+  vendor_model: SuperMicro ABCD
+  boot_disk_tag: sata  
+
+# compute host (vmware)
+#- chef:
+#    normal:
+#      networking:
+#        interfaces:
+#          eth0:
+#            address: 10.20.0.13
+#            gateway: 10.20.0.1
+#            netmask: 255.255.255.0
+#          bond0.22:
+#            address: 10.22.0.13
+#            dns-nameservers: *id001
+#            dns-search: int.stage1.nephoscale.com
+#            gateway: 10.22.0.1
+#            netmask: 255.255.255.0
+#        udev:
+#          bus_order:
+#          - '0000:02:00.0'
+#          - '0000:06:00.0'
+#          - '0000:06:00.1'
+#          - '0000:83:00.0'
+#          - '0000:83:00.1'
+#    override: {}
+#    run_list:
+#    - role[stage1]
+#    - role[vmware-node]
+#  name: o23r1
+#  netboot_ip: 10.20.0.13
+#  netboot_mac: N/A
+#  node_type: VMWARE_NODE
+#  ops_ip: 10.22.0.13
+#  position_in_rack: 23
+#  power_ip: 23.252.243.230
+#  power_mac: 00:25:90:ed:8e:22
+#  rack_num: 1
+#  storage_ip: 10.25.0.13
+#  vendor: supermicro
+#  vendor_model: SuperMicro ABCD
+#  boot_disk_tag: sata
+
+# compute host (kvm)
+- chef:
+    normal:
+      networking:
+        interfaces:
+          eth0:
+            address: 10.20.0.26
+            gateway: 10.20.0.1
+            netmask: 255.255.255.0        
+          bond0.22:
+            address: 10.22.0.26
+            dns-nameservers: *id001
+            dns-search: int.stage1.nephoscale.com
+            gateway: 10.22.0.5
+            netmask: 255.255.255.0
+          bond0.25:
+            address: 10.25.0.26
+            netmask: 255.255.255.0
+            mtu: 9000
+            routes:
+              10.25.0.0/16: 
+                10.25.0.1
+        udev:
+          bus_order:
+          - '0000:02:00.0'
+          - '0000:02:00.1'
+          - '0000:06:00.0' 
+          - '0000:06:00.1'
+      raid:
+        configured: true
+    override: {}
+    run_list:
+    - role[stage1]
+    - role[os-compute-worker]
+  name: o26r1
+  netboot_ip: 10.20.0.26
+  netboot_mac: N/A
+  node_type: COMPUTE_NODE
+  ops_ip: 10.22.0.26
+  position_in_rack: 23
+  power_ip: 23.252.243.229
+  power_mac: 00:25:90:ce:53:25
+  rack_num: 1
+  storage_ip: 10.25.0.26
+  vendor: supermicro
+  vendor_model: SuperMicro ABCD
+  boot_disk_tag: rotary
+
+# compute host (kvm)
+- chef:
+    normal:
+      networking:
+        interfaces:
+          eth0:
+            address: 10.20.0.18
+            gateway: 10.20.0.1
+            netmask: 255.255.255.0        
+          bond0.22:
+            address: 10.22.0.18
+            dns-nameservers: *id001
+            dns-search: int.stage1.nephoscale.com
+            gateway: 10.22.0.5
+            netmask: 255.255.255.0
+          bond0.25:
+            address: 10.25.0.18
+            netmask: 255.255.255.0
+            mtu: 9000
+            routes:
+              10.25.0.0/16: 
+                10.25.0.1
+        udev:
+          bus_order:
+          - '0000:02:00.0'
+          - '0000:81:00.0' 
+          - '0000:81:00.1'
+      raid:
+        configured: true
+    override: {}
+    run_list:
+    - role[stage1]
+    - role[os-compute-worker]
+  name: o18r1
+  netboot_ip: 10.20.0.18
+  netboot_mac: 00:00:00:00:00:00
+  node_type: COMPUTE_NODE
+  ops_ip: 10.22.0.18
+  position_in_rack: 23
+  power_ip: 23.252.243.232
+  power_mac: 00:00:00:00:00:00
+  rack_num: 1
+  storage_ip: 10.25.0.18
+  vendor: supermicro
+  vendor_model: SuperMicro ABCD
+  boot_disk_tag: rotary
+
+
+# all virtual machines receive an eth0 connection
+# to the libvirt 'default' network, which issues
+# a dhcp address - functioning very similar
+# to our maas provisioning network.  The VM will
+# boot using this network first, install chef,
+# and configure static networking before rebooting
+# where the eth0 connection will remain largely
+# unused.  The dhcp_gateway option below controls
+# whether we continue to accept a default route
+# from dhcp or whether we refuse it and use our
+# static gateway instead
+
+virtual:
+  - name: os-controller1
+    cores: 4
+    memory: 32000
+    disk: 600
+    networks:
+      - name: vlan-23
+    default_network: true    
+    chef:
+      normal:
+        networking:
+          dhcp_gateway: false
+          virtual: true
+          interfaces:
+            eth0:
+              type: dhcp
+            eth1:
+              force_gateway: true
+              address: 10.23.0.20
+              dns-nameservers: *id001
+              dns-search: int.stage1.nephoscale.com
+              gateway: 10.23.0.5
+              netmask: 255.255.255.0
+      run_list:
+      - role[stage1]
+      - role[os-controller]
+      - role[virtual-host]
+
+  - name: os-controller2
+    cores: 4
+    memory: 32000
+    disk: 600
+    networks:
+      - name: vlan-23
+    default_network: true    
+    chef:
+      normal:
+        networking:
+          dhcp_gateway: false
+          virtual: true
+          interfaces:
+            eth0:
+              type: dhcp
+            eth1:
+              force_gateway: true
+              address: 10.23.0.21
+              dns-nameservers: *id001
+              dns-search: int.stage1.nephoscale.com
+              gateway: 10.23.0.5
+              netmask: 255.255.255.0
+      run_list:
+      - role[stage1]
+      - role[os-controller]
+      - role[os-register]
+      - role[virtual-host]      
+
+  - name: os-db1
+    cores: 4
+    memory: 8096
+    disk: 600
+    networks:
+      - name: vlan-23
+    default_network: true    
+    chef:
+      normal:
+        networking:
+          dhcp_gateway: false
+          virtual: true
+          interfaces:
+            eth0:
+              type: dhcp
+            eth1:
+              force_gateway: true
+              address: 10.23.0.22
+              dns-nameservers: *id001
+              dns-search: int.stage1.nephoscale.com
+              gateway: 10.23.0.5
+              netmask: 255.255.255.0
+      run_list:
+      - role[stage1]
+      - role[os-ops-database-primary]
+      - role[os-ops-database]
+      - role[virtual-host]      
+
+  - name: os-db2
+    cores: 4
+    memory: 8096
+    disk: 600
+    networks:
+      - name: vlan-23
+    default_network: true    
+    chef:
+      normal:
+        networking:
+          dhcp_gateway: false
+          virtual: true
+          interfaces:
+            eth0:
+              type: dhcp
+            eth1:
+              force_gateway: true
+              address: 10.23.0.23
+              dns-nameservers: *id001
+              dns-search: int.stage1.nephoscale.com
+              gateway: 10.23.0.5
+              netmask: 255.255.255.0
+      run_list:
+      - role[stage1]
+      - role[os-ops-database-secondary]
+      - role[os-ops-database]
+      - role[virtual-host]
+
+  - name: os-mq1
+    cores: 4
+    memory: 4096
+    disk: 600
+    networks:
+      - name: vlan-23
+    default_network: true
+    chef:
+      normal:
+        networking:
+          dhcp_gateway: false
+          virtual: true
+          interfaces:
+            eth0:
+              type: dhcp
+            eth1:
+              force_gateway: true
+              address: 10.23.0.24
+              dns-nameservers: *id001
+              dns-search: int.stage1.nephoscale.com
+              gateway: 10.23.0.5
+              netmask: 255.255.255.0
+      run_list:
+      - role[stage1]
+      - role[os-ops-messaging]
+      - role[virtual-host]
+
+  - name: os-mq2
+    cores: 4
+    memory: 4096
+    disk: 600
+    networks:
+      - name: vlan-23
+    default_network: true    
+    chef:
+      normal:
+        networking:
+          dhcp_gateway: false
+          virtual: true
+          interfaces:
+            eth0:
+              type: dhcp
+            eth1:
+              force_gateway: true
+              address: 10.23.0.25
+              dns-nameservers: *id001
+              dns-search: int.stage1.nephoscale.com
+              gateway: 10.23.0.5
+              netmask: 255.255.255.0
+      run_list:
+      - role[stage1]
+      - role[os-ops-messaging]
+      - role[virtual-host]
+
+  - name: os-mongo1
+    cores: 1
+    memory: 2048
+    disk: 600
+    networks:
+      - name: vlan-23
+    default_network: true 
+    chef:
+      normal:
+        networking:
+          dhcp_gateway: false
+          virtual: true
+          interfaces:
+            eth0:
+              type: dhcp
+            eth1:
+              force_gateway: true
+              address: 10.23.0.26
+              dns-nameservers: *id001
+              dns-search: int.stage1.nephoscale.com
+              gateway: 10.23.0.5
+              netmask: 255.255.255.0
+              routes: 
+                10.0.0.0/9:
+                  10.23.0.1
+      run_list:
+      - role[stage1]
+      - role[os-ops-mongodb]
+      - role[virtual-host]
+
+  - name: os-mongo2
+    cores: 1
+    memory: 2048
+    disk: 600
+    networks:
+      - name: vlan-23
+    default_network: true 
+    chef:
+      normal:
+        networking:
+          dhcp_gateway: false
+          virtual: true
+          interfaces:
+            eth0:
+              type: dhcp
+            eth1:
+              force_gateway: true
+              address: 10.23.0.27
+              dns-nameservers: *id001
+              dns-search: int.stage1.nephoscale.com
+              gateway: 10.23.0.5
+              netmask: 255.255.255.0
+              routes: 
+                10.0.0.0/9:
+                  10.23.0.1
+      run_list:
+      - role[stage1]
+      - role[os-ops-mongodb]
+      - role[virtual-host]
+
+  - name: os-dashboard1
+    cores: 2
+    memory: 4096
+    disk: 600
+    networks:
+      - name: vlan-23
+    default_network: true    
+    chef:
+      normal:
+        networking:
+          dhcp_gateway: false
+          virtual: true
+          interfaces:
+            eth0:
+              type: dhcp
+            eth1:
+              force_gateway: true
+              address: 10.23.0.28
+              dns-nameservers: *id001
+              dns-search: int.stage1.nephoscale.com
+              gateway: 10.23.0.5
+              netmask: 255.255.255.0
+      run_list:
+      - role[stage1]
+      - role[os-dashboard]
+      - role[virtual-host]
+
+  - name: os-dashboard2
+    cores: 2
+    memory: 4096
+    disk: 600
+    networks:
+      - name: vlan-23
+    default_network: true    
+    chef:
+      normal:
+        networking:
+          dhcp_gateway: false
+          virtual: true
+          interfaces:
+            eth0:
+              type: dhcp
+            eth1:
+              force_gateway: true
+              address: 10.23.0.29
+              dns-nameservers: *id001
+              dns-search: int.stage1.nephoscale.com
+              gateway: 10.23.0.5
+              netmask: 255.255.255.0
+      run_list:
+      - role[stage1]
+      - role[os-dashboard]
+      - role[virtual-host]
+
+  - name: infra-dns1
+    cores: 1
+    memory: 2048
+    disk: 600
+    networks:
+      - name: vlan-11
+      - name: vlan-23
+    default_network: true 
+    chef:
+      normal:
+        networking:
+          dhcp_gateway: false
+          virtual: true
+          interfaces:
+            eth0:
+              type: dhcp
+            eth1:
+              force_gateway: true
+              address: 38.113.206.74/27
+              dns-nameservers: *id001
+              dns-search: int.stage1.nephoscale.com
+              gateway: 38.113.206.65
+              netmask: 255.255.255.224
+            eth2:
+              address: 10.23.0.30
+              netmask: 255.255.255.0
+              routes: 
+                10.0.0.0/9:
+                  10.23.0.1
+      run_list:
+      - role[stage1]
+      - role[infra-dns]
+      - role[virtual-host]
+
+  - name: infra-dns2
+    cores: 1
+    memory: 2048
+    disk: 600
+    networks:
+      - name: vlan-11
+      - name: vlan-23
+    default_network: true 
+    chef:
+      normal:
+        networking:
+          dhcp_gateway: false
+          virtual: true
+          interfaces:
+            eth0:
+              type: dhcp
+            eth1:
+              force_gateway: true
+              address: 38.113.206.75/27
+              dns-nameservers: *id001
+              dns-search: int.stage1.nephoscale.com
+              gateway: 38.113.206.65
+              netmask: 255.255.255.224
+            eth2:
+              address: 10.23.0.31
+              netmask: 255.255.255.0
+              routes: 
+                10.0.0.0/9:
+                  10.23.0.1
+      run_list:
+      - role[stage1]
+      - role[infra-dns]
+      - role[virtual-host]
+
+  - name: infra-dns3
+    cores: 1
+    memory: 2048
+    disk: 600
+    networks:
+      - name: vlan-11
+      - name: vlan-23
+    default_network: true 
+    chef:
+      normal:
+        networking:
+          dhcp_gateway: false
+          virtual: true
+          interfaces:
+            eth0:
+              type: dhcp
+            eth1:
+              force_gateway: true
+              address: 38.113.206.76/27
+              dns-nameservers: *id001
+              dns-search: int.stage1.nephoscale.com
+              gateway: 38.113.206.65
+              netmask: 255.255.255.224
+            eth2:
+              address: 10.23.0.32
+              netmask: 255.255.255.0
+              routes: 
+                10.0.0.0/9:
+                  10.23.0.1
+      run_list:
+      - role[stage1]
+      - role[infra-dns]
+      - role[virtual-host]
+
+  - name: os-dns1
+    cores: 1
+    memory: 2048
+    disk: 600
+    networks:
+      - name: vlan-11
+      - name: vlan-23
+    default_network: true 
+    chef:
+      normal:
+        networking:
+          dhcp_gateway: false
+          virtual: true
+          interfaces:
+            eth0:
+              type: dhcp
+            eth1:
+              force_gateway: true
+              address: 38.113.206.77/27
+              dns-nameservers: *id001
+              dns-search: int.stage1.nephoscale.com
+              gateway: 38.113.206.65
+              netmask: 255.255.255.224
+            eth2:
+              address: 10.23.0.33
+              netmask: 255.255.255.0
+              routes: 
+                10.0.0.0/9:
+                  10.23.0.1
+      run_list:
+      - role[stage1]
+      - role[os-dns-public]
+      - role[virtual-host]
+
+  - name: os-dns2
+    cores: 1
+    memory: 2048
+    disk: 600
+    networks:
+      - name: vlan-11
+      - name: vlan-23
+    default_network: true 
+    chef:
+      normal:
+        networking:
+          dhcp_gateway: false
+          virtual: true
+          interfaces:
+            eth0:
+              type: dhcp
+            eth1:
+              force_gateway: true
+              address: 38.113.206.78/27
+              dns-nameservers: *id001
+              dns-search: int.stage1.nephoscale.com
+              gateway: 38.113.206.65
+              netmask: 255.255.255.224
+            eth2:
+              address: 10.23.0.34
+              netmask: 255.255.255.0
+              routes: 
+                10.0.0.0/9:
+                  10.23.0.1
+      run_list:
+      - role[stage1]
+      - role[os-dns-public]
+      - role[virtual-host]
+
+  - name: os-dns3
+    cores: 1
+    memory: 2048
+    disk: 600
+    networks:
+      - name: vlan-11
+      - name: vlan-23
+    default_network: true 
+    chef:
+      normal:
+        networking:
+          dhcp_gateway: false
+          virtual: true
+          interfaces:
+            eth0:
+              type: dhcp
+            eth1:
+              force_gateway: true
+              address: 38.113.206.79/27
+              dns-nameservers: *id001
+              dns-search: int.stage1.nephoscale.com
+              gateway: 38.113.206.65
+              netmask: 255.255.255.224
+            eth2:
+              address: 10.23.0.35
+              netmask: 255.255.255.0
+              routes: 
+                10.0.0.0/9:
+                  10.23.0.1
+      run_list:
+      - role[stage1]
+      - role[os-dns-public]
+      - role[virtual-host]
+
+  - name: infra-vpn1
+    cores: 1
+    memory: 2048
+    disk: 600
+    networks:
+      - name: vlan-11
+      - name: vlan-23
+    default_network: true 
+    chef:
+      normal:
+        networking:
+          dhcp_gateway: false
+          virtual: true
+          interfaces:
+            eth0:
+              type: dhcp
+            eth1:
+              force_gateway: true
+              address: 38.113.206.80/27
+              dns-nameservers: *id001
+              dns-search: int.stage1.nephoscale.com
+              gateway: 38.113.206.65
+              netmask: 255.255.255.224
+            eth2:
+              address: 10.23.0.36
+              netmask: 255.255.255.0
+              post-up: ['iptables -t nat -A POSTROUTING -s 10.5.0.0/24 -o eth2 -j MASQUERADE ; sysctl -w net.ipv4.ip_forward=1']
+              routes: 
+                10.0.0.0/9:
+                  10.23.0.1
+      run_list:
+      - role[stage1]
+      - role[infra-vpn]
+      - role[virtual-host]
+
+  - name: os-haproxy1
+    cores: 2
+    memory: 4096
+    disk: 600
+    networks:
+      - name: vlan-11
+      - name: vlan-23
+    default_network: true 
+    chef:
+      normal:
+        networking:
+          dhcp_gateway: false
+          virtual: true
+          interfaces:
+            eth0:
+              type: dhcp
+            eth1:
+              force_gateway: true
+              address: 38.113.206.81/27
+              dns-nameservers: *id001
+              dns-search: int.stage1.nephoscale.com
+              gateway: 38.113.206.65
+              netmask: 255.255.255.224
+            eth2:
+              address: 10.23.0.37
+              netmask: 255.255.255.0
+              routes: 
+                10.0.0.0/9:
+                  10.23.0.1
+      run_list:
+      - role[stage1]
+      - role[os-ops-loadbalancer]
+      - role[virtual-host]
+
+  - name: os-haproxy2
+    cores: 2
+    memory: 4096
+    disk: 600
+    networks:
+      - name: vlan-11
+      - name: vlan-23
+    default_network: true 
+    chef:
+      normal:
+        networking:
+          dhcp_gateway: false
+          virtual: true
+          interfaces:
+            eth0:
+              type: dhcp
+            eth1:
+              force_gateway: true
+              address: 38.113.206.82/27
+              dns-nameservers: *id001
+              dns-search: int.stage1.nephoscale.com
+              gateway: 38.113.206.65
+              netmask: 255.255.255.224
+            eth2:
+              address: 10.23.0.38
+              netmask: 255.255.255.0
+              routes: 
+                10.0.0.0/9:
+                  10.23.0.1
+      run_list:
+      - role[stage1]
+      - role[os-ops-loadbalancer]
+      - role[virtual-host]
+
+# move these above nephoscale stuff in the next build
+  - name: infra-monitoring1
+    cores: 1
+    memory: 2048
+    disk: 600
+    networks:
+      - name: vlan-23
+    default_network: true 
+    chef:
+      normal:
+        networking:
+          dhcp_gateway: false
+          virtual: true
+          interfaces:
+            eth0:
+              type: dhcp
+            eth1:
+              force_gateway: true
+              address: 10.23.0.39
+              netmask: 255.255.255.0
+              gateway: 10.23.0.5              
+              dns-nameservers: *id001
+              dns-search: int.stage1.nephoscale.com              
+      run_list:
+      - role[stage1]
+      - role[os-ops-monitoring]
+      - role[virtual-host]
+
+  - name: infra-monitoring2
+    cores: 1
+    memory: 2048
+    disk: 600
+    networks:
+      - name: vlan-23
+    default_network: true 
+    chef:
+      normal:
+        networking:
+          dhcp_gateway: false
+          virtual: true
+          interfaces:
+            eth0:
+              type: dhcp
+            eth1:
+              force_gateway: true
+              address: 10.23.0.40
+              netmask: 255.255.255.0
+              gateway: 10.23.0.5              
+              dns-nameservers: *id001
+              dns-search: int.stage1.nephoscale.com
+      run_list:
+      - role[stage1]
+      - role[os-ops-monitoring]
+      - role[os-ops-monitoring-standby]
+      - role[virtual-host]
+
+
+#-------------------------------------
+# begin nephoscale infrastructure
+# ------------------------------------
+
+  - name: os-signup1
+    cores: 1
+    memory: 2048
+    disk: 600
+    networks:
+      - name: vlan-23
+    default_network: true 
+    chef:
+      normal:
+        networking:
+          dhcp_gateway: false
+          virtual: true
+          interfaces:
+            eth0:
+              type: dhcp
+            eth1:
+              force_gateway: true
+              address: 10.23.0.43
+              netmask: 255.255.255.0
+              gateway: 10.23.0.5              
+              dns-nameservers: *id001
+              dns-search: int.stage1.nephoscale.com
+      run_list:
+      - role[stage1]
+      - role[os-signup-webapp]
+      - role[virtual-host]
+
+  - name: os-signup2
+    cores: 1
+    memory: 2048
+    disk: 600
+    networks:
+      - name: vlan-23
+    default_network: true 
+    chef:
+      normal:
+        networking:
+          dhcp_gateway: false
+          virtual: true
+          interfaces:
+            eth0:
+              type: dhcp
+            eth1:
+              force_gateway: true
+              address: 10.23.0.44
+              netmask: 255.255.255.0
+              gateway: 10.23.0.5              
+              dns-nameservers: *id001
+              dns-search: int.stage1.nephoscale.com
+      run_list:
+      - role[stage1]
+      - role[os-signup-webapp]
+      - role[virtual-host]
+
+  - name: ns-docs1
+    cores: 1
+    memory: 1024
+    disk: 600
+    networks:
+      - name: vlan-23
+    default_network: true 
+    chef:
+      normal:
+        networking:
+          dhcp_gateway: false
+          virtual: true
+          interfaces:
+            eth0:
+              type: dhcp
+            eth1:
+              force_gateway: true
+              address: 10.23.0.47
+              netmask: 255.255.255.0
+              gateway: 10.23.0.5              
+              dns-nameservers: *id001
+              dns-search: int.stage1.nephoscale.com              
+      run_list:
+      - role[stage1]
+      - role[ns-docs]
+      - role[virtual-host]
+
+  - name: ns-docs2
+    cores: 1
+    memory: 1024
+    disk: 600
+    networks:
+      - name: vlan-23
+    default_network: true 
+    chef:
+      normal:
+        networking:
+          dhcp_gateway: false
+          virtual: true
+          interfaces:
+            eth0:
+              type: dhcp
+            eth1:
+              force_gateway: true
+              address: 10.23.0.48
+              netmask: 255.255.255.0
+              gateway: 10.23.0.5              
+              dns-nameservers: *id001
+              dns-search: int.stage1.nephoscale.com              
+      run_list:
+      - role[stage1]
+      - role[ns-docs]
+      - role[virtual-host]
+
+#----------------------------------------
+# swift VMs given there is no swift
+# physical infrastructure
+#----------------------------------------
+
+  - name: os-swift1
+    cores: 1
+    memory: 2048
+    disk: 600
+    extra_disks:
+      - path: "/var/lib/uvtool/libvirt/images/os-swift1-addon.qcow"
+        size: "3000"
+        dev: vdc 
+    networks:
+      - name: vlan-24
+    default_network: true 
+    chef:
+      override:
+        openstack:
+          object-storage:
+            ring:
+              zone: "1"
+      normal:
+        networking:
+          dhcp_gateway: false
+          virtual: true
+          interfaces:
+            eth0:
+              type: dhcp
+            eth1:
+              force_gateway: true
+              address: 10.24.0.20
+              dns-nameservers: *id001
+              dns-search: int.stage1.nephoscale.com
+              gateway: 10.24.0.5
+              netmask: 255.255.255.0
+              routes: 
+                10.0.0.0/9:
+                  10.24.0.1
+      run_list:
+      - role[stage1]
+      - role[os-object-storage-node]
+      - role[os-object-storage-admin]
+      - role[virtual-host]
+
+  - name: os-swift2
+    cores: 1
+    memory: 2048
+    disk: 600
+    extra_disks:
+      - path: "/var/lib/uvtool/libvirt/images/os-swift2-addon.qcow"
+        size: "3000"
+        dev: vdc    
+    networks:
+      - name: vlan-24
+    default_network: true 
+    chef:
+      override:
+        openstack:
+          object-storage:
+            ring:
+              zone: "2"
+      normal:
+        networking:
+          dhcp_gateway: false
+          virtual: true
+          interfaces:
+            eth0:
+              type: dhcp
+            eth1:
+              force_gateway: true
+              address: 10.24.0.21
+              dns-nameservers: *id001
+              dns-search: int.stage1.nephoscale.com
+              gateway: 10.24.0.5
+              netmask: 255.255.255.0
+              routes: 
+                10.0.0.0/9:
+                  10.24.0.1
+      run_list:
+      - role[stage1]
+      - role[os-object-storage-node]
+      - role[virtual-host]
+
+  - name: os-swift3
+    cores: 1
+    memory: 2048
+    disk: 600
+    extra_disks:
+      - path: "/var/lib/uvtool/libvirt/images/os-swift3-addon.qcow"
+        size: "3000"
+        dev: vdc
+    networks:
+      - name: vlan-24
+    default_network: true 
+    chef:
+      override:
+        openstack:
+          object-storage:
+            ring:
+              zone: "3"    
+      normal:
+        networking:
+          dhcp_gateway: false
+          virtual: true
+          interfaces:
+            eth0:
+              type: dhcp
+            eth1:
+              force_gateway: true
+              address: 10.24.0.22
+              dns-nameservers: *id001
+              dns-search: int.stage1.nephoscale.com
+              gateway: 10.24.0.5
+              netmask: 255.255.255.0
+              routes: 
+                10.0.0.0/9:
+                  10.24.0.1
+      run_list:
+      - role[stage1]
+      - role[os-object-storage-node]
+      - role[virtual-host]

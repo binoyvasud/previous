@@ -1,0 +1,1434 @@
+[2017-06-29T09:46:44+00:00] INFO: Forking chef instance to converge...
+[2017-06-29T09:46:44+00:00] WARN: 
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+SSL validation of HTTPS requests is disabled. HTTPS connections are still
+encrypted, but chef is not able to detect forged replies or man in the middle
+attacks.
+
+To fix this issue add an entry like this to your configuration file:
+
+```
+  # Verify all HTTPS connections (recommended)
+  ssl_verify_mode :verify_peer
+
+  # OR, Verify only connections to chef-server
+  verify_api_cert true
+```
+
+To check your SSL configuration, or troubleshoot errors, you can use the
+`knife ssl check` command like so:
+
+```
+  knife ssl check -c /etc/chef/client.rb
+```
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+[2017-06-29T09:46:44+00:00] INFO: *** Chef 11.18.12 ***
+[2017-06-29T09:46:44+00:00] INFO: Chef-client pid: 27969
+[2017-06-29T09:46:48+00:00] INFO: Run List is [role[stage1], role[os-controller], role[os-register], role[virtual-host]]
+[2017-06-29T09:46:48+00:00] INFO: Run List expands to [hopper-repo::defaults, ohai, apt, sudo, chef-client::cron, hopper-repo::base, users::sysadmins, ntp::default, monitoring::client, postfix, openstack-common, openstack-common::logging, openstack-common::sysctl, openstack-common::client, openstack-block-storage::client, openstack-compute::client, openstack-identity::client, openstack-image::client, openstack-network::client, openstack-object-storage::client, openstack-orchestration::client, openstack-telemetry::client, openstack-common::set_endpoints_by_interface, hopper-repo::os-identity-server, hopper-repo::os-image-api, openstack-image::registry, hopper-repo::os-network-server, hopper-repo::os-compute-api, openstack-telemetry::agent-central, openstack-telemetry::agent-notification, openstack-telemetry::alarm-evaluator, openstack-telemetry::alarm-notifier, hopper-repo::os-telemetry-collector, openstack-telemetry::api, hopper-repo::os-designate-api, hopper-repo::os-cloudkitty-api, hopper-repo::os-signup-server, hopper-repo::os-nephoscale-api, hopper-repo::os-orchestration-api, hopper-repo::os-block-storage-api, openstack-block-storage::scheduler, openstack-block-storage::backup, openstack-common::openrc, openstack-identity::registration, openstack-image::identity_registration, openstack-network::identity_registration, openstack-compute::identity_registration, openstack-bare-metal::identity_registration, openstack-telemetry::identity_registration, openstack-orchestration::identity_registration, hopper-repo::os-block-storage-registration, hopper-repo::os-designate-registration, hopper-repo::os-cloudkitty-registration, hopper-repo::os-signup-registration, hopper-repo::os-nephoscale-registration, hopper-repo::os-compute-setup, hopper-repo::os-image-upload]
+[2017-06-29T09:46:48+00:00] INFO: Starting Chef Run for os-controller2.int.stage1.nephoscale.com
+[2017-06-29T09:46:48+00:00] INFO: Running start handlers
+[2017-06-29T09:46:48+00:00] INFO: Start handlers complete.
+[2017-06-29T09:46:48+00:00] INFO: HTTP Request Returned 404 Object Not Found: 
+[2017-06-29T09:46:49+00:00] INFO: Loading cookbooks [hopper-repo@0.2.7, bash@0.1.2, resolver@1.3.1, varnish@0.9.10, haproxy@2.0.0, cpu@1.0.0, build-essential@2.1.3, python@1.4.6, yum-epel@0.6.2, yum@3.5.4, sudo@2.9.0, ohai@2.0.4, chef-client@4.3.3, cron@3.0.0, logrotate@1.9.2, windows@1.39.2, chef_handler@1.3.0, users@2.0.2, apache2@3.1.0, megaraidcli@1.0.0, mysql@6.0.31, yum-mysql-community@0.1.21, smf@2.2.8, rbac@1.0.3, ntp@1.10.1, memcached@1.7.2, runit@1.7.6, packagecloud@0.2.0, bind@1.1.2, openvpn@2.1.0, mongodb@0.16.2, apt@2.8.2, simple_iptables@0.7.4, heartbeat3@0.4.3, sysctl@0.7.0, dnsmasq@0.2.0, hosts_file@0.2.2, postfix@3.7.0, reboot-handler@0.1.2, motd-tail@2.0.2, rsyslog@2.2.0, openstack-common@12.0.1, database@4.0.2, postgresql@3.4.18, openssl@4.0.0, chef-sugar@3.3.0, mariadb@0.3.1, galera@0.4.1, openstack-ops-database@12.0.0, mysql2_chef_gem@1.0.2, openstack-ops-messaging@12.0.0, rabbitmq@4.2.2, erlang@1.5.8, yum-erlang_solutions@1.0.0, openstack-identity@12.0.0, openstack-image@12.0.0, ceph@0.9.2, openstack-object-storage@12.0.12, statsd@0.1.6, git@4.4.0, dmg@2.3.0, openstack-dashboard@12.0.0, openstack-network@12.0.0, openstack-compute@12.0.0, openstack-bare-metal@12.0.0, selinux@0.9.0, openstack-telemetry@12.1.0, monitoring@0.1.62, nagios@5.0.2, php@1.8.0, xml@2.0.0, iis@4.1.6, nginx@2.7.6, bluepill@2.4.2, nginx_simplecgi@0.1.2, perl@2.0.0, snmp@4.0.0, sysstat@1.3.2, openstack-block-storage@12.0.0, openstack-orchestration@12.0.0]
+[2017-06-29T09:47:25+00:00] INFO: ChefHandler light-weight provider already initialized -- overriding!
+[2017-06-29T09:47:25+00:00] INFO: Loading encrypted databag secrets.swift_admin_auth_key using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:47:26+00:00] INFO: Loading encrypted databag secrets.nepho_db_enc_key using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:47:26+00:00] INFO: ohai plugins will be at: /etc/chef/ohai_plugins
+[2017-06-29T09:47:26+00:00] INFO: Processing remote_directory[/etc/chef/ohai_plugins for cookbook ohai] action create (ohai::default line 32)
+[2017-06-29T09:47:26+00:00] INFO: Processing cookbook_file[/etc/chef/ohai_plugins/README] action create (dynamically defined)
+[2017-06-29T09:47:26+00:00] INFO: Processing ohai[custom_plugins] action reload (ohai::default line 46)
+[2017-06-29T09:47:28+00:00] INFO: ohai[custom_plugins] reloaded
+[2017-06-29T09:47:29+00:00] WARN: resolver::default requires that attribute ['resolver']['nameservers'] is set.
+[2017-06-29T09:47:29+00:00] INFO: resolver::default exiting to prevent a potential breaking change in /etc/resolv.conf.
+[2017-06-29T09:47:29+00:00] INFO: Processing package[libmysqlclient-dev] action install (hopper-repo::base line 55)
+[2017-06-29T09:47:29+00:00] INFO: Processing package[build-essential] action install (hopper-repo::base line 55)
+[2017-06-29T09:47:29+00:00] INFO: Processing package[make] action install (hopper-repo::base line 55)
+[2017-06-29T09:47:29+00:00] INFO: Processing package[ruby-dev] action install (hopper-repo::base line 55)
+[2017-06-29T09:47:29+00:00] WARN: Cloning resource attributes for package[build-essential] from prior resource (CHEF-3694)
+[2017-06-29T09:47:29+00:00] WARN: Previous package[build-essential]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:55:in `block in from_file'
+[2017-06-29T09:47:29+00:00] WARN: Current  package[build-essential]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:55:in `block in from_file'
+[2017-06-29T09:47:29+00:00] INFO: Processing package[build-essential] action install (hopper-repo::base line 55)
+[2017-06-29T09:47:29+00:00] WARN: Cloning resource attributes for package[make] from prior resource (CHEF-3694)
+[2017-06-29T09:47:29+00:00] WARN: Previous package[make]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:55:in `block in from_file'
+[2017-06-29T09:47:29+00:00] WARN: Current  package[make]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:55:in `block in from_file'
+[2017-06-29T09:47:29+00:00] INFO: Processing package[make] action install (hopper-repo::base line 55)
+[2017-06-29T09:47:29+00:00] INFO: Processing chef_gem[mysql] action install (hopper-repo::base line 70)
+[2017-06-29T09:47:30+00:00] INFO: Processing chef_gem[mysql2] action install (hopper-repo::base line 75)
+[2017-06-29T09:47:42+00:00] INFO: Set clustering_nodes to 
+[2017-06-29T09:47:44+00:00] WARN: Cloning resource attributes for users_manage[sysadmin] from prior resource (CHEF-3694)
+[2017-06-29T09:47:44+00:00] WARN: Previous users_manage[sysadmin]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:80:in `from_file'
+[2017-06-29T09:47:44+00:00] WARN: Current  users_manage[sysadmin]: /var/cache/chef/cookbooks/users/recipes/sysadmins.rb:23:in `from_file'
+[2017-06-29T09:47:48+00:00] INFO: Loading encrypted databag user_passwords.admin using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:47:48+00:00] INFO: Loading encrypted databag user_passwords.mysqlroot using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:47:48+00:00] INFO: Found 3 mongodb servers
+[2017-06-29T09:47:52+00:00] INFO: Chef Handlers will be located at: /var/cache/handlers
+[2017-06-29T09:47:52+00:00] INFO: Processing remote_directory[/var/cache/handlers] action create (chef_handler::default line 23)
+[2017-06-29T09:47:52+00:00] INFO: Processing cookbook_file[/var/cache/handlers/README] action create (dynamically defined)
+[2017-06-29T09:48:10+00:00] INFO: Processing chef_gem[chef-rewind] action install (hopper-repo::os-identity-server line 1)
+[2017-06-29T09:48:11+00:00] WARN: Cloning resource attributes for service[keystone] from prior resource (CHEF-3694)
+[2017-06-29T09:48:11+00:00] WARN: Previous service[keystone]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:112:in `block in from_file'
+[2017-06-29T09:48:11+00:00] WARN: Current  service[keystone]: /var/cache/chef/cookbooks/openstack-identity/recipes/server.rb:68:in `from_file'
+[2017-06-29T09:48:11+00:00] INFO: Loading encrypted databag db_passwords.keystone using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:13+00:00] INFO: Loading encrypted databag secrets.openstack_identity_bootstrap_token using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:14+00:00] INFO: Loading encrypted databag user_passwords.openstackmq using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:14+00:00] INFO: Resource template[/etc/keystone/keystone.conf] found, now rewinding it
+[2017-06-29T09:48:21+00:00] WARN: Cloning resource attributes for chef_gem[chef-rewind] from prior resource (CHEF-3694)
+[2017-06-29T09:48:21+00:00] WARN: Previous chef_gem[chef-rewind]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-identity-server.rb:1:in `from_file'
+[2017-06-29T09:48:21+00:00] WARN: Current  chef_gem[chef-rewind]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-image-api.rb:1:in `from_file'
+[2017-06-29T09:48:21+00:00] INFO: Processing chef_gem[chef-rewind] action install (hopper-repo::os-image-api line 1)
+[2017-06-29T09:48:22+00:00] WARN: Cloning resource attributes for package[python-keystoneclient] from prior resource (CHEF-3694)
+[2017-06-29T09:48:22+00:00] WARN: Previous package[python-keystoneclient]: /var/cache/chef/cookbooks/openstack-identity/recipes/client.rb:27:in `block in from_file'
+[2017-06-29T09:48:22+00:00] WARN: Current  package[python-keystoneclient]: /var/cache/chef/cookbooks/openstack-image/recipes/api.rb:37:in `from_file'
+[2017-06-29T09:48:22+00:00] WARN: Cloning resource attributes for service[glance-api] from prior resource (CHEF-3694)
+[2017-06-29T09:48:22+00:00] WARN: Previous service[glance-api]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:112:in `block in from_file'
+[2017-06-29T09:48:22+00:00] WARN: Current  service[glance-api]: /var/cache/chef/cookbooks/openstack-image/recipes/api.rb:81:in `from_file'
+[2017-06-29T09:48:22+00:00] INFO: Loading encrypted databag service_passwords.openstack-image using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:22+00:00] INFO: Loading encrypted databag db_passwords.glance using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:23+00:00] INFO: Loading encrypted databag user_passwords.openstackmq using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:23+00:00] INFO: Loading encrypted databag service_passwords.openstack-image using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:23+00:00] INFO: Resource template[/etc/glance/glance-api.conf] found, now rewinding it
+[2017-06-29T09:48:23+00:00] WARN: Cloning resource attributes for package[python-keystoneclient] from prior resource (CHEF-3694)
+[2017-06-29T09:48:23+00:00] WARN: Previous package[python-keystoneclient]: /var/cache/chef/cookbooks/openstack-image/recipes/api.rb:37:in `from_file'
+[2017-06-29T09:48:23+00:00] WARN: Current  package[python-keystoneclient]: /var/cache/chef/cookbooks/openstack-image/recipes/registry.rb:33:in `from_file'
+[2017-06-29T09:48:23+00:00] INFO: Loading encrypted databag db_passwords.glance using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:25+00:00] INFO: Loading encrypted databag user_passwords.openstackmq using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:25+00:00] INFO: Loading encrypted databag service_passwords.openstack-image using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:25+00:00] WARN: Cloning resource attributes for package[curl] from prior resource (CHEF-3694)
+[2017-06-29T09:48:25+00:00] WARN: Previous package[curl]: /var/cache/chef/cookbooks/openstack-image/recipes/api.rb:42:in `from_file'
+[2017-06-29T09:48:25+00:00] WARN: Current  package[curl]: /var/cache/chef/cookbooks/openstack-image/recipes/registry.rb:62:in `from_file'
+[2017-06-29T09:48:25+00:00] WARN: Cloning resource attributes for package[glance] from prior resource (CHEF-3694)
+[2017-06-29T09:48:25+00:00] WARN: Previous package[glance]: /var/cache/chef/cookbooks/openstack-image/recipes/api.rb:48:in `block in from_file'
+[2017-06-29T09:48:25+00:00] WARN: Current  package[glance]: /var/cache/chef/cookbooks/openstack-image/recipes/registry.rb:76:in `block in from_file'
+[2017-06-29T09:48:25+00:00] WARN: Cloning resource attributes for service[glance-registry] from prior resource (CHEF-3694)
+[2017-06-29T09:48:25+00:00] WARN: Previous service[glance-registry]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:112:in `block in from_file'
+[2017-06-29T09:48:25+00:00] WARN: Current  service[glance-registry]: /var/cache/chef/cookbooks/openstack-image/recipes/registry.rb:89:in `from_file'
+[2017-06-29T09:48:25+00:00] WARN: Cloning resource attributes for directory[/etc/glance] from prior resource (CHEF-3694)
+[2017-06-29T09:48:25+00:00] WARN: Previous directory[/etc/glance]: /var/cache/chef/cookbooks/openstack-image/recipes/api.rb:88:in `from_file'
+[2017-06-29T09:48:25+00:00] WARN: Current  directory[/etc/glance]: /var/cache/chef/cookbooks/openstack-image/recipes/registry.rb:101:in `from_file'
+[2017-06-29T09:48:25+00:00] WARN: Cloning resource attributes for chef_gem[chef-rewind] from prior resource (CHEF-3694)
+[2017-06-29T09:48:25+00:00] WARN: Previous chef_gem[chef-rewind]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-image-api.rb:1:in `from_file'
+[2017-06-29T09:48:25+00:00] WARN: Current  chef_gem[chef-rewind]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-network-server.rb:1:in `from_file'
+[2017-06-29T09:48:25+00:00] INFO: Processing chef_gem[chef-rewind] action install (hopper-repo::os-network-server line 1)
+[2017-06-29T09:48:25+00:00] WARN: Cloning resource attributes for package[python-pyparsing] from prior resource (CHEF-3694)
+[2017-06-29T09:48:25+00:00] WARN: Previous package[python-pyparsing]: /var/cache/chef/cookbooks/openstack-network/recipes/client.rb:27:in `block in from_file'
+[2017-06-29T09:48:25+00:00] WARN: Current  package[python-pyparsing]: /var/cache/chef/cookbooks/openstack-network/recipes/default.rb:59:in `block in from_file'
+[2017-06-29T09:48:25+00:00] WARN: Cloning resource attributes for package[python-mysqldb] from prior resource (CHEF-3694)
+[2017-06-29T09:48:25+00:00] WARN: Previous package[python-mysqldb]: /var/cache/chef/cookbooks/openstack-image/recipes/registry.rb:69:in `block in from_file'
+[2017-06-29T09:48:25+00:00] WARN: Current  package[python-mysqldb]: /var/cache/chef/cookbooks/openstack-network/recipes/default.rb:67:in `block in from_file'
+[2017-06-29T09:48:25+00:00] WARN: Cloning resource attributes for directory[/var/cache/neutron] from prior resource (CHEF-3694)
+[2017-06-29T09:48:25+00:00] WARN: Previous directory[/var/cache/neutron]: /var/cache/chef/cookbooks/openstack-network/recipes/default.rb:107:in `from_file'
+[2017-06-29T09:48:25+00:00] WARN: Current  directory[/var/cache/neutron]: /var/cache/chef/cookbooks/openstack-network/recipes/default.rb:114:in `from_file'
+[2017-06-29T09:48:27+00:00] INFO: Loading encrypted databag user_passwords.openstackmq using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:27+00:00] INFO: Loading encrypted databag db_passwords.neutron using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:27+00:00] INFO: Loading encrypted databag service_passwords.openstack-network using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:27+00:00] WARN: Cloning resource attributes for package[python-neutronclient] from prior resource (CHEF-3694)
+[2017-06-29T09:48:27+00:00] WARN: Previous package[python-neutronclient]: /var/cache/chef/cookbooks/openstack-network/recipes/client.rb:27:in `block in from_file'
+[2017-06-29T09:48:27+00:00] WARN: Current  package[python-neutronclient]: /var/cache/chef/cookbooks/openstack-network/recipes/default.rb:166:in `block in from_file'
+[2017-06-29T09:48:27+00:00] WARN: Cloning resource attributes for package[python-pyparsing] from prior resource (CHEF-3694)
+[2017-06-29T09:48:27+00:00] WARN: Previous package[python-pyparsing]: /var/cache/chef/cookbooks/openstack-network/recipes/default.rb:59:in `block in from_file'
+[2017-06-29T09:48:27+00:00] WARN: Current  package[python-pyparsing]: /var/cache/chef/cookbooks/openstack-network/recipes/default.rb:166:in `block in from_file'
+[2017-06-29T09:48:27+00:00] WARN: Cloning resource attributes for service[neutron-server] from prior resource (CHEF-3694)
+[2017-06-29T09:48:27+00:00] WARN: Previous service[neutron-server]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:112:in `block in from_file'
+[2017-06-29T09:48:27+00:00] WARN: Current  service[neutron-server]: /var/cache/chef/cookbooks/openstack-network/recipes/default.rb:177:in `from_file'
+[2017-06-29T09:48:27+00:00] INFO: Loading encrypted databag service_passwords.openstack-compute using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:28+00:00] WARN: Cloning resource attributes for service[neutron-server] from prior resource (CHEF-3694)
+[2017-06-29T09:48:28+00:00] WARN: Previous service[neutron-server]: /var/cache/chef/cookbooks/openstack-network/recipes/default.rb:177:in `from_file'
+[2017-06-29T09:48:28+00:00] WARN: Current  service[neutron-server]: /var/cache/chef/cookbooks/openstack-network/recipes/server.rb:44:in `from_file'
+[2017-06-29T09:48:28+00:00] INFO: Resource package[neutron-lbaas-agent] found, now rewinding it
+[2017-06-29T09:48:28+00:00] INFO: Resource package[neutron-vpn-agent] found, now rewinding it
+[2017-06-29T09:48:28+00:00] WARN: Cloning resource attributes for chef_gem[chef-rewind] from prior resource (CHEF-3694)
+[2017-06-29T09:48:28+00:00] WARN: Previous chef_gem[chef-rewind]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-network-server.rb:1:in `from_file'
+[2017-06-29T09:48:28+00:00] WARN: Current  chef_gem[chef-rewind]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-compute-api.rb:1:in `from_file'
+[2017-06-29T09:48:28+00:00] INFO: Processing chef_gem[chef-rewind] action install (hopper-repo::os-compute-api line 1)
+[2017-06-29T09:48:28+00:00] WARN: Cloning resource attributes for package[python-mysqldb] from prior resource (CHEF-3694)
+[2017-06-29T09:48:28+00:00] WARN: Previous package[python-mysqldb]: /var/cache/chef/cookbooks/openstack-network/recipes/default.rb:67:in `block in from_file'
+[2017-06-29T09:48:28+00:00] WARN: Current  package[python-mysqldb]: /var/cache/chef/cookbooks/openstack-compute/recipes/nova-common.rb:42:in `block in from_file'
+[2017-06-29T09:48:28+00:00] INFO: Loading encrypted databag db_passwords.nova using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:30+00:00] INFO: Loading encrypted databag user_passwords.openstackmq using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:30+00:00] INFO: Loading encrypted databag service_passwords.openstack-bare-metal using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:30+00:00] INFO: Loading encrypted databag service_passwords.openstack-network using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:31+00:00] INFO: Loading encrypted databag secrets.neutron_metadata_secret using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:31+00:00] INFO: Loading encrypted databag service_passwords.openstack-compute using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:31+00:00] WARN: Cloning resource attributes for package[python-keystoneclient] from prior resource (CHEF-3694)
+[2017-06-29T09:48:31+00:00] WARN: Previous package[python-keystoneclient]: /var/cache/chef/cookbooks/openstack-image/recipes/registry.rb:33:in `from_file'
+[2017-06-29T09:48:31+00:00] WARN: Current  package[python-keystoneclient]: /var/cache/chef/cookbooks/openstack-compute/recipes/api-ec2.rb:30:in `from_file'
+[2017-06-29T09:48:31+00:00] WARN: Cloning resource attributes for service[nova-api-ec2] from prior resource (CHEF-3694)
+[2017-06-29T09:48:31+00:00] WARN: Previous service[nova-api-ec2]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:112:in `block in from_file'
+[2017-06-29T09:48:31+00:00] WARN: Current  service[nova-api-ec2]: /var/cache/chef/cookbooks/openstack-compute/recipes/api-ec2.rb:42:in `from_file'
+[2017-06-29T09:48:31+00:00] WARN: Cloning resource attributes for package[python-keystoneclient] from prior resource (CHEF-3694)
+[2017-06-29T09:48:31+00:00] WARN: Previous package[python-keystoneclient]: /var/cache/chef/cookbooks/openstack-compute/recipes/api-ec2.rb:30:in `from_file'
+[2017-06-29T09:48:31+00:00] WARN: Current  package[python-keystoneclient]: /var/cache/chef/cookbooks/openstack-compute/recipes/api-metadata.rb:33:in `from_file'
+[2017-06-29T09:48:31+00:00] WARN: Cloning resource attributes for service[nova-api-metadata] from prior resource (CHEF-3694)
+[2017-06-29T09:48:31+00:00] WARN: Previous service[nova-api-metadata]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:112:in `block in from_file'
+[2017-06-29T09:48:31+00:00] WARN: Current  service[nova-api-metadata]: /var/cache/chef/cookbooks/openstack-compute/recipes/api-metadata.rb:45:in `from_file'
+[2017-06-29T09:48:31+00:00] WARN: Cloning resource attributes for template[/etc/nova/api-paste.ini] from prior resource (CHEF-3694)
+[2017-06-29T09:48:31+00:00] WARN: Previous template[/etc/nova/api-paste.ini]: /var/cache/chef/cookbooks/openstack-compute/recipes/api-ec2.rb:50:in `from_file'
+[2017-06-29T09:48:31+00:00] WARN: Current  template[/etc/nova/api-paste.ini]: /var/cache/chef/cookbooks/openstack-compute/recipes/api-metadata.rb:53:in `from_file'
+[2017-06-29T09:48:32+00:00] WARN: Cloning resource attributes for package[python-keystoneclient] from prior resource (CHEF-3694)
+[2017-06-29T09:48:32+00:00] WARN: Previous package[python-keystoneclient]: /var/cache/chef/cookbooks/openstack-compute/recipes/api-metadata.rb:33:in `from_file'
+[2017-06-29T09:48:32+00:00] WARN: Current  package[python-keystoneclient]: /var/cache/chef/cookbooks/openstack-compute/recipes/api-os-compute.rb:36:in `from_file'
+[2017-06-29T09:48:32+00:00] WARN: Cloning resource attributes for service[nova-api-os-compute] from prior resource (CHEF-3694)
+[2017-06-29T09:48:32+00:00] WARN: Previous service[nova-api-os-compute]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:112:in `block in from_file'
+[2017-06-29T09:48:32+00:00] WARN: Current  service[nova-api-os-compute]: /var/cache/chef/cookbooks/openstack-compute/recipes/api-os-compute.rb:48:in `from_file'
+[2017-06-29T09:48:32+00:00] WARN: Cloning resource attributes for template[/etc/nova/api-paste.ini] from prior resource (CHEF-3694)
+[2017-06-29T09:48:32+00:00] WARN: Previous template[/etc/nova/api-paste.ini]: /var/cache/chef/cookbooks/openstack-compute/recipes/api-metadata.rb:53:in `from_file'
+[2017-06-29T09:48:32+00:00] WARN: Current  template[/etc/nova/api-paste.ini]: /var/cache/chef/cookbooks/openstack-compute/recipes/api-os-compute.rb:56:in `from_file'
+[2017-06-29T09:48:32+00:00] WARN: Cloning resource attributes for service[nova-conductor] from prior resource (CHEF-3694)
+[2017-06-29T09:48:32+00:00] WARN: Previous service[nova-conductor]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:112:in `block in from_file'
+[2017-06-29T09:48:32+00:00] WARN: Current  service[nova-conductor]: /var/cache/chef/cookbooks/openstack-compute/recipes/conductor.rb:33:in `from_file'
+[2017-06-29T09:48:32+00:00] WARN: Cloning resource attributes for service[nova-cert] from prior resource (CHEF-3694)
+[2017-06-29T09:48:32+00:00] WARN: Previous service[nova-cert]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:112:in `block in from_file'
+[2017-06-29T09:48:32+00:00] WARN: Current  service[nova-cert]: /var/cache/chef/cookbooks/openstack-compute/recipes/nova-cert.rb:33:in `from_file'
+[2017-06-29T09:48:32+00:00] WARN: Cloning resource attributes for service[nova-scheduler] from prior resource (CHEF-3694)
+[2017-06-29T09:48:32+00:00] WARN: Previous service[nova-scheduler]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:112:in `block in from_file'
+[2017-06-29T09:48:32+00:00] WARN: Current  service[nova-scheduler]: /var/cache/chef/cookbooks/openstack-compute/recipes/scheduler.rb:34:in `from_file'
+[2017-06-29T09:48:33+00:00] WARN: Cloning resource attributes for service[nova-novncproxy] from prior resource (CHEF-3694)
+[2017-06-29T09:48:33+00:00] WARN: Previous service[nova-novncproxy]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:112:in `block in from_file'
+[2017-06-29T09:48:33+00:00] WARN: Current  service[nova-novncproxy]: /var/cache/chef/cookbooks/openstack-compute/recipes/vncproxy.rb:43:in `from_file'
+[2017-06-29T09:48:33+00:00] WARN: Cloning resource attributes for service[nova-consoleauth] from prior resource (CHEF-3694)
+[2017-06-29T09:48:33+00:00] WARN: Previous service[nova-consoleauth]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:112:in `block in from_file'
+[2017-06-29T09:48:33+00:00] WARN: Current  service[nova-consoleauth]: /var/cache/chef/cookbooks/openstack-compute/recipes/vncproxy.rb:51:in `from_file'
+[2017-06-29T09:48:33+00:00] WARN: Cloning resource attributes for service[nova-serialproxy] from prior resource (CHEF-3694)
+[2017-06-29T09:48:33+00:00] WARN: Previous service[nova-serialproxy]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:112:in `block in from_file'
+[2017-06-29T09:48:33+00:00] WARN: Current  service[nova-serialproxy]: /var/cache/chef/cookbooks/openstack-compute/recipes/serialproxy.rb:33:in `from_file'
+[2017-06-29T09:48:33+00:00] WARN: Cloning resource attributes for package[python-mysqldb] from prior resource (CHEF-3694)
+[2017-06-29T09:48:33+00:00] WARN: Previous package[python-mysqldb]: /var/cache/chef/cookbooks/openstack-compute/recipes/nova-common.rb:42:in `block in from_file'
+[2017-06-29T09:48:33+00:00] WARN: Current  package[python-mysqldb]: /var/cache/chef/cookbooks/openstack-bare-metal/recipes/ironic-common.rb:39:in `block in from_file'
+[2017-06-29T09:48:33+00:00] INFO: Loading encrypted databag db_passwords.ironic using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:36+00:00] INFO: Loading encrypted databag user_passwords.openstackmq using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:36+00:00] INFO: Loading encrypted databag service_passwords.openstack-bare-metal using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:36+00:00] WARN: Cloning resource attributes for service[ironic-api] from prior resource (CHEF-3694)
+[2017-06-29T09:48:36+00:00] WARN: Previous service[ironic-api]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:112:in `block in from_file'
+[2017-06-29T09:48:36+00:00] WARN: Current  service[ironic-api]: /var/cache/chef/cookbooks/openstack-bare-metal/recipes/api.rb:44:in `from_file'
+[2017-06-29T09:48:36+00:00] INFO: Resource template[/etc/nova/nova.conf] found, now rewinding it
+[2017-06-29T09:48:36+00:00] WARN: Cloning resource attributes for package[python-mysqldb] from prior resource (CHEF-3694)
+[2017-06-29T09:48:36+00:00] WARN: Previous package[python-mysqldb]: /var/cache/chef/cookbooks/openstack-bare-metal/recipes/ironic-common.rb:39:in `block in from_file'
+[2017-06-29T09:48:36+00:00] WARN: Current  package[python-mysqldb]: /var/cache/chef/cookbooks/openstack-telemetry/recipes/common.rb:35:in `block in from_file'
+[2017-06-29T09:48:37+00:00] INFO: Loading encrypted databag user_passwords.openstackmq using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:37+00:00] INFO: Loading encrypted databag db_passwords.ceilometer using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:37+00:00] INFO: Loading encrypted databag service_passwords.openstack-ceilometer using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:37+00:00] INFO: Loading encrypted databag secrets.openstack_metering_secret using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:37+00:00] WARN: Cloning resource attributes for service[ceilometer-agent-central] from prior resource (CHEF-3694)
+[2017-06-29T09:48:37+00:00] WARN: Previous service[ceilometer-agent-central]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:112:in `block in from_file'
+[2017-06-29T09:48:37+00:00] WARN: Current  service[ceilometer-agent-central]: /var/cache/chef/cookbooks/openstack-telemetry/recipes/agent-central.rb:32:in `from_file'
+[2017-06-29T09:48:37+00:00] WARN: Cloning resource attributes for service[ceilometer-agent-notification] from prior resource (CHEF-3694)
+[2017-06-29T09:48:37+00:00] WARN: Previous service[ceilometer-agent-notification]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:112:in `block in from_file'
+[2017-06-29T09:48:37+00:00] WARN: Current  service[ceilometer-agent-notification]: /var/cache/chef/cookbooks/openstack-telemetry/recipes/agent-notification.rb:31:in `from_file'
+[2017-06-29T09:48:37+00:00] WARN: Cloning resource attributes for service[ceilometer-agent-evaluator] from prior resource (CHEF-3694)
+[2017-06-29T09:48:37+00:00] WARN: Previous service[ceilometer-agent-evaluator]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:112:in `block in from_file'
+[2017-06-29T09:48:37+00:00] WARN: Current  service[ceilometer-agent-evaluator]: /var/cache/chef/cookbooks/openstack-telemetry/recipes/alarm-evaluator.rb:31:in `from_file'
+[2017-06-29T09:48:37+00:00] WARN: Cloning resource attributes for service[ceilometer-alarm-notifier] from prior resource (CHEF-3694)
+[2017-06-29T09:48:37+00:00] WARN: Previous service[ceilometer-alarm-notifier]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:112:in `block in from_file'
+[2017-06-29T09:48:37+00:00] WARN: Current  service[ceilometer-alarm-notifier]: /var/cache/chef/cookbooks/openstack-telemetry/recipes/alarm-notifier.rb:31:in `from_file'
+[2017-06-29T09:48:37+00:00] WARN: Cloning resource attributes for chef_gem[chef-rewind] from prior resource (CHEF-3694)
+[2017-06-29T09:48:37+00:00] WARN: Previous chef_gem[chef-rewind]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-compute-api.rb:1:in `from_file'
+[2017-06-29T09:48:37+00:00] WARN: Current  chef_gem[chef-rewind]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-telemetry-collector.rb:1:in `from_file'
+[2017-06-29T09:48:37+00:00] INFO: Processing chef_gem[chef-rewind] action install (hopper-repo::os-telemetry-collector line 1)
+[2017-06-29T09:48:38+00:00] WARN: Cloning resource attributes for package[python-mysqldb] from prior resource (CHEF-3694)
+[2017-06-29T09:48:38+00:00] WARN: Previous package[python-mysqldb]: /var/cache/chef/cookbooks/openstack-telemetry/recipes/common.rb:35:in `block in from_file'
+[2017-06-29T09:48:38+00:00] WARN: Current  package[python-mysqldb]: /var/cache/chef/cookbooks/openstack-telemetry/recipes/collector.rb:34:in `block in from_file'
+[2017-06-29T09:48:38+00:00] WARN: Cloning resource attributes for service[ceilometer-collector] from prior resource (CHEF-3694)
+[2017-06-29T09:48:38+00:00] WARN: Previous service[ceilometer-collector]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:112:in `block in from_file'
+[2017-06-29T09:48:38+00:00] WARN: Current  service[ceilometer-collector]: /var/cache/chef/cookbooks/openstack-telemetry/recipes/collector.rb:50:in `from_file'
+[2017-06-29T09:48:38+00:00] INFO: Resource execute[database migration] found, now rewinding it
+[2017-06-29T09:48:38+00:00] INFO: Resource template[/etc/ceilometer/ceilometer.conf] found, now rewinding it
+[2017-06-29T09:48:38+00:00] WARN: Cloning resource attributes for service[ceilometer-api] from prior resource (CHEF-3694)
+[2017-06-29T09:48:38+00:00] WARN: Previous service[ceilometer-api]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:112:in `block in from_file'
+[2017-06-29T09:48:38+00:00] WARN: Current  service[ceilometer-api]: /var/cache/chef/cookbooks/openstack-telemetry/recipes/api.rb:39:in `from_file'
+[2017-06-29T09:48:38+00:00] INFO: Loading encrypted databag db_passwords.designate using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:38+00:00] INFO: Loading encrypted databag db_passwords.designate-pool using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:38+00:00] INFO: Loading encrypted databag user_passwords.openstackmq using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:39+00:00] INFO: Loading encrypted databag service_passwords.openstack-network using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:39+00:00] INFO: Loading encrypted databag service_passwords.openstack-designate using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:40+00:00] INFO: Loading encrypted databag db_passwords.cloudkitty using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:40+00:00] INFO: Loading encrypted databag user_passwords.openstackmq using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:42+00:00] INFO: Loading encrypted databag service_passwords.openstack-cloudkitty using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:42+00:00] INFO: Loading encrypted databag user_passwords.admin using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:43+00:00] WARN: Cloning resource attributes for package[python] from prior resource (CHEF-3694)
+[2017-06-29T09:48:43+00:00] WARN: Previous package[python]: /var/cache/chef/cookbooks/python/recipes/package.rb:41:in `block in from_file'
+[2017-06-29T09:48:43+00:00] WARN: Current  package[python]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-signup-server.rb:22:in `block in from_file'
+[2017-06-29T09:48:43+00:00] WARN: Cloning resource attributes for package[python-dev] from prior resource (CHEF-3694)
+[2017-06-29T09:48:43+00:00] WARN: Previous package[python-dev]: /var/cache/chef/cookbooks/python/recipes/package.rb:41:in `block in from_file'
+[2017-06-29T09:48:43+00:00] WARN: Current  package[python-dev]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-signup-server.rb:22:in `block in from_file'
+[2017-06-29T09:48:43+00:00] WARN: Cloning resource attributes for python_pip[requests] from prior resource (CHEF-3694)
+[2017-06-29T09:48:43+00:00] WARN: Previous python_pip[requests]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-identity-server.rb:120:in `from_file'
+[2017-06-29T09:48:43+00:00] WARN: Current  python_pip[requests]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-signup-server.rb:36:in `block in from_file'
+[2017-06-29T09:48:43+00:00] INFO: Loading encrypted databag user_passwords.nephoscalemq using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:45+00:00] INFO: Loading encrypted databag user_passwords.admin using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:45+00:00] INFO: Loading encrypted databag secrets.fraud_license_key using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:45+00:00] INFO: Loading encrypted databag secrets.auth_net_login using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:45+00:00] INFO: Loading encrypted databag secrets.auth_net_transaction_key using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:46+00:00] INFO: Loading encrypted databag secrets.twilio_auth_token using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:46+00:00] INFO: Loading encrypted databag secrets.nepho_db_enc_key using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:46+00:00] INFO: Loading encrypted databag db_passwords.urbane using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:46+00:00] WARN: Cloning resource attributes for package[python] from prior resource (CHEF-3694)
+[2017-06-29T09:48:46+00:00] WARN: Previous package[python]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-signup-server.rb:22:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Current  package[python]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-nephoscale-api.rb:24:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Cloning resource attributes for package[python-dev] from prior resource (CHEF-3694)
+[2017-06-29T09:48:46+00:00] WARN: Previous package[python-dev]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-signup-server.rb:22:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Current  package[python-dev]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-nephoscale-api.rb:24:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Cloning resource attributes for package[python-pip] from prior resource (CHEF-3694)
+[2017-06-29T09:48:46+00:00] WARN: Previous package[python-pip]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-signup-server.rb:22:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Current  package[python-pip]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-nephoscale-api.rb:24:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Cloning resource attributes for package[git] from prior resource (CHEF-3694)
+[2017-06-29T09:48:46+00:00] WARN: Previous package[git]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-signup-server.rb:22:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Current  package[git]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-nephoscale-api.rb:24:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Cloning resource attributes for package[python-setuptools] from prior resource (CHEF-3694)
+[2017-06-29T09:48:46+00:00] WARN: Previous package[python-setuptools]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-signup-server.rb:22:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Current  package[python-setuptools]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-nephoscale-api.rb:24:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Cloning resource attributes for package[libxml2-dev] from prior resource (CHEF-3694)
+[2017-06-29T09:48:46+00:00] WARN: Previous package[libxml2-dev]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-signup-server.rb:22:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Current  package[libxml2-dev]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-nephoscale-api.rb:24:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Cloning resource attributes for package[libxslt-dev] from prior resource (CHEF-3694)
+[2017-06-29T09:48:46+00:00] WARN: Previous package[libxslt-dev]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-signup-server.rb:22:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Current  package[libxslt-dev]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-nephoscale-api.rb:24:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Cloning resource attributes for package[zlib1g-dev] from prior resource (CHEF-3694)
+[2017-06-29T09:48:46+00:00] WARN: Previous package[zlib1g-dev]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-signup-server.rb:22:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Current  package[zlib1g-dev]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-nephoscale-api.rb:24:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Cloning resource attributes for python_pip[terminaltables] from prior resource (CHEF-3694)
+[2017-06-29T09:48:46+00:00] WARN: Previous python_pip[terminaltables]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-signup-server.rb:36:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Current  python_pip[terminaltables]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-nephoscale-api.rb:38:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Cloning resource attributes for python_pip[authorizenet] from prior resource (CHEF-3694)
+[2017-06-29T09:48:46+00:00] WARN: Previous python_pip[authorizenet]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-signup-server.rb:36:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Current  python_pip[authorizenet]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-nephoscale-api.rb:38:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Cloning resource attributes for python_pip[ipaddr] from prior resource (CHEF-3694)
+[2017-06-29T09:48:46+00:00] WARN: Previous python_pip[ipaddr]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-signup-server.rb:36:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Current  python_pip[ipaddr]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-nephoscale-api.rb:38:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Cloning resource attributes for python_pip[pyminfraud] from prior resource (CHEF-3694)
+[2017-06-29T09:48:46+00:00] WARN: Previous python_pip[pyminfraud]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-signup-server.rb:36:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Current  python_pip[pyminfraud]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-nephoscale-api.rb:38:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Cloning resource attributes for python_pip[pycountry] from prior resource (CHEF-3694)
+[2017-06-29T09:48:46+00:00] WARN: Previous python_pip[pycountry]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-signup-server.rb:36:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Current  python_pip[pycountry]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-nephoscale-api.rb:38:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Cloning resource attributes for python_pip[pytz] from prior resource (CHEF-3694)
+[2017-06-29T09:48:46+00:00] WARN: Previous python_pip[pytz]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-signup-server.rb:36:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Current  python_pip[pytz]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-nephoscale-api.rb:38:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Cloning resource attributes for python_pip[requests] from prior resource (CHEF-3694)
+[2017-06-29T09:48:46+00:00] WARN: Previous python_pip[requests]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-signup-server.rb:36:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Current  python_pip[requests]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-nephoscale-api.rb:38:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Cloning resource attributes for python_pip[watchdog] from prior resource (CHEF-3694)
+[2017-06-29T09:48:46+00:00] WARN: Previous python_pip[watchdog]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-signup-server.rb:36:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Current  python_pip[watchdog]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-nephoscale-api.rb:38:in `block in from_file'
+[2017-06-29T09:48:46+00:00] WARN: Cloning resource attributes for python_pip[peewee] from prior resource (CHEF-3694)
+[2017-06-29T09:48:46+00:00] WARN: Previous python_pip[peewee]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-signup-server.rb:42:in `from_file'
+[2017-06-29T09:48:46+00:00] WARN: Current  python_pip[peewee]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-nephoscale-api.rb:44:in `from_file'
+[2017-06-29T09:48:46+00:00] WARN: Cloning resource attributes for python_pip[pycrypto] from prior resource (CHEF-3694)
+[2017-06-29T09:48:46+00:00] WARN: Previous python_pip[pycrypto]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-signup-server.rb:47:in `from_file'
+[2017-06-29T09:48:46+00:00] WARN: Current  python_pip[pycrypto]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-nephoscale-api.rb:49:in `from_file'
+[2017-06-29T09:48:46+00:00] WARN: Cloning resource attributes for python_pip[pecan] from prior resource (CHEF-3694)
+[2017-06-29T09:48:46+00:00] WARN: Previous python_pip[pecan]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-signup-server.rb:52:in `from_file'
+[2017-06-29T09:48:46+00:00] WARN: Current  python_pip[pecan]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-nephoscale-api.rb:54:in `from_file'
+[2017-06-29T09:48:46+00:00] INFO: Loading encrypted databag db_passwords.sidecar using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:47+00:00] INFO: Loading encrypted databag user_passwords.admin using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:47+00:00] WARN: Cloning resource attributes for chef_gem[chef-rewind] from prior resource (CHEF-3694)
+[2017-06-29T09:48:47+00:00] WARN: Previous chef_gem[chef-rewind]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-telemetry-collector.rb:1:in `from_file'
+[2017-06-29T09:48:47+00:00] WARN: Current  chef_gem[chef-rewind]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-orchestration-api.rb:1:in `from_file'
+[2017-06-29T09:48:47+00:00] INFO: Processing chef_gem[chef-rewind] action install (hopper-repo::os-orchestration-api line 1)
+[2017-06-29T09:48:48+00:00] WARN: Cloning resource attributes for package[python-keystoneclient] from prior resource (CHEF-3694)
+[2017-06-29T09:48:48+00:00] WARN: Previous package[python-keystoneclient]: /var/cache/chef/cookbooks/openstack-compute/recipes/api-os-compute.rb:36:in `from_file'
+[2017-06-29T09:48:48+00:00] WARN: Current  package[python-keystoneclient]: /var/cache/chef/cookbooks/openstack-orchestration/recipes/common.rb:32:in `from_file'
+[2017-06-29T09:48:48+00:00] WARN: Cloning resource attributes for package[python-mysqldb] from prior resource (CHEF-3694)
+[2017-06-29T09:48:48+00:00] WARN: Previous package[python-mysqldb]: /var/cache/chef/cookbooks/openstack-telemetry/recipes/collector.rb:34:in `block in from_file'
+[2017-06-29T09:48:48+00:00] WARN: Current  package[python-mysqldb]: /var/cache/chef/cookbooks/openstack-orchestration/recipes/common.rb:47:in `block in from_file'
+[2017-06-29T09:48:48+00:00] INFO: Loading encrypted databag db_passwords.heat using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:48+00:00] INFO: Loading encrypted databag service_passwords.openstack-orchestration using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:48+00:00] INFO: Loading encrypted databag secrets.orchestration_auth_encryption_key using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:49+00:00] INFO: Loading encrypted databag user_passwords.openstackmq using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:50+00:00] WARN: Cloning resource attributes for package[python-heatclient] from prior resource (CHEF-3694)
+[2017-06-29T09:48:50+00:00] WARN: Previous package[python-heatclient]: /var/cache/chef/cookbooks/openstack-orchestration/recipes/client.rb:27:in `block in from_file'
+[2017-06-29T09:48:50+00:00] WARN: Current  package[python-heatclient]: /var/cache/chef/cookbooks/openstack-orchestration/recipes/api.rb:26:in `block in from_file'
+[2017-06-29T09:48:50+00:00] WARN: Cloning resource attributes for service[heat-api] from prior resource (CHEF-3694)
+[2017-06-29T09:48:50+00:00] WARN: Previous service[heat-api]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:112:in `block in from_file'
+[2017-06-29T09:48:50+00:00] WARN: Current  service[heat-api]: /var/cache/chef/cookbooks/openstack-orchestration/recipes/api.rb:33:in `from_file'
+[2017-06-29T09:48:50+00:00] WARN: Cloning resource attributes for package[python-heatclient] from prior resource (CHEF-3694)
+[2017-06-29T09:48:50+00:00] WARN: Previous package[python-heatclient]: /var/cache/chef/cookbooks/openstack-orchestration/recipes/api.rb:26:in `block in from_file'
+[2017-06-29T09:48:50+00:00] WARN: Current  package[python-heatclient]: /var/cache/chef/cookbooks/openstack-orchestration/recipes/api-cfn.rb:26:in `block in from_file'
+[2017-06-29T09:48:50+00:00] WARN: Cloning resource attributes for service[heat-api-cfn] from prior resource (CHEF-3694)
+[2017-06-29T09:48:50+00:00] WARN: Previous service[heat-api-cfn]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:112:in `block in from_file'
+[2017-06-29T09:48:50+00:00] WARN: Current  service[heat-api-cfn]: /var/cache/chef/cookbooks/openstack-orchestration/recipes/api-cfn.rb:33:in `from_file'
+[2017-06-29T09:48:50+00:00] WARN: Cloning resource attributes for package[python-heatclient] from prior resource (CHEF-3694)
+[2017-06-29T09:48:50+00:00] WARN: Previous package[python-heatclient]: /var/cache/chef/cookbooks/openstack-orchestration/recipes/api-cfn.rb:26:in `block in from_file'
+[2017-06-29T09:48:50+00:00] WARN: Current  package[python-heatclient]: /var/cache/chef/cookbooks/openstack-orchestration/recipes/api-cloudwatch.rb:30:in `block in from_file'
+[2017-06-29T09:48:50+00:00] WARN: Cloning resource attributes for service[heat-api-cloudwatch] from prior resource (CHEF-3694)
+[2017-06-29T09:48:50+00:00] WARN: Previous service[heat-api-cloudwatch]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:112:in `block in from_file'
+[2017-06-29T09:48:50+00:00] WARN: Current  service[heat-api-cloudwatch]: /var/cache/chef/cookbooks/openstack-orchestration/recipes/api-cloudwatch.rb:37:in `from_file'
+[2017-06-29T09:48:50+00:00] WARN: Cloning resource attributes for service[heat_engine] from prior resource (CHEF-3694)
+[2017-06-29T09:48:50+00:00] WARN: Previous service[heat_engine]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:112:in `block in from_file'
+[2017-06-29T09:48:50+00:00] WARN: Current  service[heat_engine]: /var/cache/chef/cookbooks/openstack-orchestration/recipes/engine.rb:33:in `from_file'
+[2017-06-29T09:48:50+00:00] INFO: Resource template[/etc/heat/heat.conf] found, now rewinding it
+[2017-06-29T09:48:50+00:00] WARN: Cloning resource attributes for chef_gem[chef-rewind] from prior resource (CHEF-3694)
+[2017-06-29T09:48:50+00:00] WARN: Previous chef_gem[chef-rewind]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-orchestration-api.rb:1:in `from_file'
+[2017-06-29T09:48:50+00:00] WARN: Current  chef_gem[chef-rewind]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-block-storage-api.rb:1:in `from_file'
+[2017-06-29T09:48:50+00:00] INFO: Processing chef_gem[chef-rewind] action install (hopper-repo::os-block-storage-api line 1)
+[2017-06-29T09:48:50+00:00] INFO: About to process pure storage conditional
+[2017-06-29T09:48:50+00:00] INFO: Examining cinder.volume.drivers.hitachi.hbsd.hbsd_fc.HBSDFCDriver volume driver
+[2017-06-29T09:48:50+00:00] INFO: Checking for HP3PAR setup
+[2017-06-29T09:48:50+00:00] INFO: Examining cinder.volume.drivers.hitachi.hbsd.hbsd_fc.HBSDFCDriver volume driver
+[2017-06-29T09:48:50+00:00] INFO: Examining cinder.volume.drivers.hitachi.hbsd.hbsd_fc.HBSDFCDriver volume driver
+[2017-06-29T09:48:50+00:00] INFO: Examining cinder.volume.drivers.hitachi.hbsd.hbsd_fc.HBSDFCDriver volume driver
+[2017-06-29T09:48:50+00:00] WARN: Cloning resource attributes for service[cinder-api] from prior resource (CHEF-3694)
+[2017-06-29T09:48:50+00:00] WARN: Previous service[cinder-api]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:112:in `block in from_file'
+[2017-06-29T09:48:50+00:00] WARN: Current  service[cinder-api]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-block-storage-api.rb:55:in `from_file'
+[2017-06-29T09:48:50+00:00] WARN: Cloning resource attributes for service[cinder-scheduler] from prior resource (CHEF-3694)
+[2017-06-29T09:48:50+00:00] WARN: Previous service[cinder-scheduler]: /var/cache/chef/cookbooks/hopper-repo/recipes/base.rb:112:in `block in from_file'
+[2017-06-29T09:48:50+00:00] WARN: Current  service[cinder-scheduler]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-block-storage-api.rb:59:in `from_file'
+[2017-06-29T09:48:51+00:00] INFO: Loading encrypted databag db_passwords.cinder using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:52+00:00] INFO: Loading encrypted databag user_passwords.openstackmq using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:53+00:00] INFO: Loading encrypted databag service_passwords.openstack-block-storage using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:53+00:00] WARN: Cloning resource attributes for package[python-cinderclient] from prior resource (CHEF-3694)
+[2017-06-29T09:48:53+00:00] WARN: Previous package[python-cinderclient]: /var/cache/chef/cookbooks/openstack-block-storage/recipes/client.rb:27:in `block in from_file'
+[2017-06-29T09:48:53+00:00] WARN: Current  package[python-cinderclient]: /var/cache/chef/cookbooks/openstack-block-storage/recipes/api.rb:33:in `block in from_file'
+[2017-06-29T09:48:53+00:00] WARN: Cloning resource attributes for package[python-mysqldb] from prior resource (CHEF-3694)
+[2017-06-29T09:48:53+00:00] WARN: Previous package[python-mysqldb]: /var/cache/chef/cookbooks/openstack-orchestration/recipes/common.rb:47:in `block in from_file'
+[2017-06-29T09:48:53+00:00] WARN: Current  package[python-mysqldb]: /var/cache/chef/cookbooks/openstack-block-storage/recipes/api.rb:41:in `block in from_file'
+[2017-06-29T09:48:53+00:00] WARN: Cloning resource attributes for service[cinder-api] from prior resource (CHEF-3694)
+[2017-06-29T09:48:53+00:00] WARN: Previous service[cinder-api]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-block-storage-api.rb:55:in `from_file'
+[2017-06-29T09:48:53+00:00] WARN: Current  service[cinder-api]: /var/cache/chef/cookbooks/openstack-block-storage/recipes/api.rb:52:in `from_file'
+[2017-06-29T09:48:53+00:00] INFO: Resource template[/etc/cinder/cinder.conf] found, now rewinding it
+[2017-06-29T09:48:53+00:00] WARN: Cloning resource attributes for package[python-mysqldb] from prior resource (CHEF-3694)
+[2017-06-29T09:48:53+00:00] WARN: Previous package[python-mysqldb]: /var/cache/chef/cookbooks/openstack-block-storage/recipes/api.rb:41:in `block in from_file'
+[2017-06-29T09:48:53+00:00] WARN: Current  package[python-mysqldb]: /var/cache/chef/cookbooks/openstack-block-storage/recipes/scheduler.rb:38:in `block in from_file'
+[2017-06-29T09:48:53+00:00] WARN: Cloning resource attributes for service[cinder-scheduler] from prior resource (CHEF-3694)
+[2017-06-29T09:48:53+00:00] WARN: Previous service[cinder-scheduler]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-block-storage-api.rb:59:in `from_file'
+[2017-06-29T09:48:53+00:00] WARN: Current  service[cinder-scheduler]: /var/cache/chef/cookbooks/openstack-block-storage/recipes/scheduler.rb:43:in `from_file'
+[2017-06-29T09:48:54+00:00] INFO: Loading encrypted databag user_passwords.admin using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:56+00:00] INFO: Loading encrypted databag user_passwords.admin using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:56+00:00] INFO: Loading encrypted databag secrets.openstack_identity_bootstrap_token using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:56+00:00] INFO: Loading encrypted databag user_passwords.admin using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:56+00:00] INFO: Keystone AdminURL: https://api.stage1.nephoscale.com:35357/v2.0
+[2017-06-29T09:48:56+00:00] INFO: Keystone InternalURL: https://api.stage1.nephoscale.com:5000/v2.0
+[2017-06-29T09:48:56+00:00] INFO: Keystone PublicURL: https://api.stage1.nephoscale.com:5000/v2.0
+[2017-06-29T09:48:56+00:00] INFO: Loading encrypted databag secrets.openstack_identity_bootstrap_token using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:57+00:00] INFO: Loading encrypted databag service_passwords.openstack-image using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:57+00:00] INFO: Loading encrypted databag secrets.openstack_identity_bootstrap_token using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:57+00:00] INFO: Loading encrypted databag service_passwords.openstack-network using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:57+00:00] WARN: Cloning resource attributes for openstack-identity_register[Register Service Tenant] from prior resource (CHEF-3694)
+[2017-06-29T09:48:57+00:00] WARN: Previous openstack-identity_register[Register Service Tenant]: /var/cache/chef/cookbooks/openstack-image/recipes/identity_registration.rb:69:in `from_file'
+[2017-06-29T09:48:57+00:00] WARN: Current  openstack-identity_register[Register Service Tenant]: /var/cache/chef/cookbooks/openstack-network/recipes/identity_registration.rb:67:in `from_file'
+[2017-06-29T09:48:57+00:00] INFO: Loading encrypted databag secrets.openstack_identity_bootstrap_token using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:57+00:00] INFO: Loading encrypted databag service_passwords.openstack-compute using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:58+00:00] WARN: Cloning resource attributes for openstack-identity_register[Register Service Tenant] from prior resource (CHEF-3694)
+[2017-06-29T09:48:58+00:00] WARN: Previous openstack-identity_register[Register Service Tenant]: /var/cache/chef/cookbooks/openstack-network/recipes/identity_registration.rb:67:in `from_file'
+[2017-06-29T09:48:58+00:00] WARN: Current  openstack-identity_register[Register Service Tenant]: /var/cache/chef/cookbooks/openstack-compute/recipes/identity_registration.rb:47:in `from_file'
+[2017-06-29T09:48:58+00:00] INFO: Loading encrypted databag secrets.openstack_identity_bootstrap_token using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:58+00:00] INFO: Loading encrypted databag service_passwords.openstack-bare-metal using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:59+00:00] WARN: Cloning resource attributes for openstack-identity_register[Register Service Tenant] from prior resource (CHEF-3694)
+[2017-06-29T09:48:59+00:00] WARN: Previous openstack-identity_register[Register Service Tenant]: /var/cache/chef/cookbooks/openstack-compute/recipes/identity_registration.rb:47:in `from_file'
+[2017-06-29T09:48:59+00:00] WARN: Current  openstack-identity_register[Register Service Tenant]: /var/cache/chef/cookbooks/openstack-bare-metal/recipes/identity_registration.rb:37:in `from_file'
+[2017-06-29T09:48:59+00:00] INFO: Loading encrypted databag secrets.openstack_identity_bootstrap_token using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:59+00:00] INFO: Loading encrypted databag service_passwords.openstack-ceilometer using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:59+00:00] WARN: Cloning resource attributes for openstack-identity_register[Register Service Tenant] from prior resource (CHEF-3694)
+[2017-06-29T09:48:59+00:00] WARN: Previous openstack-identity_register[Register Service Tenant]: /var/cache/chef/cookbooks/openstack-bare-metal/recipes/identity_registration.rb:37:in `from_file'
+[2017-06-29T09:48:59+00:00] WARN: Current  openstack-identity_register[Register Service Tenant]: /var/cache/chef/cookbooks/openstack-telemetry/recipes/identity_registration.rb:39:in `from_file'
+[2017-06-29T09:48:59+00:00] WARN: Cloning resource attributes for openstack-identity_register[Register Service User] from prior resource (CHEF-3694)
+[2017-06-29T09:48:59+00:00] WARN: Previous openstack-identity_register[Register Service User]: /var/cache/chef/cookbooks/openstack-compute/recipes/identity_registration.rb:57:in `from_file'
+[2017-06-29T09:48:59+00:00] WARN: Current  openstack-identity_register[Register Service User]: /var/cache/chef/cookbooks/openstack-telemetry/recipes/identity_registration.rb:49:in `from_file'
+[2017-06-29T09:48:59+00:00] WARN: Cloning resource attributes for openstack-identity_register[Grant 'admin' Role to Service User for Service Tenant] from prior resource (CHEF-3694)
+[2017-06-29T09:48:59+00:00] WARN: Previous openstack-identity_register[Grant 'admin' Role to Service User for Service Tenant]: /var/cache/chef/cookbooks/openstack-compute/recipes/identity_registration.rb:68:in `from_file'
+[2017-06-29T09:48:59+00:00] WARN: Current  openstack-identity_register[Grant 'admin' Role to Service User for Service Tenant]: /var/cache/chef/cookbooks/openstack-telemetry/recipes/identity_registration.rb:60:in `from_file'
+[2017-06-29T09:48:59+00:00] INFO: Loading encrypted databag secrets.openstack_identity_bootstrap_token using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:59+00:00] INFO: Loading encrypted databag service_passwords.openstack-orchestration using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:48:59+00:00] WARN: Cloning resource attributes for openstack-identity_register[Register Service Tenant] from prior resource (CHEF-3694)
+[2017-06-29T09:48:59+00:00] WARN: Previous openstack-identity_register[Register Service Tenant]: /var/cache/chef/cookbooks/openstack-telemetry/recipes/identity_registration.rb:39:in `from_file'
+[2017-06-29T09:48:59+00:00] WARN: Current  openstack-identity_register[Register Service Tenant]: /var/cache/chef/cookbooks/openstack-orchestration/recipes/identity_registration.rb:103:in `from_file'
+[2017-06-29T09:48:59+00:00] WARN: Cloning resource attributes for chef_gem[chef-rewind] from prior resource (CHEF-3694)
+[2017-06-29T09:48:59+00:00] WARN: Previous chef_gem[chef-rewind]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-block-storage-api.rb:1:in `from_file'
+[2017-06-29T09:48:59+00:00] WARN: Current  chef_gem[chef-rewind]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-block-storage-registration.rb:1:in `from_file'
+[2017-06-29T09:48:59+00:00] INFO: Processing chef_gem[chef-rewind] action install (hopper-repo::os-block-storage-registration line 1)
+[2017-06-29T09:48:59+00:00] INFO: Loading encrypted databag secrets.openstack_identity_bootstrap_token using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:49:00+00:00] INFO: Loading encrypted databag service_passwords.openstack-block-storage using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:49:00+00:00] WARN: Cloning resource attributes for openstack-identity_register[Register Service Tenant] from prior resource (CHEF-3694)
+[2017-06-29T09:49:00+00:00] WARN: Previous openstack-identity_register[Register Service Tenant]: /var/cache/chef/cookbooks/openstack-orchestration/recipes/identity_registration.rb:103:in `from_file'
+[2017-06-29T09:49:00+00:00] WARN: Current  openstack-identity_register[Register Service Tenant]: /var/cache/chef/cookbooks/openstack-block-storage/recipes/identity_registration.rb:43:in `from_file'
+[2017-06-29T09:49:00+00:00] INFO: Loading encrypted databag secrets.openstack_identity_bootstrap_token using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:49:00+00:00] INFO: Loading encrypted databag service_passwords.openstack-block-storage using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:49:01+00:00] INFO: Loading encrypted databag secrets.openstack_identity_bootstrap_token using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:49:03+00:00] INFO: Loading encrypted databag service_passwords.openstack-designate using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:49:03+00:00] WARN: Cloning resource attributes for openstack-identity_register[Register Service Tenant] from prior resource (CHEF-3694)
+[2017-06-29T09:49:03+00:00] WARN: Previous openstack-identity_register[Register Service Tenant]: /var/cache/chef/cookbooks/openstack-block-storage/recipes/identity_registration.rb:43:in `from_file'
+[2017-06-29T09:49:03+00:00] WARN: Current  openstack-identity_register[Register Service Tenant]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-designate-registration.rb:31:in `from_file'
+[2017-06-29T09:49:03+00:00] WARN: Cloning resource attributes for openstack-identity_register[Register Service User] from prior resource (CHEF-3694)
+[2017-06-29T09:49:03+00:00] WARN: Previous openstack-identity_register[Register Service User]: /var/cache/chef/cookbooks/openstack-telemetry/recipes/identity_registration.rb:49:in `from_file'
+[2017-06-29T09:49:03+00:00] WARN: Current  openstack-identity_register[Register Service User]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-designate-registration.rb:41:in `from_file'
+[2017-06-29T09:49:03+00:00] WARN: Cloning resource attributes for openstack-identity_register[Grant 'admin' Role to Service User for Service Tenant] from prior resource (CHEF-3694)
+[2017-06-29T09:49:03+00:00] WARN: Previous openstack-identity_register[Grant 'admin' Role to Service User for Service Tenant]: /var/cache/chef/cookbooks/openstack-telemetry/recipes/identity_registration.rb:60:in `from_file'
+[2017-06-29T09:49:03+00:00] WARN: Current  openstack-identity_register[Grant 'admin' Role to Service User for Service Tenant]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-designate-registration.rb:52:in `from_file'
+[2017-06-29T09:49:04+00:00] INFO: Loading encrypted databag secrets.openstack_identity_bootstrap_token using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:49:04+00:00] INFO: Loading encrypted databag service_passwords.openstack-cloudkitty using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:49:05+00:00] WARN: Cloning resource attributes for openstack-identity_register[Register Service Tenant] from prior resource (CHEF-3694)
+[2017-06-29T09:49:05+00:00] WARN: Previous openstack-identity_register[Register Service Tenant]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-designate-registration.rb:31:in `from_file'
+[2017-06-29T09:49:05+00:00] WARN: Current  openstack-identity_register[Register Service Tenant]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-cloudkitty-registration.rb:29:in `from_file'
+[2017-06-29T09:49:05+00:00] WARN: Cloning resource attributes for openstack-identity_register[Register Service User] from prior resource (CHEF-3694)
+[2017-06-29T09:49:05+00:00] WARN: Previous openstack-identity_register[Register Service User]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-designate-registration.rb:41:in `from_file'
+[2017-06-29T09:49:05+00:00] WARN: Current  openstack-identity_register[Register Service User]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-cloudkitty-registration.rb:39:in `from_file'
+[2017-06-29T09:49:05+00:00] WARN: Cloning resource attributes for openstack-identity_register[Grant 'admin' Role to Service User for Service Tenant] from prior resource (CHEF-3694)
+[2017-06-29T09:49:05+00:00] WARN: Previous openstack-identity_register[Grant 'admin' Role to Service User for Service Tenant]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-designate-registration.rb:52:in `from_file'
+[2017-06-29T09:49:05+00:00] WARN: Current  openstack-identity_register[Grant 'admin' Role to Service User for Service Tenant]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-cloudkitty-registration.rb:50:in `from_file'
+[2017-06-29T09:49:05+00:00] INFO: Loading encrypted databag secrets.openstack_identity_bootstrap_token using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:49:06+00:00] INFO: Loading encrypted databag service_passwords.openstack-urbane using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:49:06+00:00] WARN: Cloning resource attributes for openstack-identity_register[Register Service Tenant] from prior resource (CHEF-3694)
+[2017-06-29T09:49:06+00:00] WARN: Previous openstack-identity_register[Register Service Tenant]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-cloudkitty-registration.rb:29:in `from_file'
+[2017-06-29T09:49:06+00:00] WARN: Current  openstack-identity_register[Register Service Tenant]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-signup-registration.rb:29:in `from_file'
+[2017-06-29T09:49:06+00:00] WARN: Cloning resource attributes for openstack-identity_register[Register Service User] from prior resource (CHEF-3694)
+[2017-06-29T09:49:06+00:00] WARN: Previous openstack-identity_register[Register Service User]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-cloudkitty-registration.rb:39:in `from_file'
+[2017-06-29T09:49:06+00:00] WARN: Current  openstack-identity_register[Register Service User]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-signup-registration.rb:39:in `from_file'
+[2017-06-29T09:49:06+00:00] WARN: Cloning resource attributes for openstack-identity_register[Grant 'admin' Role to Service User for Service Tenant] from prior resource (CHEF-3694)
+[2017-06-29T09:49:06+00:00] WARN: Previous openstack-identity_register[Grant 'admin' Role to Service User for Service Tenant]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-cloudkitty-registration.rb:50:in `from_file'
+[2017-06-29T09:49:06+00:00] WARN: Current  openstack-identity_register[Grant 'admin' Role to Service User for Service Tenant]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-signup-registration.rb:50:in `from_file'
+[2017-06-29T09:49:07+00:00] INFO: Loading encrypted databag secrets.openstack_identity_bootstrap_token using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:49:07+00:00] INFO: Loading encrypted databag service_passwords.openstack-sidecar using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:49:07+00:00] WARN: Cloning resource attributes for openstack-identity_register[Register Service Tenant] from prior resource (CHEF-3694)
+[2017-06-29T09:49:07+00:00] WARN: Previous openstack-identity_register[Register Service Tenant]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-signup-registration.rb:29:in `from_file'
+[2017-06-29T09:49:07+00:00] WARN: Current  openstack-identity_register[Register Service Tenant]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-nephoscale-registration.rb:29:in `from_file'
+[2017-06-29T09:49:07+00:00] WARN: Cloning resource attributes for openstack-identity_register[Register Service User] from prior resource (CHEF-3694)
+[2017-06-29T09:49:07+00:00] WARN: Previous openstack-identity_register[Register Service User]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-signup-registration.rb:39:in `from_file'
+[2017-06-29T09:49:07+00:00] WARN: Current  openstack-identity_register[Register Service User]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-nephoscale-registration.rb:39:in `from_file'
+[2017-06-29T09:49:07+00:00] WARN: Cloning resource attributes for openstack-identity_register[Grant 'admin' Role to Service User for Service Tenant] from prior resource (CHEF-3694)
+[2017-06-29T09:49:07+00:00] WARN: Previous openstack-identity_register[Grant 'admin' Role to Service User for Service Tenant]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-signup-registration.rb:50:in `from_file'
+[2017-06-29T09:49:07+00:00] WARN: Current  openstack-identity_register[Grant 'admin' Role to Service User for Service Tenant]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-nephoscale-registration.rb:50:in `from_file'
+[2017-06-29T09:49:07+00:00] WARN: Cloning resource attributes for package[python-neutronclient] from prior resource (CHEF-3694)
+[2017-06-29T09:49:07+00:00] WARN: Previous package[python-neutronclient]: /var/cache/chef/cookbooks/openstack-network/recipes/default.rb:166:in `block in from_file'
+[2017-06-29T09:49:07+00:00] WARN: Current  package[python-neutronclient]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-compute-setup.rb:109:in `block in from_file'
+[2017-06-29T09:49:07+00:00] WARN: Cloning resource attributes for package[python-pyparsing] from prior resource (CHEF-3694)
+[2017-06-29T09:49:07+00:00] WARN: Previous package[python-pyparsing]: /var/cache/chef/cookbooks/openstack-network/recipes/default.rb:166:in `block in from_file'
+[2017-06-29T09:49:07+00:00] WARN: Current  package[python-pyparsing]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-compute-setup.rb:109:in `block in from_file'
+[2017-06-29T09:49:07+00:00] WARN: Cloning resource attributes for package[python-glanceclient] from prior resource (CHEF-3694)
+[2017-06-29T09:49:07+00:00] WARN: Previous package[python-glanceclient]: /var/cache/chef/cookbooks/openstack-image/recipes/client.rb:27:in `block in from_file'
+[2017-06-29T09:49:07+00:00] WARN: Current  package[python-glanceclient]: /var/cache/chef/cookbooks/hopper-repo/recipes/os-image-upload.rb:31:in `block in from_file'
+[2017-06-29T09:49:07+00:00] INFO: Loading encrypted databag user_passwords.admin using key at /etc/chef/openstack_data_bag_secret
+[2017-06-29T09:49:07+00:00] INFO: Processing remote_directory[/etc/chef/ohai_plugins for cookbook ohai] action nothing (ohai::default line 32)
+[2017-06-29T09:49:07+00:00] INFO: Processing ohai[custom_plugins] action nothing (ohai::default line 46)
+[2017-06-29T09:49:07+00:00] INFO: Processing file[/var/lib/apt/periodic/update-success-stamp] action nothing (apt::default line 30)
+[2017-06-29T09:49:07+00:00] INFO: Processing directory[/etc/apt/apt.conf.d] action create (apt::default line 53)
+[2017-06-29T09:49:07+00:00] INFO: Processing cookbook_file[/etc/apt/apt.conf.d/15update-stamp] action create (apt::default line 57)
+[2017-06-29T09:49:07+00:00] INFO: Processing execute[apt-get-update] action run (apt::default line 62)
+[2017-06-29T09:49:07+00:00] INFO: Processing execute[apt-get update] action nothing (apt::default line 71)
+[2017-06-29T09:49:07+00:00] INFO: Processing execute[apt-get autoremove] action nothing (apt::default line 80)
+[2017-06-29T09:49:07+00:00] INFO: Processing execute[apt-get autoclean] action nothing (apt::default line 87)
+[2017-06-29T09:49:07+00:00] INFO: Processing execute[apt-get-update-periodic] action run (apt::default line 93)
+[2017-06-29T09:49:07+00:00] INFO: Processing directory[/var/cache/local] action create (apt::default line 105)
+[2017-06-29T09:49:07+00:00] INFO: Processing directory[/var/cache/local/preseeding] action create (apt::default line 105)
+[2017-06-29T09:49:07+00:00] INFO: Processing package[sudo] action install (sudo::default line 22)
+[2017-06-29T09:49:08+00:00] INFO: Processing directory[/etc/sudoers.d] action create (sudo::default line 27)
+[2017-06-29T09:49:08+00:00] INFO: Processing cookbook_file[/etc/sudoers.d/README] action create (sudo::default line 33)
+[2017-06-29T09:49:08+00:00] INFO: Processing template[/etc/sudoers] action create (sudo::default line 41)
+[2017-06-29T09:49:08+00:00] INFO: Processing directory[/var/run/chef] action create (chef-client::cron line 53)
+[2017-06-29T09:49:08+00:00] INFO: Processing directory[/var/cache/chef] action create (chef-client::cron line 53)
+[2017-06-29T09:49:08+00:00] INFO: Processing directory[/var/lib/chef] action create (chef-client::cron line 53)
+[2017-06-29T09:49:08+00:00] INFO: Processing directory[/var/log/chef] action create (chef-client::cron line 53)
+[2017-06-29T09:49:08+00:00] INFO: Processing directory[/etc/chef] action create (chef-client::cron line 53)
+[2017-06-29T09:49:08+00:00] INFO: Processing template[/etc/init.d/chef-client] action create (chef-client::cron line 45)
+[2017-06-29T09:49:08+00:00] INFO: Processing template[/etc/default/chef-client] action create (chef-client::cron line 51)
+[2017-06-29T09:49:08+00:00] INFO: Processing service[chef-client] action disable (chef-client::cron line 56)
+[2017-06-29T09:49:08+00:00] INFO: Processing service[chef-client] action stop (chef-client::cron line 56)
+[2017-06-29T09:49:08+00:00] INFO: Processing cron_d[chef-client] action delete (chef-client::cron line 105)
+[2017-06-29T09:49:08+00:00] INFO: Processing file[legacy named cron.d file] action delete (/var/cache/chef/cookbooks/cron/providers/d.rb line 24)
+[2017-06-29T09:49:08+00:00] INFO: Processing file[/etc/cron.d/chef-client] action delete (/var/cache/chef/cookbooks/cron/providers/d.rb line 30)
+[2017-06-29T09:49:08+00:00] INFO: Processing cron[chef-client] action create (chef-client::cron line 109)
+[2017-06-29T09:49:08+00:00] INFO: Processing motd_tail[/etc/motd] action create (hopper-repo::base line 3)
+[2017-06-29T09:49:08+00:00] INFO: Processing template[/etc/motd] action create (/var/cache/chef/cookbooks/motd-tail/libraries/provider_motd_tail.rb line 33)
+[2017-06-29T09:49:08+00:00] INFO: Processing file[/etc/chef/openstack_data_bag_secret] action create (hopper-repo::base line 9)
+[2017-06-29T09:49:08+00:00] INFO: Processing package[puppet] action purge (hopper-repo::base line 43)
+[2017-06-29T09:49:08+00:00] INFO: Processing package[libmysqlclient-dev] action nothing (hopper-repo::base line 55)
+[2017-06-29T09:49:08+00:00] INFO: Processing package[build-essential] action nothing (hopper-repo::base line 55)
+[2017-06-29T09:49:08+00:00] INFO: Processing package[make] action nothing (hopper-repo::base line 55)
+[2017-06-29T09:49:08+00:00] INFO: Processing package[ruby-dev] action nothing (hopper-repo::base line 55)
+[2017-06-29T09:49:08+00:00] INFO: Processing package[build-essential] action nothing (hopper-repo::base line 55)
+[2017-06-29T09:49:08+00:00] INFO: Processing package[make] action nothing (hopper-repo::base line 55)
+[2017-06-29T09:49:08+00:00] INFO: Processing gem_package[netaddr] action install (hopper-repo::base line 60)
+[2017-06-29T09:49:08+00:00] INFO: Processing gem_package[ruby-shadow] action install (hopper-repo::base line 65)
+[2017-06-29T09:49:08+00:00] INFO: Processing chef_gem[mysql] action install (hopper-repo::base line 70)
+[2017-06-29T09:49:08+00:00] INFO: Processing chef_gem[mysql2] action install (hopper-repo::base line 75)
+[2017-06-29T09:49:08+00:00] INFO: Processing users_manage[sysadmin] action remove (hopper-repo::base line 80)
+[2017-06-29T09:49:08+00:00] INFO: Processing users_manage[sysadmin] action create (hopper-repo::base line 80)
+[2017-06-29T09:49:09+00:00] INFO: Processing group[div] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 89)
+[2017-06-29T09:49:09+00:00] INFO: Processing user[div] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 96)
+[2017-06-29T09:49:09+00:00] INFO: Processing directory[/home/div/.ssh] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 110)
+[2017-06-29T09:49:09+00:00] INFO: Processing template[/home/div/.ssh/authorized_keys] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 116)
+[2017-06-29T09:49:09+00:00] INFO: Processing group[yad] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 89)
+[2017-06-29T09:49:09+00:00] INFO: Processing user[yad] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 96)
+[2017-06-29T09:49:09+00:00] INFO: Processing directory[/home/yad/.ssh] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 110)
+[2017-06-29T09:49:09+00:00] INFO: Processing template[/home/yad/.ssh/authorized_keys] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 116)
+[2017-06-29T09:49:09+00:00] INFO: Processing group[zev] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 89)
+[2017-06-29T09:49:09+00:00] INFO: Processing user[zev] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 96)
+[2017-06-29T09:49:09+00:00] INFO: Processing directory[/home/zev/.ssh] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 110)
+[2017-06-29T09:49:09+00:00] INFO: Processing template[/home/zev/.ssh/authorized_keys] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 116)
+[2017-06-29T09:49:09+00:00] INFO: Processing group[manly] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 89)
+[2017-06-29T09:49:09+00:00] INFO: Processing user[manly] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 96)
+[2017-06-29T09:49:09+00:00] INFO: Processing directory[/home/manly/.ssh] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 110)
+[2017-06-29T09:49:09+00:00] INFO: Processing template[/home/manly/.ssh/authorized_keys] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 116)
+[2017-06-29T09:49:09+00:00] INFO: Processing group[montgom] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 89)
+[2017-06-29T09:49:09+00:00] INFO: Processing user[montgom] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 96)
+[2017-06-29T09:49:09+00:00] INFO: Processing directory[/home/montgom/.ssh] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 110)
+[2017-06-29T09:49:09+00:00] INFO: Processing template[/home/montgom/.ssh/authorized_keys] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 116)
+[2017-06-29T09:49:09+00:00] INFO: Processing group[alan] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 89)
+[2017-06-29T09:49:09+00:00] INFO: Processing user[alan] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 96)
+[2017-06-29T09:49:09+00:00] INFO: Processing directory[/home/alan/.ssh] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 110)
+[2017-06-29T09:49:09+00:00] INFO: Processing template[/home/alan/.ssh/authorized_keys] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 116)
+[2017-06-29T09:49:09+00:00] INFO: Processing group[mdolgikh] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 89)
+[2017-06-29T09:49:09+00:00] INFO: Processing user[mdolgikh] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 96)
+[2017-06-29T09:49:09+00:00] INFO: Processing directory[/home/mdolgikh/.ssh] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 110)
+[2017-06-29T09:49:09+00:00] INFO: Processing template[/home/mdolgikh/.ssh/authorized_keys] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 116)
+[2017-06-29T09:49:09+00:00] INFO: Processing group[telemachus] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 89)
+[2017-06-29T09:49:09+00:00] INFO: Processing user[telemachus] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 96)
+[2017-06-29T09:49:09+00:00] INFO: Processing directory[/home/telemachus/.ssh] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 110)
+[2017-06-29T09:49:09+00:00] INFO: Processing template[/home/telemachus/.ssh/authorized_keys] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 116)
+[2017-06-29T09:49:09+00:00] INFO: Processing group[poornam] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 89)
+[2017-06-29T09:49:09+00:00] INFO: Processing user[poornam] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 96)
+[2017-06-29T09:49:09+00:00] INFO: Processing directory[/home/poornam/.ssh] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 110)
+[2017-06-29T09:49:09+00:00] INFO: Processing template[/home/poornam/.ssh/authorized_keys] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 116)
+[2017-06-29T09:49:09+00:00] INFO: Processing group[sysadmin] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 155)
+[2017-06-29T09:49:09+00:00] INFO: Processing user[ubuntu] action remove (hopper-repo::base line 87)
+[2017-06-29T09:49:09+00:00] INFO: Processing package[bash] action upgrade (hopper-repo::base line 93)
+[2017-06-29T09:49:10+00:00] INFO: Processing package[python-pymysql] action install (hopper-repo::base line 100)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[cinder-backup] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[cinder-volume] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[cinder-scheduler] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[cinder-api] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[heat-api] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[heartbeat] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[heat-api-cfn] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[heat-api-cloudwatch] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[heat_engine] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[heat-engine] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[ceilometer-agent-evaluator] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[ceilometer-agent-central] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[ceilometer-alarm-notifier] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[ceilometer-alarm-evaluator] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[ceilometer-agent-notification] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[ceilometer-api] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[ceilometer-collector] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[ceilometer-agent-compute] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[glance-api] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[libvirt-bin] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[nova-scheduler] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[nova-compute] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[nova-conductor] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[ironic-conductor] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[nova-api-metadata] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[nova-consoleauth] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[nova-serialproxy] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[nova-novncproxy] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[nova-api-ec2] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[nova-api-os-compute] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[nova-cert] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[ironic-api] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[glance-registry] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[keystone] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[neutron-server] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[neutron-l3-agent] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[neutron-dhcp-agent] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[neutron-metadata-agent] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[neutron-ovs-cleanup] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[neutron-plugin-openvswitch-agent] action nothing (hopper-repo::base line 112)
+[2017-06-29T09:49:10+00:00] INFO: Processing package[memcached] action install (memcached::default line 23)
+[2017-06-29T09:49:10+00:00] INFO: Processing package[libmemcache-dev] action install (memcached::default line 25)
+[2017-06-29T09:49:10+00:00] INFO: Processing service[memcached] action enable (memcached::default line 42)
+[2017-06-29T09:49:10+00:00] INFO: Processing template[/etc/memcached.conf] action create (memcached::default line 75)
+[2017-06-29T09:49:10+00:00] INFO: Processing cookbook_file[/etc/keystone/policy.json] action create (hopper-repo::base line 145)
+[2017-06-29T09:49:10+00:00] INFO: Processing execute[apt-key update] action run (hopper-repo::base line 155)
+[2017-06-29T09:49:10+00:00] INFO: execute[apt-key update] ran successfully
+[2017-06-29T09:49:10+00:00] INFO: Processing cron[killall chefclients daily if stuck] action create (hopper-repo::base line 170)
+[2017-06-29T09:49:10+00:00] INFO: Processing users_manage[sysadmin] action remove (users::sysadmins line 23)
+[2017-06-29T09:49:11+00:00] INFO: Processing users_manage[sysadmin] action create (users::sysadmins line 23)
+[2017-06-29T09:49:11+00:00] INFO: Processing group[div] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 89)
+[2017-06-29T09:49:11+00:00] INFO: Processing user[div] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 96)
+[2017-06-29T09:49:11+00:00] INFO: Processing directory[/home/div/.ssh] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 110)
+[2017-06-29T09:49:11+00:00] INFO: Processing template[/home/div/.ssh/authorized_keys] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 116)
+[2017-06-29T09:49:11+00:00] INFO: Processing group[yad] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 89)
+[2017-06-29T09:49:11+00:00] INFO: Processing user[yad] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 96)
+[2017-06-29T09:49:11+00:00] INFO: Processing directory[/home/yad/.ssh] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 110)
+[2017-06-29T09:49:11+00:00] INFO: Processing template[/home/yad/.ssh/authorized_keys] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 116)
+[2017-06-29T09:49:11+00:00] INFO: Processing group[zev] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 89)
+[2017-06-29T09:49:11+00:00] INFO: Processing user[zev] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 96)
+[2017-06-29T09:49:11+00:00] INFO: Processing directory[/home/zev/.ssh] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 110)
+[2017-06-29T09:49:11+00:00] INFO: Processing template[/home/zev/.ssh/authorized_keys] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 116)
+[2017-06-29T09:49:11+00:00] INFO: Processing group[manly] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 89)
+[2017-06-29T09:49:11+00:00] INFO: Processing user[manly] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 96)
+[2017-06-29T09:49:11+00:00] INFO: Processing directory[/home/manly/.ssh] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 110)
+[2017-06-29T09:49:11+00:00] INFO: Processing template[/home/manly/.ssh/authorized_keys] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 116)
+[2017-06-29T09:49:11+00:00] INFO: Processing group[montgom] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 89)
+[2017-06-29T09:49:11+00:00] INFO: Processing user[montgom] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 96)
+[2017-06-29T09:49:11+00:00] INFO: Processing directory[/home/montgom/.ssh] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 110)
+[2017-06-29T09:49:11+00:00] INFO: Processing template[/home/montgom/.ssh/authorized_keys] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 116)
+[2017-06-29T09:49:11+00:00] INFO: Processing group[alan] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 89)
+[2017-06-29T09:49:11+00:00] INFO: Processing user[alan] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 96)
+[2017-06-29T09:49:11+00:00] INFO: Processing directory[/home/alan/.ssh] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 110)
+[2017-06-29T09:49:11+00:00] INFO: Processing template[/home/alan/.ssh/authorized_keys] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 116)
+[2017-06-29T09:49:11+00:00] INFO: Processing group[mdolgikh] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 89)
+[2017-06-29T09:49:11+00:00] INFO: Processing user[mdolgikh] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 96)
+[2017-06-29T09:49:11+00:00] INFO: Processing directory[/home/mdolgikh/.ssh] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 110)
+[2017-06-29T09:49:11+00:00] INFO: Processing template[/home/mdolgikh/.ssh/authorized_keys] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 116)
+[2017-06-29T09:49:11+00:00] INFO: Processing group[telemachus] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 89)
+[2017-06-29T09:49:11+00:00] INFO: Processing user[telemachus] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 96)
+[2017-06-29T09:49:11+00:00] INFO: Processing directory[/home/telemachus/.ssh] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 110)
+[2017-06-29T09:49:11+00:00] INFO: Processing template[/home/telemachus/.ssh/authorized_keys] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 116)
+[2017-06-29T09:49:11+00:00] INFO: Processing group[poornam] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 89)
+[2017-06-29T09:49:11+00:00] INFO: Processing user[poornam] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 96)
+[2017-06-29T09:49:11+00:00] INFO: Processing directory[/home/poornam/.ssh] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 110)
+[2017-06-29T09:49:11+00:00] INFO: Processing template[/home/poornam/.ssh/authorized_keys] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 116)
+[2017-06-29T09:49:11+00:00] INFO: Processing group[sysadmin] action create (/var/cache/chef/cookbooks/users/providers/manage.rb line 155)
+[2017-06-29T09:49:11+00:00] INFO: Processing package[ntp] action install (ntp::default line 28)
+[2017-06-29T09:49:11+00:00] INFO: Processing package[ntpdate] action install (ntp::default line 28)
+[2017-06-29T09:49:12+00:00] INFO: Processing directory[/var/lib/ntp] action create (ntp::default line 32)
+[2017-06-29T09:49:12+00:00] INFO: Processing directory[/var/log/ntpstats/] action create (ntp::default line 32)
+[2017-06-29T09:49:12+00:00] INFO: Processing cookbook_file[/etc/ntp.leapseconds] action create (ntp::default line 39)
+[2017-06-29T09:49:12+00:00] INFO: Processing service[apparmor] action nothing (ntp::apparmor line 20)
+[2017-06-29T09:49:12+00:00] INFO: Processing cookbook_file[/etc/apparmor.d/usr.sbin.ntpd] action create (ntp::apparmor line 24)
+[2017-06-29T09:49:12+00:00] INFO: Processing template[/etc/ntp.conf] action create (ntp::default line 80)
+[2017-06-29T09:49:12+00:00] INFO: Processing execute[Force sync hardware clock with system clock] action run (ntp::default line 106)
+[2017-06-29T09:49:12+00:00] INFO: Processing service[ntp] action enable (ntp::default line 112)
+[2017-06-29T09:49:12+00:00] INFO: Processing service[ntp] action start (ntp::default line 112)
+[2017-06-29T09:49:12+00:00] INFO: Processing package[sysstat] action upgrade (sysstat::default line 21)
+[2017-06-29T09:49:12+00:00] INFO: Processing service[sysstat] action enable (sysstat::default line 25)
+[2017-06-29T09:49:12+00:00] INFO: Processing service[sysstat] action start (sysstat::default line 25)
+[2017-06-29T09:49:12+00:00] INFO: Processing template[/etc/default/sysstat] action create (sysstat::default line 32)
+[2017-06-29T09:49:12+00:00] INFO: Processing package[nagios-nrpe-server] action install (nagios::client_package line 32)
+[2017-06-29T09:49:12+00:00] INFO: Processing package[nagios-plugins] action install (nagios::client_package line 32)
+[2017-06-29T09:49:12+00:00] INFO: Processing package[nagios-plugins-basic] action install (nagios::client_package line 32)
+[2017-06-29T09:49:12+00:00] INFO: Processing package[nagios-plugins-standard] action install (nagios::client_package line 32)
+[2017-06-29T09:49:12+00:00] INFO: Processing directory[/etc/nagios/nrpe.d] action create (nagios::client line 50)
+[2017-06-29T09:49:12+00:00] INFO: Processing template[/etc/nagios/nrpe.cfg] action create (nagios::client line 56)
+[2017-06-29T09:49:12+00:00] INFO: Processing service[nagios-nrpe-server] action start (nagios::client line 68)
+[2017-06-29T09:49:13+00:00] INFO: service[nagios-nrpe-server] started
+[2017-06-29T09:49:13+00:00] INFO: Processing service[nagios-nrpe-server] action enable (nagios::client line 68)
+[2017-06-29T09:49:13+00:00] INFO: Processing cookbook_file[/usr/lib/nagios/plugins/check_logfiles] action create (monitoring::client line 34)
+[2017-06-29T09:49:13+00:00] INFO: Processing nagios_nrpecheck[check_all_disks] action add (monitoring::client line 43)
+[2017-06-29T09:49:13+00:00] INFO: Adding check_all_disks to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:13+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_all_disks.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:13+00:00] INFO: Processing nagios_nrpecheck[check_procs] action add (monitoring::client line 50)
+[2017-06-29T09:49:13+00:00] INFO: Adding check_procs to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:13+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_procs.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:13+00:00] INFO: Processing cookbook_file[/usr/lib/nagios/plugins/check_rabbit_queues] action create (monitoring::client line 60)
+[2017-06-29T09:49:13+00:00] INFO: Processing nagios_nrpecheck[check_rabbit_queues] action add (monitoring::client line 67)
+[2017-06-29T09:49:13+00:00] INFO: Adding check_rabbit_queues to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:13+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_rabbit_queues.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:13+00:00] INFO: Processing cookbook_file[/usr/lib/nagios/plugins/check_rabbit_cluster] action create (monitoring::client line 72)
+[2017-06-29T09:49:13+00:00] INFO: Processing nagios_nrpecheck[check_rabbit_cluster] action add (monitoring::client line 79)
+[2017-06-29T09:49:13+00:00] INFO: Adding check_rabbit_cluster to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:13+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_rabbit_cluster.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:13+00:00] INFO: Processing nagios_nrpecheck[check_rabbitmq] action add (monitoring::client line 83)
+[2017-06-29T09:49:13+00:00] INFO: Adding check_rabbitmq to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:13+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_rabbitmq.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:13+00:00] INFO: Processing nagios_nrpecheck[check_bind] action add (monitoring::client line 92)
+[2017-06-29T09:49:13+00:00] INFO: Adding check_bind to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:13+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_bind.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:13+00:00] INFO: Processing nagios_nrpecheck[check_bind_procs] action add (monitoring::client line 97)
+[2017-06-29T09:49:13+00:00] INFO: Adding check_bind_procs to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:13+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_bind_procs.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:13+00:00] INFO: Processing cookbook_file[/usr/lib/nagios/plugins/check_proc_cron.sh] action create (monitoring::client line 107)
+[2017-06-29T09:49:13+00:00] INFO: Processing nagios_nrpecheck[check_proc_cron] action add (monitoring::client line 112)
+[2017-06-29T09:49:13+00:00] INFO: Adding check_proc_cron to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:13+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_proc_cron.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:13+00:00] INFO: Processing cookbook_file[/usr/lib/nagios/plugins/check_proc_ntpd.sh] action create (monitoring::client line 116)
+[2017-06-29T09:49:13+00:00] INFO: Processing nagios_nrpecheck[check_proc_ntpd] action add (monitoring::client line 121)
+[2017-06-29T09:49:13+00:00] INFO: Adding check_proc_ntpd to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:13+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_proc_ntpd.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:13+00:00] INFO: Processing cookbook_file[/usr/lib/nagios/plugins/check_ro_mounts.rb] action create (monitoring::client line 126)
+[2017-06-29T09:49:13+00:00] INFO: Processing nagios_nrpecheck[check_ro_mounts] action add (monitoring::client line 131)
+[2017-06-29T09:49:13+00:00] INFO: Adding check_ro_mounts to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:13+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_ro_mounts.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:13+00:00] INFO: Processing cookbook_file[/usr/lib/nagios/plugins/check_swift-diskusage.sh] action create (monitoring::client line 136)
+[2017-06-29T09:49:13+00:00] INFO: Processing nagios_nrpecheck[check_swift-diskusage] action add (monitoring::client line 141)
+[2017-06-29T09:49:13+00:00] INFO: Adding check_swift-diskusage to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:13+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_swift-diskusage.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:13+00:00] INFO: Processing cookbook_file[/usr/lib/nagios/plugins/check_kernel_panic.sh] action create (monitoring::client line 146)
+[2017-06-29T09:49:13+00:00] INFO: Processing nagios_nrpecheck[check_kernel_panic] action add (monitoring::client line 151)
+[2017-06-29T09:49:13+00:00] INFO: Adding check_kernel_panic to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:13+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_kernel_panic.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:13+00:00] INFO: Processing cookbook_file[/usr/lib/nagios/plugins/lock_ckeck.sh] action create (monitoring::client line 156)
+[2017-06-29T09:49:13+00:00] INFO: Processing nagios_nrpecheck[lock_check] action add (monitoring::client line 160)
+[2017-06-29T09:49:13+00:00] INFO: Adding lock_check to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:13+00:00] INFO: Processing file[/etc/nagios/nrpe.d/lock_check.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:13+00:00] INFO: Processing template[/usr/lib/nagios/plugins/dlr_check.sh] action create (monitoring::client line 167)
+[2017-06-29T09:49:13+00:00] INFO: Processing nagios_nrpecheck[dlr_check] action add (monitoring::client line 175)
+[2017-06-29T09:49:13+00:00] INFO: Adding dlr_check to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:13+00:00] INFO: Processing file[/etc/nagios/nrpe.d/dlr_check.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:13+00:00] INFO: Processing cookbook_file[/usr/lib/nagios/plugins/check_glance-api.py] action create (monitoring::client line 197)
+[2017-06-29T09:49:13+00:00] INFO: Processing nagios_nrpecheck[check_glance-api] action add (monitoring::client line 202)
+[2017-06-29T09:49:13+00:00] INFO: Adding check_glance-api to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:13+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_glance-api.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:13+00:00] INFO: Processing cookbook_file[/usr/lib/nagios/plugins/check_keystone-api.py] action create (monitoring::client line 208)
+[2017-06-29T09:49:13+00:00] INFO: Processing nagios_nrpecheck[check_keystone-api] action add (monitoring::client line 213)
+[2017-06-29T09:49:13+00:00] INFO: Adding check_keystone-api to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:13+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_keystone-api.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:13+00:00] INFO: Processing cookbook_file[/usr/lib/nagios/plugins/check_ceilometer-api.py] action create (monitoring::client line 219)
+[2017-06-29T09:49:13+00:00] INFO: Processing nagios_nrpecheck[check_ceilometer-api] action add (monitoring::client line 224)
+[2017-06-29T09:49:13+00:00] INFO: Adding check_ceilometer-api to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:13+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_ceilometer-api.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:13+00:00] INFO: Processing nagios_nrpecheck[check_mysql] action add (monitoring::client line 236)
+[2017-06-29T09:49:13+00:00] INFO: Adding check_mysql to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:13+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_mysql.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:13+00:00] INFO: Processing cookbook_file[/usr/lib/nagios/plugins/check_mysqlhealth.pl] action create (monitoring::client line 242)
+[2017-06-29T09:49:13+00:00] INFO: Processing nagios_nrpecheck[check_mysql_connections] action add (monitoring::client line 247)
+[2017-06-29T09:49:13+00:00] INFO: Adding check_mysql_connections to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:13+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_mysql_connections.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:13+00:00] INFO: Processing cookbook_file[/usr/lib/nagios/plugins/check_mysql_innodb.pl] action create (monitoring::client line 253)
+[2017-06-29T09:49:13+00:00] INFO: Processing nagios_nrpecheck[check_mysql_innodb] action add (monitoring::client line 258)
+[2017-06-29T09:49:13+00:00] INFO: Adding check_mysql_innodb to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:13+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_mysql_innodb.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:13+00:00] INFO: Processing template[/usr/lib/nagios/plugins/check_mongodb-replicaset_status.py] action create (monitoring::client line 287)
+[2017-06-29T09:49:13+00:00] INFO: Processing nagios_nrpecheck[check_mongodb-replicaset_status] action add (monitoring::client line 299)
+[2017-06-29T09:49:13+00:00] INFO: Adding check_mongodb-replicaset_status to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:13+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_mongodb-replicaset_status.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:13+00:00] INFO: Processing cookbook_file[/usr/local/src/megacli_8.07.10-1_all.deb] action create (megaraidcli::default line 10)
+[2017-06-29T09:49:13+00:00] INFO: Processing dpkg_package[/usr/local/src/megacli_8.07.10-1_all.deb] action install (megaraidcli::default line 17)
+[2017-06-29T09:49:13+00:00] INFO: Processing link[/usr/local/bin/MegaCli64] action create (megaraidcli::default line 19)
+[2017-06-29T09:49:13+00:00] INFO: Processing package[smartmontools] action install (monitoring::add_disk_checks line 15)
+[2017-06-29T09:49:13+00:00] INFO: Processing cookbook_file[/usr/lib/nagios/plugins/check_smart_status] action create (monitoring::add_disk_checks line 99)
+[2017-06-29T09:49:13+00:00] INFO: Processing cookbook_file[/usr/lib/nagios/plugins/check_megaraid_sas] action create (monitoring::add_disk_checks line 99)
+[2017-06-29T09:49:13+00:00] INFO: Processing template[/usr/lib/nagios/plugins/disk_smart_checks] action create (monitoring::add_disk_checks line 107)
+[2017-06-29T09:49:13+00:00] INFO: Processing nagios_nrpecheck[disk_smart_checks] action add (monitoring::client line 310)
+[2017-06-29T09:49:13+00:00] INFO: Adding disk_smart_checks to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:14+00:00] INFO: Processing file[/etc/nagios/nrpe.d/disk_smart_checks.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:14+00:00] INFO: Processing cookbook_file[/usr/lib/nagios/plugins/check_diskio.rb] action create (monitoring::client line 315)
+[2017-06-29T09:49:14+00:00] INFO: Processing nagios_nrpecheck[check_diskio_sda] action add (monitoring::client line 322)
+[2017-06-29T09:49:14+00:00] INFO: Adding check_diskio_sda to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:14+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_diskio_sda.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:14+00:00] INFO: Processing nagios_nrpecheck[check_diskio_sdb] action add (monitoring::client line 329)
+[2017-06-29T09:49:14+00:00] INFO: Adding check_diskio_sdb to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:14+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_diskio_sdb.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:14+00:00] INFO: Processing template[/usr/lib/nagios/plugins/check_networkio.rb] action create (monitoring::client line 339)
+[2017-06-29T09:49:14+00:00] INFO: Processing nagios_nrpecheck[check_networkio] action add (monitoring::client line 347)
+[2017-06-29T09:49:14+00:00] INFO: Adding check_networkio to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:14+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_networkio.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:14+00:00] INFO: Processing cookbook_file[/usr/lib/nagios/plugins/check_linux_bonding] action create (monitoring::client line 354)
+[2017-06-29T09:49:14+00:00] INFO: Processing nagios_nrpecheck[check_linux_bonding] action add (monitoring::client line 361)
+[2017-06-29T09:49:14+00:00] INFO: Adding check_linux_bonding to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:14+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_linux_bonding.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:14+00:00] INFO: Processing cookbook_file[/usr/lib/nagios/plugins/check_conntrack.sh] action create (monitoring::client line 367)
+[2017-06-29T09:49:14+00:00] INFO: Processing nagios_nrpecheck[check_conntrack] action add (monitoring::client line 374)
+[2017-06-29T09:49:14+00:00] INFO: Adding check_conntrack to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:14+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_conntrack.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:14+00:00] INFO: Processing cookbook_file[/usr/lib/nagios/plugins/check_linux_procstat.pl] action create (monitoring::client line 379)
+[2017-06-29T09:49:14+00:00] INFO: Processing nagios_nrpecheck[check_cpu_load] action add (monitoring::client line 386)
+[2017-06-29T09:49:14+00:00] INFO: Adding check_cpu_load to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:14+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_cpu_load.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:14+00:00] INFO: Processing nagios_nrpecheck[check_load_avg] action add (monitoring::client line 392)
+[2017-06-29T09:49:14+00:00] INFO: Adding check_load_avg to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:14+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_load_avg.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:14+00:00] INFO: Processing nagios_nrpecheck[check_ntp_time] action add (monitoring::client line 400)
+[2017-06-29T09:49:14+00:00] INFO: Adding check_ntp_time to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:14+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_ntp_time.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:14+00:00] INFO: Processing cookbook_file[/usr/lib/nagios/plugins/check_chef_checkins.rb] action create (monitoring::client line 410)
+[2017-06-29T09:49:14+00:00] INFO: Processing nagios_nrpecheck[check_chef_checkins] action add (monitoring::client line 417)
+[2017-06-29T09:49:14+00:00] INFO: Adding check_chef_checkins to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:14+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_chef_checkins.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:14+00:00] INFO: Processing remote_directory[/var/cache/handlers] action nothing (chef_handler::default line 23)
+[2017-06-29T09:49:14+00:00] INFO: Processing cookbook_file[/var/cache/handlers/chefrun.rb] action create (monitoring::add_chef_run_check line 3)
+[2017-06-29T09:49:14+00:00] INFO: Processing chef_handler[NephoScale::ChefRun] action enable (monitoring::add_chef_run_check line 8)
+[2017-06-29T09:49:14+00:00] INFO: Disabling NephoScale::ChefRun as a report handler.
+[2017-06-29T09:49:14+00:00] INFO: Disabling NephoScale::ChefRun as a exception handler.
+[2017-06-29T09:49:14+00:00] INFO: Enabling NephoScale::ChefRun as a report handler.
+[2017-06-29T09:49:14+00:00] INFO: Enabling NephoScale::ChefRun as a exception handler.
+[2017-06-29T09:49:14+00:00] INFO: Processing template[/usr/lib/nagios/plugins/check_chefrun] action create (monitoring::add_chef_run_check line 14)
+[2017-06-29T09:49:14+00:00] INFO: Processing nagios_nrpecheck[check_chefrun] action add (monitoring::add_chef_run_check line 21)
+[2017-06-29T09:49:14+00:00] INFO: Adding check_chefrun to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:14+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_chefrun.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:14+00:00] INFO: Processing package[libipc-run-perl] action install (monitoring::add_ipmi_checks line 19)
+[2017-06-29T09:49:14+00:00] INFO: Processing package[freeipmi-tools] action install (monitoring::add_ipmi_checks line 23)
+[2017-06-29T09:49:14+00:00] INFO: Processing template[/etc/freeipmi.conf] action create (monitoring::add_ipmi_checks line 27)
+[2017-06-29T09:49:14+00:00] INFO: Processing cookbook_file[/usr/lib/nagios/plugins/check_ipmi_sensor] action create (monitoring::add_ipmi_checks line 36)
+[2017-06-29T09:49:14+00:00] INFO: Processing nagios_nrpecheck[check_ipmi_sensors] action add (monitoring::add_ipmi_checks line 53)
+[2017-06-29T09:49:14+00:00] INFO: Adding check_ipmi_sensors to /etc/nagios/nrpe.d/
+[2017-06-29T09:49:14+00:00] INFO: Processing file[/etc/nagios/nrpe.d/check_ipmi_sensors.cfg] action create (/var/cache/chef/cookbooks/nagios/providers/nrpecheck.rb line 31)
+[2017-06-29T09:49:14+00:00] INFO: Processing template[/usr/lib/nagios/plugins/ping_checks] action create (monitoring::add_ping_checks line 21)
+[2017-06-29T09:49:14+00:00] INFO: Processing sudo[nagios] action install (monitoring::client line 437)
+[2017-06-29T09:49:14+00:00] INFO: Processing template[/etc/sudoers.d/nagios] action create (/var/cache/chef/cookbooks/sudo/providers/default.rb line 80)
+[2017-06-29T09:49:14+00:00] INFO: Processing template[/etc/sudoers.d/nagios] action nothing (/var/cache/chef/cookbooks/sudo/providers/default.rb line 80)
+[2017-06-29T09:49:14+00:00] INFO: Processing package[postfix] action install (postfix::_common line 23)
+[2017-06-29T09:49:14+00:00] INFO: Processing execute[update-postfix-sender_canonical] action nothing (postfix::_common line 75)
+[2017-06-29T09:49:14+00:00] INFO: Processing execute[update-postfix-smtp_generic] action nothing (postfix::_common line 94)
+[2017-06-29T09:49:14+00:00] INFO: Processing template[/etc/postfix/main.cf] action create (postfix::_common line 114)
+[2017-06-29T09:49:14+00:00] INFO: Processing template[/etc/postfix/master.cf] action create (postfix::_common line 114)
+[2017-06-29T09:49:14+00:00] INFO: Processing service[postfix] action enable (postfix::_common line 125)
+[2017-06-29T09:49:14+00:00] INFO: Processing package[ubuntu-cloud-keyring] action upgrade (openstack-common::default line 28)
+[2017-06-29T09:49:14+00:00] INFO: Processing apt_repository[openstack-ppa] action add (openstack-common::default line 35)
+[2017-06-29T09:49:14+00:00] INFO: Processing file[/var/lib/apt/periodic/update-success-stamp] action nothing (/var/cache/chef/cookbooks/apt/providers/repository.rb line 182)
+[2017-06-29T09:49:14+00:00] INFO: Processing execute[apt-cache gencaches] action nothing (/var/cache/chef/cookbooks/apt/providers/repository.rb line 186)
+[2017-06-29T09:49:14+00:00] INFO: Processing execute[apt-get update] action nothing (/var/cache/chef/cookbooks/apt/providers/repository.rb line 191)
+[2017-06-29T09:49:14+00:00] INFO: Processing file[/etc/apt/sources.list.d/openstack-ppa.list] action create (/var/cache/chef/cookbooks/apt/providers/repository.rb line 220)
+[2017-06-29T09:49:14+00:00] INFO: Processing directory[/etc/openstack] action create (openstack-common::logging line 21)
+[2017-06-29T09:49:14+00:00] INFO: Processing template[/etc/openstack/logging.conf] action create (openstack-common::logging line 28)
+[2017-06-29T09:49:14+00:00] INFO: Processing directory[/etc/sysctl.d] action create (openstack-common::sysctl line 21)
+[2017-06-29T09:49:14+00:00] INFO: Processing template[/etc/sysctl.d/60-openstack.conf] action create (openstack-common::sysctl line 27)
+[2017-06-29T09:49:14+00:00] INFO: Processing execute[sysctl -p /etc/sysctl.d/60-openstack.conf] action nothing (openstack-common::sysctl line 34)
+[2017-06-29T09:49:14+00:00] INFO: Processing package[python-openstackclient] action upgrade (openstack-common::client line 23)
+[2017-06-29T09:49:14+00:00] INFO: Processing package[python-cinderclient] action upgrade (openstack-block-storage::client line 27)
+[2017-06-29T09:49:15+00:00] INFO: Processing package[python-novaclient] action upgrade (openstack-compute::client line 27)
+[2017-06-29T09:49:15+00:00] INFO: Processing package[python-keystoneclient] action upgrade (openstack-identity::client line 27)
+[2017-06-29T09:49:15+00:00] INFO: Processing package[python-glanceclient] action upgrade (openstack-image::client line 27)
+[2017-06-29T09:49:15+00:00] INFO: Processing package[python-neutronclient] action upgrade (openstack-network::client line 27)
+[2017-06-29T09:49:15+00:00] INFO: Processing package[python-pyparsing] action upgrade (openstack-network::client line 27)
+[2017-06-29T09:49:15+00:00] INFO: Processing package[python-swiftclient] action upgrade (openstack-object-storage::client line 23)
+[2017-06-29T09:49:15+00:00] INFO: Processing package[python-heatclient] action upgrade (openstack-orchestration::client line 27)
+[2017-06-29T09:49:15+00:00] INFO: Processing package[python-ceilometerclient] action upgrade (openstack-telemetry::client line 27)
+[2017-06-29T09:49:15+00:00] INFO: Processing chef_gem[chef-rewind] action install (hopper-repo::os-identity-server line 1)
+[2017-06-29T09:49:15+00:00] INFO: Processing package[identity cookbook package python-mysqldb] action upgrade (openstack-identity::server line 38)
+[2017-06-29T09:49:15+00:00] INFO: Processing package[identity cookbook package python-memcache] action upgrade (openstack-identity::server line 47)
+[2017-06-29T09:49:15+00:00] INFO: Processing package[identity cookbook package keystone] action upgrade (openstack-identity::server line 55)
+[2017-06-29T09:49:15+00:00] INFO: Processing execute[Keystone: sleep] action nothing (openstack-identity::server line 62)
+[2017-06-29T09:49:15+00:00] INFO: Processing service[keystone] action enable (openstack-identity::server line 68)
+[2017-06-29T09:49:15+00:00] INFO: Processing directory[/etc/keystone] action create (openstack-identity::server line 77)
+[2017-06-29T09:49:15+00:00] INFO: Processing directory[/etc/keystone/domains] action create (openstack-identity::server line 83)
+[2017-06-29T09:49:15+00:00] INFO: Processing file[/var/lib/keystone/keystone.db] action delete (openstack-identity::server line 90)
+[2017-06-29T09:49:15+00:00] INFO: Processing template[/etc/keystone/keystone-paste.ini] action create (openstack-identity::server line 212)
+[2017-06-29T09:49:15+00:00] INFO: Processing template[/etc/keystone/keystone.conf] action create (hopper-repo::server line 230)
+[2017-06-29T09:49:16+00:00] INFO: Processing template[/etc/keystone/default_catalog.templates] action create (openstack-identity::server line 267)
+[2017-06-29T09:49:16+00:00] INFO: Processing execute[keystone-manage db_sync] action run (openstack-identity::server line 281)
+[2017-06-29T09:49:18+00:00] INFO: execute[keystone-manage db_sync] ran successfully
+[2017-06-29T09:49:18+00:00] INFO: Processing cron[keystone-manage-token-flush] action create (openstack-identity::server line 292)
+[2017-06-29T09:49:18+00:00] INFO: Processing cron[periodic token flush] action create (hopper-repo::os-identity-server line 15)
+[2017-06-29T09:49:18+00:00] INFO: Processing cron[periodic keystone restart for leaks] action create (hopper-repo::os-identity-server line 22)
+[2017-06-29T09:49:18+00:00] INFO: Processing template[/etc/keystone/policy.json] action create (hopper-repo::os-identity-server line 42)
+[2017-06-29T09:49:18+00:00] INFO: Processing package[python] action install (python::package line 41)
+[2017-06-29T09:49:18+00:00] INFO: Processing package[python-dev] action install (python::package line 41)
+[2017-06-29T09:49:18+00:00] INFO: Processing cookbook_file[/var/cache/chef/get-pip.py] action create (python::pip line 36)
+[2017-06-29T09:49:18+00:00] INFO: Processing execute[install-pip] action run (python::pip line 42)
+[2017-06-29T09:49:18+00:00] INFO: Processing python_pip[setuptools] action upgrade (python::pip line 50)
+[2017-06-29T09:49:20+00:00] INFO: Upgrading python_pip[setuptools] version from uninstalled to 28.8.0
+[2017-06-29T09:49:23+00:00] INFO: Processing python_pip[virtualenv] action upgrade (python::virtualenv line 23)
+[2017-06-29T09:49:25+00:00] INFO: Upgrading python_pip[virtualenv] version from 15.1.0 to latest
+[2017-06-29T09:49:27+00:00] INFO: Processing python_pip[iso8601] action install (hopper-repo::os-identity-server line 59)
+[2017-06-29T09:49:27+00:00] INFO: Processing directory[/usr/lib/python2.7/dist-packages/iso8601] action delete (hopper-repo::os-identity-server line 66)
+[2017-06-29T09:49:27+00:00] INFO: Processing file[/usr/lib/python2.7/dist-packages/iso8601-0.1.10.egg-info] action delete (hopper-repo::os-identity-server line 72)
+[2017-06-29T09:49:27+00:00] INFO: Processing package[python-ldappool] action install (hopper-repo::os-identity-server line 81)
+[2017-06-29T09:49:27+00:00] INFO: Processing package[python-ldap] action install (hopper-repo::os-identity-server line 81)
+[2017-06-29T09:49:27+00:00] INFO: Processing python_pip[oslo.i18n] action upgrade (hopper-repo::os-identity-server line 100)
+[2017-06-29T09:49:29+00:00] INFO: Processing python_pip[oslo.serialization] action upgrade (hopper-repo::os-identity-server line 107)
+[2017-06-29T09:49:31+00:00] INFO: Processing python_pip[oslo.utils] action upgrade (hopper-repo::os-identity-server line 113)
+[2017-06-29T09:49:33+00:00] INFO: Processing python_pip[requests] action upgrade (hopper-repo::os-identity-server line 120)
+[2017-06-29T09:49:35+00:00] INFO: Processing python_pip[pbr] action upgrade (hopper-repo::os-identity-server line 126)
+[2017-06-29T09:49:37+00:00] INFO: Processing python_pip[stevedore] action upgrade (hopper-repo::os-identity-server line 132)
+[2017-06-29T09:49:40+00:00] INFO: Processing python_pip[debtcollector] action upgrade (hopper-repo::os-identity-server line 138)
+[2017-06-29T09:49:42+00:00] INFO: Processing chef_gem[chef-rewind] action install (hopper-repo::os-image-api line 1)
+[2017-06-29T09:49:42+00:00] INFO: Processing package[python-keystoneclient] action upgrade (openstack-image::api line 37)
+[2017-06-29T09:49:42+00:00] INFO: Processing package[curl] action upgrade (openstack-image::api line 42)
+[2017-06-29T09:49:42+00:00] INFO: Processing package[glance] action upgrade (openstack-image::api line 48)
+[2017-06-29T09:49:42+00:00] INFO: Processing package[python-swift] action upgrade (openstack-image::api line 56)
+[2017-06-29T09:49:42+00:00] INFO: Processing service[glance-api] action enable (openstack-image::api line 81)
+[2017-06-29T09:49:42+00:00] INFO: Processing directory[/etc/glance] action create (openstack-image::api line 88)
+[2017-06-29T09:49:42+00:00] INFO: Processing directory[/var/cache/glance/api] action create (openstack-image::api line 94)
+[2017-06-29T09:49:42+00:00] INFO: Processing template[/etc/glance/glance-api.conf] action create (hopper-repo::api line 173)
+[2017-06-29T09:49:42+00:00] INFO: Processing template[/etc/glance/glance-cache.conf] action create (openstack-image::api line 205)
+[2017-06-29T09:49:42+00:00] INFO: Processing template[/etc/glance/glance-scrubber.conf] action create (openstack-image::api line 219)
+[2017-06-29T09:49:42+00:00] INFO: Processing cron[glance-cache-pruner] action create (openstack-image::api line 231)
+[2017-06-29T09:49:42+00:00] INFO: Processing cron[glance-cache-cleaner] action create (openstack-image::api line 237)
+[2017-06-29T09:49:43+00:00] INFO: Processing directory[/var/lib/glance/image-cache/] action create (openstack-image::api line 244)
+[2017-06-29T09:49:43+00:00] INFO: Processing package[python-keystoneclient] action upgrade (openstack-image::registry line 33)
+[2017-06-29T09:49:43+00:00] INFO: Processing package[curl] action upgrade (openstack-image::registry line 62)
+[2017-06-29T09:49:43+00:00] INFO: Processing package[python-mysqldb] action upgrade (openstack-image::registry line 69)
+[2017-06-29T09:49:43+00:00] INFO: Processing package[glance] action upgrade (openstack-image::registry line 76)
+[2017-06-29T09:49:43+00:00] INFO: Processing directory[/var/cache/glance/registry] action create (openstack-image::registry line 82)
+[2017-06-29T09:49:43+00:00] INFO: Processing service[glance-registry] action enable (openstack-image::registry line 89)
+[2017-06-29T09:49:43+00:00] INFO: Processing file[/var/lib/glance/glance.sqlite] action delete (openstack-image::registry line 96)
+[2017-06-29T09:49:43+00:00] INFO: Processing directory[/etc/glance] action create (openstack-image::registry line 101)
+[2017-06-29T09:49:43+00:00] INFO: Processing template[/etc/glance/glance-registry.conf] action create (openstack-image::registry line 107)
+[2017-06-29T09:49:43+00:00] INFO: Processing execute[glance-manage version_control 0] action run (openstack-image::registry line 130)
+[2017-06-29T09:49:48+00:00] INFO: Processing execute[glance-manage db_sync] action run (openstack-image::registry line 137)
+[2017-06-29T09:49:53+00:00] INFO: execute[glance-manage db_sync] ran successfully
+[2017-06-29T09:49:53+00:00] INFO: Processing chef_gem[chef-rewind] action install (hopper-repo::os-network-server line 1)
+[2017-06-29T09:49:53+00:00] INFO: Processing package[nova-network] action purge (openstack-network::default line 53)
+[2017-06-29T09:49:53+00:00] INFO: Processing package[neutron-common] action upgrade (openstack-network::default line 59)
+[2017-06-29T09:49:53+00:00] INFO: Processing package[python-pyparsing] action upgrade (openstack-network::default line 59)
+[2017-06-29T09:49:53+00:00] INFO: Processing package[python-cliff] action upgrade (openstack-network::default line 59)
+[2017-06-29T09:49:53+00:00] INFO: Processing package[python-mysqldb] action upgrade (openstack-network::default line 67)
+[2017-06-29T09:49:53+00:00] INFO: Processing package[python-neutron-lbaas] action upgrade (openstack-network::default line 78)
+[2017-06-29T09:49:53+00:00] INFO: Processing package[neutron-lbaas-agent] action remove (openstack-network::default line 78)
+[2017-06-29T09:49:53+00:00] INFO: Processing package[haproxy] action upgrade (openstack-network::default line 78)
+[2017-06-29T09:49:54+00:00] INFO: Processing package[python-neutron-vpnaas] action upgrade (openstack-network::default line 90)
+[2017-06-29T09:49:54+00:00] INFO: Processing package[neutron-vpn-agent] action remove (openstack-network::default line 90)
+[2017-06-29T09:49:54+00:00] INFO: Processing directory[/etc/neutron/plugins] action create (openstack-network::default line 99)
+[2017-06-29T09:49:54+00:00] INFO: Processing directory[/var/cache/neutron] action create (openstack-network::default line 107)
+[2017-06-29T09:49:54+00:00] INFO: Processing directory[/var/cache/neutron] action create (openstack-network::default line 114)
+[2017-06-29T09:49:54+00:00] INFO: Processing template[/etc/neutron/rootwrap.conf] action create (openstack-network::default line 122)
+[2017-06-29T09:49:54+00:00] INFO: Processing package[python-neutronclient] action upgrade (openstack-network::default line 166)
+[2017-06-29T09:49:54+00:00] INFO: Processing package[python-pyparsing] action upgrade (openstack-network::default line 166)
+[2017-06-29T09:49:54+00:00] INFO: Processing service[neutron-server] action nothing (openstack-network::default line 177)
+[2017-06-29T09:49:54+00:00] INFO: Processing template[/etc/neutron/neutron.conf] action create (openstack-network::default line 222)
+[2017-06-29T09:49:54+00:00] INFO: Processing directory[/etc/neutron/plugins/ml2] action create (openstack-network::default line 249)
+[2017-06-29T09:49:54+00:00] INFO: Processing template[/etc/neutron/plugins/ml2/ml2_conf.ini] action create (openstack-network::default line 382)
+[2017-06-29T09:49:54+00:00] INFO: Processing link[/etc/neutron/plugin.ini] action create (openstack-network::default line 479)
+[2017-06-29T09:49:54+00:00] INFO: Processing template[/etc/default/neutron-server] action create (openstack-network::default line 489)
+[2017-06-29T09:49:55+00:00] INFO: Processing package[neutron-server] action upgrade (openstack-network::server line 35)
+[2017-06-29T09:49:55+00:00] INFO: Processing bash[migrate network database] action run (openstack-network::db_migration line 24)
+[2017-06-29T09:50:01+00:00] INFO: bash[migrate network database] ran successfully
+[2017-06-29T09:50:01+00:00] INFO: Processing bash[migrate vpnaas database] action run (openstack-network::db_migration line 34)
+[2017-06-29T09:50:01+00:00] INFO: Processing bash[migrate fwaas database] action run (openstack-network::db_migration line 45)
+[2017-06-29T09:50:01+00:00] INFO: Processing bash[migrate lbaas database] action run (openstack-network::db_migration line 56)
+[2017-06-29T09:50:04+00:00] INFO: bash[migrate lbaas database] ran successfully
+[2017-06-29T09:50:04+00:00] INFO: Processing service[neutron-server] action enable (openstack-network::server line 44)
+[2017-06-29T09:50:04+00:00] INFO: Processing service[neutron-server] action start (openstack-network::server line 44)
+[2017-06-29T09:50:04+00:00] INFO: Processing template[/etc/sysconfig/neutron] action create (openstack-network::server line 52)
+[2017-06-29T09:50:04+00:00] INFO: Processing chef_gem[chef-rewind] action install (hopper-repo::os-compute-api line 1)
+[2017-06-29T09:50:04+00:00] INFO: Processing package[nova-common] action upgrade (openstack-compute::nova-common line 34)
+[2017-06-29T09:50:05+00:00] INFO: Processing package[python-mysqldb] action upgrade (openstack-compute::nova-common line 42)
+[2017-06-29T09:50:05+00:00] INFO: Processing package[python-memcache] action upgrade (openstack-compute::nova-common line 50)
+[2017-06-29T09:50:05+00:00] INFO: Processing directory[/etc/nova] action create (openstack-compute::nova-common line 56)
+[2017-06-29T09:50:05+00:00] INFO: Processing directory[/var/lib/nova] action create (openstack-compute::nova-common line 63)
+[2017-06-29T09:50:05+00:00] INFO: Processing directory[/var/lib/nova/lock] action create (openstack-compute::nova-common line 70)
+[2017-06-29T09:50:05+00:00] INFO: Processing template[/etc/nova/nova.conf] action create (hopper-repo::nova-common line 141)
+[2017-06-29T09:50:05+00:00] INFO: Processing template[/etc/nova/rootwrap.conf] action create (openstack-compute::nova-common line 190)
+[2017-06-29T09:50:05+00:00] INFO: Processing execute[enable nova login] action run (openstack-compute::nova-common line 198)
+[2017-06-29T09:50:05+00:00] INFO: execute[enable nova login] ran successfully
+[2017-06-29T09:50:05+00:00] INFO: Processing package[python-keystoneclient] action upgrade (openstack-compute::api-ec2 line 30)
+[2017-06-29T09:50:05+00:00] INFO: Processing package[nova-api-ec2] action upgrade (openstack-compute::api-ec2 line 35)
+[2017-06-29T09:50:05+00:00] INFO: Processing service[nova-api-ec2] action enable (openstack-compute::api-ec2 line 42)
+[2017-06-29T09:50:05+00:00] INFO: Processing template[/etc/nova/api-paste.ini] action create (openstack-compute::api-ec2 line 50)
+[2017-06-29T09:50:05+00:00] INFO: Processing package[python-keystoneclient] action upgrade (openstack-compute::api-metadata line 33)
+[2017-06-29T09:50:05+00:00] INFO: Processing package[nova-api-metadata] action upgrade (openstack-compute::api-metadata line 38)
+[2017-06-29T09:50:05+00:00] INFO: Processing service[nova-api-metadata] action enable (openstack-compute::api-metadata line 45)
+[2017-06-29T09:50:05+00:00] INFO: Processing service[nova-api-metadata] action start (openstack-compute::api-metadata line 45)
+[2017-06-29T09:50:05+00:00] INFO: Processing template[/etc/nova/api-paste.ini] action create (openstack-compute::api-metadata line 53)
+[2017-06-29T09:50:05+00:00] INFO: Processing directory[/var/cache/nova] action create (openstack-compute::api-os-compute line 29)
+[2017-06-29T09:50:05+00:00] INFO: Processing package[python-keystoneclient] action upgrade (openstack-compute::api-os-compute line 36)
+[2017-06-29T09:50:05+00:00] INFO: Processing package[nova-api-os-compute] action upgrade (openstack-compute::api-os-compute line 41)
+[2017-06-29T09:50:05+00:00] INFO: Processing service[nova-api-os-compute] action enable (openstack-compute::api-os-compute line 48)
+[2017-06-29T09:50:05+00:00] INFO: Processing service[nova-api-os-compute] action start (openstack-compute::api-os-compute line 48)
+[2017-06-29T09:50:05+00:00] INFO: Processing template[/etc/nova/api-paste.ini] action create (openstack-compute::api-os-compute line 56)
+[2017-06-29T09:50:05+00:00] INFO: Processing package[nova-conductor] action upgrade (openstack-compute::conductor line 27)
+[2017-06-29T09:50:06+00:00] INFO: Processing service[nova-conductor] action enable (openstack-compute::conductor line 33)
+[2017-06-29T09:50:06+00:00] INFO: Processing service[nova-conductor] action start (openstack-compute::conductor line 33)
+[2017-06-29T09:50:06+00:00] INFO: Processing package[nova-cert] action upgrade (openstack-compute::nova-cert line 26)
+[2017-06-29T09:50:06+00:00] INFO: Processing service[nova-cert] action enable (openstack-compute::nova-cert line 33)
+[2017-06-29T09:50:06+00:00] INFO: Processing package[nova-scheduler] action upgrade (openstack-compute::scheduler line 27)
+[2017-06-29T09:50:06+00:00] INFO: Processing service[nova-scheduler] action enable (openstack-compute::scheduler line 34)
+[2017-06-29T09:50:06+00:00] INFO: Processing service[nova-scheduler] action start (openstack-compute::scheduler line 34)
+[2017-06-29T09:50:06+00:00] INFO: Processing package[novnc] action upgrade (openstack-compute::vncproxy line 27)
+[2017-06-29T09:50:06+00:00] INFO: Processing package[websockify] action upgrade (openstack-compute::vncproxy line 27)
+[2017-06-29T09:50:06+00:00] INFO: Processing package[nova-novncproxy] action upgrade (openstack-compute::vncproxy line 27)
+[2017-06-29T09:50:06+00:00] INFO: Processing package[nova-consoleauth] action upgrade (openstack-compute::vncproxy line 36)
+[2017-06-29T09:50:06+00:00] INFO: Processing service[nova-novncproxy] action enable (openstack-compute::vncproxy line 43)
+[2017-06-29T09:50:06+00:00] INFO: Processing service[nova-novncproxy] action start (openstack-compute::vncproxy line 43)
+[2017-06-29T09:50:06+00:00] INFO: Processing service[nova-consoleauth] action enable (openstack-compute::vncproxy line 51)
+[2017-06-29T09:50:06+00:00] INFO: Processing service[nova-consoleauth] action start (openstack-compute::vncproxy line 51)
+[2017-06-29T09:50:06+00:00] INFO: Processing package[nova-serialproxy] action upgrade (openstack-compute::serialproxy line 24)
+[2017-06-29T09:50:07+00:00] INFO: Processing service[nova-serialproxy] action enable (openstack-compute::serialproxy line 33)
+[2017-06-29T09:50:07+00:00] INFO: Processing service[nova-serialproxy] action start (openstack-compute::serialproxy line 33)
+[2017-06-29T09:50:07+00:00] INFO: Processing package[python-ironicclient] action upgrade (openstack-bare-metal::ironic-common line 32)
+[2017-06-29T09:50:07+00:00] INFO: Processing package[ironic-common] action upgrade (openstack-bare-metal::ironic-common line 32)
+[2017-06-29T09:50:07+00:00] INFO: Processing package[python-mysqldb] action upgrade (openstack-bare-metal::ironic-common line 39)
+[2017-06-29T09:50:07+00:00] INFO: Processing directory[/etc/ironic] action create (openstack-bare-metal::ironic-common line 44)
+[2017-06-29T09:50:07+00:00] INFO: Processing template[/etc/ironic/ironic.conf] action create (openstack-bare-metal::ironic-common line 76)
+[2017-06-29T09:50:07+00:00] INFO: Processing template[/etc/ironic/rootwrap.conf] action create (openstack-bare-metal::ironic-common line 98)
+[2017-06-29T09:50:07+00:00] INFO: Processing package[ironic-api] action upgrade (openstack-bare-metal::api line 30)
+[2017-06-29T09:50:07+00:00] INFO: Processing directory[/var/cache/ironic] action create (openstack-bare-metal::api line 37)
+[2017-06-29T09:50:07+00:00] INFO: Processing service[ironic-api] action enable (openstack-bare-metal::api line 44)
+[2017-06-29T09:50:07+00:00] INFO: Processing execute[ironic db sync] action run (openstack-bare-metal::api line 57)
+[2017-06-29T09:50:11+00:00] INFO: execute[ironic db sync] ran successfully
+[2017-06-29T09:50:11+00:00] INFO: Processing package[python-mysqldb] action upgrade (openstack-telemetry::common line 35)
+[2017-06-29T09:50:11+00:00] INFO: Processing package[ceilometer-common] action upgrade (openstack-telemetry::common line 41)
+[2017-06-29T09:50:11+00:00] INFO: Processing directory[/etc/ceilometer] action create (openstack-telemetry::common line 78)
+[2017-06-29T09:50:11+00:00] INFO: Processing template[/etc/ceilometer/ceilometer.conf] action create (openstack-telemetry::common line 90)
+[2017-06-29T09:50:11+00:00] INFO: Processing package[ceilometer-agent-central] action upgrade (openstack-telemetry::agent-central line 26)
+[2017-06-29T09:50:12+00:00] INFO: Processing service[ceilometer-agent-central] action enable (openstack-telemetry::agent-central line 32)
+[2017-06-29T09:50:12+00:00] INFO: Processing service[ceilometer-agent-central] action start (openstack-telemetry::agent-central line 32)
+[2017-06-29T09:50:12+00:00] INFO: Processing package[ceilometer-agent-notification] action upgrade (openstack-telemetry::agent-notification line 25)
+[2017-06-29T09:50:12+00:00] INFO: Processing service[ceilometer-agent-notification] action enable (openstack-telemetry::agent-notification line 31)
+[2017-06-29T09:50:12+00:00] INFO: Processing service[ceilometer-agent-notification] action start (openstack-telemetry::agent-notification line 31)
+[2017-06-29T09:50:12+00:00] INFO: Processing package[ceilometer-alarm-evaluator] action upgrade (openstack-telemetry::alarm-evaluator line 25)
+[2017-06-29T09:50:12+00:00] INFO: Processing service[ceilometer-agent-evaluator] action enable (openstack-telemetry::alarm-evaluator line 31)
+[2017-06-29T09:50:12+00:00] INFO: Processing service[ceilometer-agent-evaluator] action start (openstack-telemetry::alarm-evaluator line 31)
+[2017-06-29T09:50:12+00:00] INFO: Processing package[ceilometer-alarm-notifier] action upgrade (openstack-telemetry::alarm-notifier line 25)
+[2017-06-29T09:50:12+00:00] INFO: Processing service[ceilometer-alarm-notifier] action enable (openstack-telemetry::alarm-notifier line 31)
+[2017-06-29T09:50:12+00:00] INFO: Processing service[ceilometer-alarm-notifier] action start (openstack-telemetry::alarm-notifier line 31)
+[2017-06-29T09:50:12+00:00] INFO: Processing chef_gem[chef-rewind] action install (hopper-repo::os-telemetry-collector line 1)
+[2017-06-29T09:50:12+00:00] INFO: Processing execute[database migration] action nothing (openstack-telemetry::collector line 27)
+[2017-06-29T09:50:12+00:00] INFO: Processing package[ceilometer-collector] action upgrade (openstack-telemetry::collector line 34)
+[2017-06-29T09:50:12+00:00] INFO: Processing package[python-mysqldb] action upgrade (openstack-telemetry::collector line 34)
+[2017-06-29T09:50:12+00:00] INFO: Processing execute[fix init script] action run (openstack-telemetry::collector line 44)
+[2017-06-29T09:50:12+00:00] INFO: Processing service[ceilometer-collector] action enable (openstack-telemetry::collector line 50)
+[2017-06-29T09:50:12+00:00] INFO: Processing service[ceilometer-collector] action start (openstack-telemetry::collector line 50)
+[2017-06-29T09:50:12+00:00] INFO: Processing package[python-pymongo] action install (hopper-repo::os-telemetry-collector line 22)
+[2017-06-29T09:50:12+00:00] INFO: Processing directory[/var/cache/ceilometer] action create (openstack-telemetry::api line 25)
+[2017-06-29T09:50:12+00:00] INFO: Processing package[ceilometer-api] action upgrade (openstack-telemetry::api line 33)
+[2017-06-29T09:50:12+00:00] INFO: Processing service[ceilometer-api] action enable (openstack-telemetry::api line 39)
+[2017-06-29T09:50:12+00:00] INFO: Processing service[ceilometer-api] action start (openstack-telemetry::api line 39)
+[2017-06-29T09:50:12+00:00] INFO: Processing service[designate-agent] action nothing (hopper-repo::os-designate-api line 12)
+[2017-06-29T09:50:12+00:00] INFO: Processing package[designate-agent] action install (hopper-repo::os-designate-api line 16)
+[2017-06-29T09:50:13+00:00] INFO: Processing service[designate-api] action nothing (hopper-repo::os-designate-api line 12)
+[2017-06-29T09:50:13+00:00] INFO: Processing package[designate-api] action install (hopper-repo::os-designate-api line 16)
+[2017-06-29T09:50:13+00:00] INFO: Processing service[designate-central] action nothing (hopper-repo::os-designate-api line 12)
+[2017-06-29T09:50:13+00:00] INFO: Processing package[designate-central] action install (hopper-repo::os-designate-api line 16)
+[2017-06-29T09:50:13+00:00] INFO: Processing service[designate-common] action nothing (hopper-repo::os-designate-api line 12)
+[2017-06-29T09:50:13+00:00] INFO: Processing package[designate-common] action install (hopper-repo::os-designate-api line 16)
+[2017-06-29T09:50:13+00:00] INFO: Processing service[designate-mdns] action nothing (hopper-repo::os-designate-api line 12)
+[2017-06-29T09:50:13+00:00] INFO: Processing package[designate-mdns] action install (hopper-repo::os-designate-api line 16)
+[2017-06-29T09:50:13+00:00] INFO: Processing service[designate-sink] action nothing (hopper-repo::os-designate-api line 12)
+[2017-06-29T09:50:13+00:00] INFO: Processing package[designate-sink] action install (hopper-repo::os-designate-api line 16)
+[2017-06-29T09:50:13+00:00] INFO: Processing service[python-designate] action nothing (hopper-repo::os-designate-api line 12)
+[2017-06-29T09:50:13+00:00] INFO: Processing package[python-designate] action install (hopper-repo::os-designate-api line 16)
+[2017-06-29T09:50:13+00:00] INFO: Processing service[python-designateclient] action nothing (hopper-repo::os-designate-api line 12)
+[2017-06-29T09:50:13+00:00] INFO: Processing package[python-designateclient] action install (hopper-repo::os-designate-api line 16)
+[2017-06-29T09:50:13+00:00] INFO: Processing template[/etc/designate/designate.conf] action create (hopper-repo::os-designate-api line 65)
+[2017-06-29T09:50:13+00:00] INFO: Processing execute[sync designate database] action nothing (hopper-repo::os-designate-api line 96)
+[2017-06-29T09:50:13+00:00] INFO: Processing service[designate-zone-manager] action stop (hopper-repo::os-designate-api line 105)
+[2017-06-29T09:50:14+00:00] INFO: Processing service[designate-zone-manager] action disable (hopper-repo::os-designate-api line 105)
+[2017-06-29T09:50:14+00:00] INFO: Processing package[designate-zone-manager] action install (hopper-repo::os-designate-api line 109)
+[2017-06-29T09:50:14+00:00] INFO: Processing service[designate-pool-manager] action stop (hopper-repo::os-designate-api line 105)
+[2017-06-29T09:50:14+00:00] INFO: Processing service[designate-pool-manager] action disable (hopper-repo::os-designate-api line 105)
+[2017-06-29T09:50:14+00:00] INFO: Processing package[designate-pool-manager] action install (hopper-repo::os-designate-api line 109)
+[2017-06-29T09:50:14+00:00] INFO: Processing python_pip[python-ceilometerclient] action install (hopper-repo::os-cloudkitty-api line 12)
+[2017-06-29T09:50:16+00:00] INFO: Processing python_pip[keystoneauth1] action install (hopper-repo::os-cloudkitty-api line 16)
+[2017-06-29T09:50:18+00:00] INFO: Processing python_pip[oslo.config] action upgrade (hopper-repo::os-cloudkitty-api line 19)
+[2017-06-29T09:50:20+00:00] INFO: Processing user[cloudkitty] action create (hopper-repo::os-cloudkitty-api line 24)
+[2017-06-29T09:50:20+00:00] INFO: Processing group[cloudkitty] action create (hopper-repo::os-cloudkitty-api line 32)
+[2017-06-29T09:50:20+00:00] INFO: Processing directory[/etc/cloudkitty] action create (hopper-repo::os-cloudkitty-api line 55)
+[2017-06-29T09:50:20+00:00] INFO: Processing directory[/var/lib/cloudkitty/states] action create (hopper-repo::os-cloudkitty-api line 59)
+[2017-06-29T09:50:20+00:00] INFO: Processing git[/opt/cloudkitty] action sync (hopper-repo::os-cloudkitty-api line 65)
+[2017-06-29T09:50:20+00:00] INFO: Processing execute[build-cloudkitty] action nothing (hopper-repo::os-cloudkitty-api line 72)
+[2017-06-29T09:50:20+00:00] INFO: Processing git[/opt/python-cloudkittyclient] action sync (hopper-repo::os-cloudkitty-api line 81)
+[2017-06-29T09:50:21+00:00] INFO: Processing execute[build-cloudkitty-client] action nothing (hopper-repo::os-cloudkitty-api line 88)
+[2017-06-29T09:50:21+00:00] INFO: Processing template[/etc/cloudkitty/cloudkitty.conf] action create (hopper-repo::os-cloudkitty-api line 94)
+[2017-06-29T09:50:21+00:00] INFO: Processing template[/etc/cloudkitty/policy.json] action create (hopper-repo::os-cloudkitty-api line 116)
+[2017-06-29T09:50:21+00:00] INFO: Processing directory[/var/log/cloudkitty] action create (hopper-repo::os-cloudkitty-api line 126)
+[2017-06-29T09:50:21+00:00] INFO: Processing directory[/var/run/cloudkitty] action create (hopper-repo::os-cloudkitty-api line 131)
+[2017-06-29T09:50:21+00:00] INFO: Processing execute[cloudkitty db sync] action run (hopper-repo::os-cloudkitty-api line 139)
+[2017-06-29T09:50:25+00:00] INFO: execute[cloudkitty db sync] ran successfully
+[2017-06-29T09:50:25+00:00] INFO: Processing execute[cloudkitty storage init] action run (hopper-repo::os-cloudkitty-api line 144)
+[2017-06-29T09:50:28+00:00] INFO: execute[cloudkitty storage init] ran successfully
+[2017-06-29T09:50:28+00:00] INFO: Processing cookbook_file[/etc/init/cloudkitty-api.conf] action create (hopper-repo::os-cloudkitty-api line 150)
+[2017-06-29T09:50:28+00:00] INFO: Processing cookbook_file[/etc/init/cloudkitty-processor.conf] action create (hopper-repo::os-cloudkitty-api line 158)
+[2017-06-29T09:50:28+00:00] INFO: Processing cookbook_file[/etc/cloudkitty/api_paste.ini] action create (hopper-repo::os-cloudkitty-api line 166)
+[2017-06-29T09:50:28+00:00] INFO: Processing service[cloudkitty-api] action enable (hopper-repo::os-cloudkitty-api line 174)
+[2017-06-29T09:50:28+00:00] INFO: Processing service[cloudkitty-api] action start (hopper-repo::os-cloudkitty-api line 174)
+[2017-06-29T09:50:28+00:00] INFO: Processing service[cloudkitty-processor] action enable (hopper-repo::os-cloudkitty-api line 180)
+[2017-06-29T09:50:28+00:00] INFO: Processing service[cloudkitty-processor] action start (hopper-repo::os-cloudkitty-api line 180)
+[2017-06-29T09:50:28+00:00] INFO: Processing user[urbane] action create (hopper-repo::os-signup-server line 9)
+[2017-06-29T09:50:28+00:00] INFO: Processing directory[/home/urbane] action create (hopper-repo::os-signup-server line 15)
+[2017-06-29T09:50:28+00:00] INFO: Processing package[python] action install (hopper-repo::os-signup-server line 22)
+[2017-06-29T09:50:28+00:00] INFO: Processing package[python-dev] action install (hopper-repo::os-signup-server line 22)
+[2017-06-29T09:50:28+00:00] INFO: Processing package[python-pip] action install (hopper-repo::os-signup-server line 22)
+[2017-06-29T09:50:29+00:00] INFO: Processing package[git] action install (hopper-repo::os-signup-server line 22)
+[2017-06-29T09:50:29+00:00] INFO: Processing package[python-setuptools] action install (hopper-repo::os-signup-server line 22)
+[2017-06-29T09:50:29+00:00] INFO: Processing package[libxml2-dev] action install (hopper-repo::os-signup-server line 22)
+[2017-06-29T09:50:29+00:00] INFO: Processing package[libxslt-dev] action install (hopper-repo::os-signup-server line 22)
+[2017-06-29T09:50:29+00:00] INFO: package[libxslt-dev] is a virtual package, actually acting on package[libxslt1-dev]
+[2017-06-29T09:50:29+00:00] INFO: Processing package[zlib1g-dev] action install (hopper-repo::os-signup-server line 22)
+[2017-06-29T09:50:29+00:00] INFO: Processing python_pip[terminaltables] action install (hopper-repo::os-signup-server line 36)
+[2017-06-29T09:50:31+00:00] INFO: Processing python_pip[authorizenet] action install (hopper-repo::os-signup-server line 36)
+[2017-06-29T09:50:33+00:00] INFO: Processing python_pip[ipaddr] action install (hopper-repo::os-signup-server line 36)
+[2017-06-29T09:50:35+00:00] INFO: Processing python_pip[pyminfraud] action install (hopper-repo::os-signup-server line 36)
+[2017-06-29T09:50:36+00:00] INFO: Processing python_pip[pycountry] action install (hopper-repo::os-signup-server line 36)
+[2017-06-29T09:50:38+00:00] INFO: Processing python_pip[pytz] action install (hopper-repo::os-signup-server line 36)
+[2017-06-29T09:50:40+00:00] INFO: Processing python_pip[requests] action install (hopper-repo::os-signup-server line 36)
+[2017-06-29T09:50:42+00:00] INFO: Processing python_pip[watchdog] action install (hopper-repo::os-signup-server line 36)
+[2017-06-29T09:50:44+00:00] INFO: Processing python_pip[peewee] action install (hopper-repo::os-signup-server line 42)
+[2017-06-29T09:50:46+00:00] INFO: Processing python_pip[pycrypto] action install (hopper-repo::os-signup-server line 47)
+[2017-06-29T09:50:48+00:00] INFO: Processing python_pip[pecan] action install (hopper-repo::os-signup-server line 52)
+[2017-06-29T09:50:50+00:00] INFO: Processing directory[/etc/urbane] action create (hopper-repo::os-signup-server line 57)
+[2017-06-29T09:50:50+00:00] INFO: Processing directory[/etc/urbane/signup] action create (hopper-repo::os-signup-server line 63)
+[2017-06-29T09:50:50+00:00] INFO: Processing directory[/etc/urbane/signup/templates] action create (hopper-repo::os-signup-server line 69)
+[2017-06-29T09:50:50+00:00] INFO: Processing cookbook_file[/opt/git_urbane_deploy_key] action create (hopper-repo::os-signup-server line 76)
+[2017-06-29T09:50:50+00:00] INFO: Processing cookbook_file[/opt/git_urbane_deploy_client_key] action create (hopper-repo::os-signup-server line 83)
+[2017-06-29T09:50:50+00:00] INFO: Processing git[/opt/urbane.git] action sync (hopper-repo::os-signup-server line 91)
+[2017-06-29T09:50:50+00:00] INFO: Processing git[/opt/urbane-client.git] action sync (hopper-repo::os-signup-server line 98)
+[2017-06-29T09:50:51+00:00] INFO: Processing execute[install urbane] action run (hopper-repo::os-signup-server line 108)
+[2017-06-29T09:50:54+00:00] INFO: execute[install urbane] ran successfully
+[2017-06-29T09:50:54+00:00] INFO: Processing execute[install urbane client] action run (hopper-repo::os-signup-server line 114)
+[2017-06-29T09:50:57+00:00] INFO: execute[install urbane client] ran successfully
+[2017-06-29T09:50:57+00:00] INFO: Processing cookbook_file[/etc/init/urbane-server.conf] action create (hopper-repo::os-signup-server line 148)
+[2017-06-29T09:50:57+00:00] INFO: Processing template[/etc/urbane/config.py] action create (hopper-repo::os-signup-server line 156)
+[2017-06-29T09:50:57+00:00] INFO: Processing template[/etc/urbane/urbane.conf] action create (hopper-repo::os-signup-server line 165)
+[2017-06-29T09:50:57+00:00] INFO: Processing file[/etc/urbane/signup/templates/welcome_email.text] action create (hopper-repo::os-signup-server line 186)
+[2017-06-29T09:50:57+00:00] INFO: Processing file[/etc/urbane/signup/templates/welcome_email.html] action create (hopper-repo::os-signup-server line 195)
+[2017-06-29T09:50:57+00:00] INFO: Processing service[urbane-server] action enable (hopper-repo::os-signup-server line 203)
+[2017-06-29T09:50:57+00:00] INFO: Processing service[urbane-server] action start (hopper-repo::os-signup-server line 203)
+[2017-06-29T09:50:57+00:00] INFO: Processing user[sidecar] action create (hopper-repo::os-nephoscale-api line 11)
+[2017-06-29T09:50:57+00:00] INFO: Processing directory[/home/sidecar] action create (hopper-repo::os-nephoscale-api line 17)
+[2017-06-29T09:50:57+00:00] INFO: Processing package[python] action install (hopper-repo::os-nephoscale-api line 24)
+[2017-06-29T09:50:57+00:00] INFO: Processing package[python-dev] action install (hopper-repo::os-nephoscale-api line 24)
+[2017-06-29T09:50:57+00:00] INFO: Processing package[python-pip] action install (hopper-repo::os-nephoscale-api line 24)
+[2017-06-29T09:50:57+00:00] INFO: Processing package[git] action install (hopper-repo::os-nephoscale-api line 24)
+[2017-06-29T09:50:57+00:00] INFO: Processing package[python-setuptools] action install (hopper-repo::os-nephoscale-api line 24)
+[2017-06-29T09:50:57+00:00] INFO: Processing package[libxml2-dev] action install (hopper-repo::os-nephoscale-api line 24)
+[2017-06-29T09:50:57+00:00] INFO: Processing package[libxslt-dev] action install (hopper-repo::os-nephoscale-api line 24)
+[2017-06-29T09:50:57+00:00] INFO: package[libxslt-dev] is a virtual package, actually acting on package[libxslt1-dev]
+[2017-06-29T09:50:58+00:00] INFO: Processing package[zlib1g-dev] action install (hopper-repo::os-nephoscale-api line 24)
+[2017-06-29T09:50:58+00:00] INFO: Processing python_pip[terminaltables] action install (hopper-repo::os-nephoscale-api line 38)
+[2017-06-29T09:51:00+00:00] INFO: Processing python_pip[authorizenet] action install (hopper-repo::os-nephoscale-api line 38)
+[2017-06-29T09:51:01+00:00] INFO: Processing python_pip[ipaddr] action install (hopper-repo::os-nephoscale-api line 38)
+[2017-06-29T09:51:03+00:00] INFO: Processing python_pip[pyminfraud] action install (hopper-repo::os-nephoscale-api line 38)
+[2017-06-29T09:51:05+00:00] INFO: Processing python_pip[pycountry] action install (hopper-repo::os-nephoscale-api line 38)
+[2017-06-29T09:51:06+00:00] INFO: Processing python_pip[pytz] action install (hopper-repo::os-nephoscale-api line 38)
+[2017-06-29T09:51:08+00:00] INFO: Processing python_pip[requests] action install (hopper-repo::os-nephoscale-api line 38)
+[2017-06-29T09:51:09+00:00] INFO: Processing python_pip[watchdog] action install (hopper-repo::os-nephoscale-api line 38)
+[2017-06-29T09:51:11+00:00] INFO: Processing python_pip[peewee] action install (hopper-repo::os-nephoscale-api line 44)
+[2017-06-29T09:51:13+00:00] INFO: Processing python_pip[pycrypto] action install (hopper-repo::os-nephoscale-api line 49)
+[2017-06-29T09:51:15+00:00] INFO: Processing python_pip[pecan] action install (hopper-repo::os-nephoscale-api line 54)
+[2017-06-29T09:51:16+00:00] INFO: Processing directory[/etc/sidecar] action create (hopper-repo::os-nephoscale-api line 59)
+[2017-06-29T09:51:16+00:00] INFO: Processing cookbook_file[/opt/git_sidecar_deploy_key] action create (hopper-repo::os-nephoscale-api line 66)
+[2017-06-29T09:51:16+00:00] INFO: Processing cookbook_file[/opt/git_sidecar_deploy_client_key] action create (hopper-repo::os-nephoscale-api line 73)
+[2017-06-29T09:51:16+00:00] INFO: Processing git[/opt/sidecar.git] action sync (hopper-repo::os-nephoscale-api line 81)
+[2017-06-29T09:51:16+00:00] INFO: Processing git[/opt/sidecar-client.git] action sync (hopper-repo::os-nephoscale-api line 88)
+[2017-06-29T09:51:17+00:00] INFO: Processing execute[install sidecar] action run (hopper-repo::os-nephoscale-api line 98)
+[2017-06-29T09:51:19+00:00] INFO: execute[install sidecar] ran successfully
+[2017-06-29T09:51:19+00:00] INFO: Processing execute[install sidecar client] action run (hopper-repo::os-nephoscale-api line 104)
+[2017-06-29T09:51:22+00:00] INFO: execute[install sidecar client] ran successfully
+[2017-06-29T09:51:22+00:00] INFO: Processing template[/etc/sidecar/config.py] action create (hopper-repo::os-nephoscale-api line 111)
+[2017-06-29T09:51:23+00:00] INFO: Processing template[/etc/sidecar/sidecar.conf] action create (hopper-repo::os-nephoscale-api line 139)
+[2017-06-29T09:51:23+00:00] INFO: Processing cookbook_file[/etc/init/sidecar-api.conf] action create (hopper-repo::os-nephoscale-api line 155)
+[2017-06-29T09:51:23+00:00] INFO: Processing service[sidecar-api] action enable (hopper-repo::os-nephoscale-api line 164)
+[2017-06-29T09:51:23+00:00] INFO: Processing service[sidecar-api] action start (hopper-repo::os-nephoscale-api line 164)
+[2017-06-29T09:51:23+00:00] INFO: Processing cron[evacuate healthcheck] action create (hopper-repo::os-nephoscale-api line 173)
+[2017-06-29T09:51:23+00:00] INFO: Processing chef_gem[chef-rewind] action install (hopper-repo::os-orchestration-api line 1)
+[2017-06-29T09:51:23+00:00] INFO: Processing package[python-keystoneclient] action upgrade (openstack-orchestration::common line 32)
+[2017-06-29T09:51:23+00:00] INFO: Processing package[heat-common] action upgrade (openstack-orchestration::common line 38)
+[2017-06-29T09:51:23+00:00] INFO: Processing package[python-mysqldb] action upgrade (openstack-orchestration::common line 47)
+[2017-06-29T09:51:23+00:00] INFO: Processing directory[/etc/heat] action create (openstack-orchestration::common line 88)
+[2017-06-29T09:51:23+00:00] INFO: Processing directory[/etc/heat/environment.d] action create (openstack-orchestration::common line 95)
+[2017-06-29T09:51:23+00:00] INFO: Processing directory[/var/cache/heat] action create (openstack-orchestration::common line 102)
+[2017-06-29T09:51:23+00:00] INFO: Processing template[/etc/heat/heat.conf] action create (hopper-repo::common line 108)
+[2017-06-29T09:51:23+00:00] INFO: Processing template[/etc/heat/environment.d/default.yaml] action create (openstack-orchestration::common line 133)
+[2017-06-29T09:51:23+00:00] INFO: Processing execute[heat-manage db_sync] action run (openstack-orchestration::common line 140)
+[2017-06-29T09:51:27+00:00] INFO: execute[heat-manage db_sync] ran successfully
+[2017-06-29T09:51:27+00:00] INFO: Processing package[heat-api] action upgrade (openstack-orchestration::api line 26)
+[2017-06-29T09:51:27+00:00] INFO: Processing package[python-heatclient] action upgrade (openstack-orchestration::api line 26)
+[2017-06-29T09:51:27+00:00] INFO: Processing service[heat-api] action enable (openstack-orchestration::api line 33)
+[2017-06-29T09:51:27+00:00] INFO: Processing package[heat-api-cfn] action upgrade (openstack-orchestration::api-cfn line 26)
+[2017-06-29T09:51:27+00:00] INFO: Processing package[python-heatclient] action upgrade (openstack-orchestration::api-cfn line 26)
+[2017-06-29T09:51:27+00:00] INFO: Processing service[heat-api-cfn] action enable (openstack-orchestration::api-cfn line 33)
+[2017-06-29T09:51:27+00:00] INFO: Processing package[heat-api-cloudwatch] action upgrade (openstack-orchestration::api-cloudwatch line 30)
+[2017-06-29T09:51:27+00:00] INFO: Processing package[python-heatclient] action upgrade (openstack-orchestration::api-cloudwatch line 30)
+[2017-06-29T09:51:27+00:00] INFO: Processing service[heat-api-cloudwatch] action enable (openstack-orchestration::api-cloudwatch line 37)
+[2017-06-29T09:51:27+00:00] INFO: Processing package[heat-engine] action upgrade (openstack-orchestration::engine line 26)
+[2017-06-29T09:51:27+00:00] INFO: Processing service[heat_engine] action enable (openstack-orchestration::engine line 33)
+[2017-06-29T09:51:27+00:00] INFO: Processing chef_gem[chef-rewind] action install (hopper-repo::os-block-storage-api line 1)
+[2017-06-29T09:51:27+00:00] INFO: Processing service[cinder-api] action nothing (hopper-repo::os-block-storage-api line 55)
+[2017-06-29T09:51:27+00:00] INFO: Processing service[cinder-scheduler] action nothing (hopper-repo::os-block-storage-api line 59)
+[2017-06-29T09:51:27+00:00] INFO: Processing directory[/opt/hitachi_install_files] action create (hopper-repo::os-block-storage-api line 165)
+[2017-06-29T09:51:27+00:00] INFO: Processing cookbook_file[/opt/hitachi_install_files/hbsd_1.5.3-0-7.0_all.deb] action create (hopper-repo::os-block-storage-api line 171)
+[2017-06-29T09:51:27+00:00] INFO: Processing dpkg_package[hbsd] action install (hopper-repo::os-block-storage-api line 178)
+[2017-06-29T09:51:28+00:00] INFO: Processing directory[/var/log/hbsd] action create (hopper-repo::os-block-storage-api line 185)
+[2017-06-29T09:51:28+00:00] INFO: Processing template[/etc/cinder/policy.json] action create (hopper-repo::os-block-storage-api line 193)
+[2017-06-29T09:51:28+00:00] INFO: Processing package[multipath-tools] action install (hopper-repo::os-block-storage-api line 207)
+[2017-06-29T09:51:28+00:00] INFO: Processing package[sysfsutils] action install (hopper-repo::os-block-storage-api line 207)
+[2017-06-29T09:51:28+00:00] INFO: Processing package[sg3-utils] action install (hopper-repo::os-block-storage-api line 207)
+[2017-06-29T09:51:28+00:00] INFO: Processing template[/etc/multipath.conf] action create (hopper-repo::os-block-storage-api line 212)
+[2017-06-29T09:51:28+00:00] INFO: Processing service[multipath-tools] action enable (hopper-repo::os-block-storage-api line 220)
+[2017-06-29T09:51:28+00:00] INFO: Processing service[multipath-tools] action start (hopper-repo::os-block-storage-api line 220)
+[2017-06-29T09:51:28+00:00] INFO: service[multipath-tools] started
+[2017-06-29T09:51:28+00:00] INFO: Processing package[cinder-common] action upgrade (openstack-block-storage::cinder-common line 27)
+[2017-06-29T09:51:28+00:00] INFO: Processing directory[/etc/cinder] action create (openstack-block-storage::cinder-common line 69)
+[2017-06-29T09:51:28+00:00] INFO: Processing template[/etc/cinder/cinder.conf] action create (hopper-repo::cinder-common line 99)
+[2017-06-29T09:51:28+00:00] INFO: Processing directory[/var/lib/cinder/lock] action create (openstack-block-storage::cinder-common line 128)
+[2017-06-29T09:51:28+00:00] INFO: Processing template[/etc/cinder/rootwrap.conf] action create (openstack-block-storage::cinder-common line 134)
+[2017-06-29T09:51:28+00:00] INFO: Processing package[cinder-api] action upgrade (openstack-block-storage::api line 33)
+[2017-06-29T09:51:28+00:00] INFO: Processing package[python-cinderclient] action upgrade (openstack-block-storage::api line 33)
+[2017-06-29T09:51:28+00:00] INFO: Processing package[python-mysqldb] action upgrade (openstack-block-storage::api line 41)
+[2017-06-29T09:51:28+00:00] INFO: Processing directory[/var/cache/cinder] action create (openstack-block-storage::api line 46)
+[2017-06-29T09:51:28+00:00] INFO: Processing service[cinder-api] action enable (openstack-block-storage::api line 52)
+[2017-06-29T09:51:28+00:00] INFO: Processing execute[cinder-manage db sync] action run (openstack-block-storage::api line 59)
+[2017-06-29T09:51:32+00:00] INFO: execute[cinder-manage db sync] ran successfully
+[2017-06-29T09:51:32+00:00] INFO: Processing package[cinder-scheduler] action upgrade (openstack-block-storage::scheduler line 29)
+[2017-06-29T09:51:32+00:00] INFO: Processing package[python-mysqldb] action upgrade (openstack-block-storage::scheduler line 38)
+[2017-06-29T09:51:33+00:00] INFO: Processing service[cinder-scheduler] action enable (openstack-block-storage::scheduler line 43)
+[2017-06-29T09:51:33+00:00] INFO: Processing service[cinder-scheduler] action start (openstack-block-storage::scheduler line 43)
+[2017-06-29T09:51:33+00:00] INFO: Processing cron[cinder-volume-usage-audit] action delete (openstack-block-storage::scheduler line 59)
+[2017-06-29T09:51:33+00:00] INFO: Processing directory[/root] action create (openstack-common::openrc line 49)
+[2017-06-29T09:51:33+00:00] INFO: Processing template[/root/openrc] action create (openstack-common::openrc line 56)
+[2017-06-29T09:51:33+00:00] INFO: Processing openstack-identity_register[Register 'admin' Tenant] action create_tenant (openstack-identity::registration line 52)
+[2017-06-29T09:51:36+00:00] INFO: Tenant 'admin' already exists.. Not creating.
+[2017-06-29T09:51:36+00:00] INFO: Tenant UUID: 3430ec8304d347e69d380cc72fa7dee5
+[2017-06-29T09:51:36+00:00] INFO: Processing openstack-identity_register[Register 'admin' Role] action create_role (openstack-identity::registration line 68)
+[2017-06-29T09:51:39+00:00] INFO: Role 'admin' already exists.. Not creating.
+[2017-06-29T09:51:39+00:00] INFO: Role UUID: 7f38162e695d4a59957903e5adc8e780
+[2017-06-29T09:51:39+00:00] INFO: Processing openstack-identity_register[Register 'service' Role] action create_role (openstack-identity::registration line 68)
+[2017-06-29T09:51:42+00:00] INFO: Role 'service' already exists.. Not creating.
+[2017-06-29T09:51:42+00:00] INFO: Role UUID: e020230f5d874e5c849737486b702d68
+[2017-06-29T09:51:42+00:00] INFO: Processing openstack-identity_register[Register 'admin' User] action create_user (openstack-identity::registration line 79)
+[2017-06-29T09:51:46+00:00] INFO: User 'admin' already exists
+[2017-06-29T09:51:50+00:00] INFO: Processing openstack-identity_register[Grant 'admin' Role to 'admin' User in 'admin' Tenant] action grant_role (openstack-identity::registration line 92)
+[2017-06-29T09:51:56+00:00] INFO: Role 'admin' already granted to User 'admin' in Tenant 'admin'
+[2017-06-29T09:51:56+00:00] INFO: Processing openstack-identity_register[Grant 'service' Role to 'admin' User in 'admin' Tenant] action grant_role (openstack-identity::registration line 92)
+[2017-06-29T09:52:04+00:00] INFO: Role 'service' already granted to User 'admin' in Tenant 'admin'
+[2017-06-29T09:52:04+00:00] INFO: Processing openstack-identity_register[Register Identity Service] action create_service (openstack-identity::registration line 105)
+[2017-06-29T09:52:07+00:00] INFO: Service Type 'identity' already exists..
+[2017-06-29T09:52:07+00:00] INFO: Service UUID: 34e9ee8dfaf149f485aed0081c661a83
+[2017-06-29T09:52:10+00:00] INFO: Processing openstack-identity_register[Register Identity Endpoint] action create_endpoint (openstack-identity::registration line 124)
+[2017-06-29T09:52:17+00:00] INFO: Endpoint already exists for Service Type 'identity'.
+[2017-06-29T09:52:20+00:00] INFO: Processing openstack-identity_register[Create EC2 credentials for 'admin' user] action create_ec2_credentials (openstack-identity::registration line 138)
+[2017-06-29T09:52:30+00:00] INFO: EC2 credentials already exist for 'admin' in tenant 'admin'
+[2017-06-29T09:52:30+00:00] INFO: Processing openstack-identity_register[Register Image Service] action create_service (openstack-image::identity_registration line 45)
+[2017-06-29T09:52:34+00:00] INFO: Service Type 'image' already exists..
+[2017-06-29T09:52:34+00:00] INFO: Service UUID: ba35c131e6b446f989d6e1dfb8f28ecb
+[2017-06-29T09:52:38+00:00] INFO: Processing openstack-identity_register[Register Image Endpoint] action create_endpoint (openstack-image::identity_registration line 56)
+[2017-06-29T09:52:44+00:00] INFO: Endpoint already exists for Service Type 'image'.
+[2017-06-29T09:52:47+00:00] INFO: Processing openstack-identity_register[Register Service Tenant] action create_tenant (openstack-image::identity_registration line 69)
+[2017-06-29T09:52:50+00:00] INFO: Tenant 'service' already exists.. Not creating.
+[2017-06-29T09:52:50+00:00] INFO: Tenant UUID: d7470451757e42c7b2dd466cb483b541
+[2017-06-29T09:52:50+00:00] INFO: Processing openstack-identity_register[Register glance User] action create_user (openstack-image::identity_registration line 80)
+[2017-06-29T09:52:53+00:00] INFO: User 'glance' already exists
+[2017-06-29T09:52:57+00:00] INFO: Processing openstack-identity_register[Grant 'service' Role to glance User for service Tenant] action grant_role (openstack-image::identity_registration line 93)
+[2017-06-29T09:53:05+00:00] INFO: Role 'service' already granted to User 'glance' in Tenant 'service'
+[2017-06-29T09:53:05+00:00] INFO: Processing openstack-identity_register[Register Network API Service] action create_service (openstack-network::identity_registration line 45)
+[2017-06-29T09:53:08+00:00] INFO: Service Type 'network' already exists..
+[2017-06-29T09:53:08+00:00] INFO: Service UUID: cd67ecb901134f3d92cc5819b63f970f
+[2017-06-29T09:53:11+00:00] INFO: Processing openstack-identity_register[Register Network Endpoint] action create_endpoint (openstack-network::identity_registration line 55)
+[2017-06-29T09:53:17+00:00] INFO: Endpoint already exists for Service Type 'network'.
+[2017-06-29T09:53:21+00:00] INFO: Processing openstack-identity_register[Register Service Tenant] action create_tenant (openstack-network::identity_registration line 67)
+[2017-06-29T09:53:23+00:00] INFO: Tenant 'service' already exists.. Not creating.
+[2017-06-29T09:53:23+00:00] INFO: Tenant UUID: d7470451757e42c7b2dd466cb483b541
+[2017-06-29T09:53:23+00:00] INFO: Processing openstack-identity_register[Register neutron User] action create_user (openstack-network::identity_registration line 76)
+[2017-06-29T09:53:26+00:00] INFO: User 'neutron' already exists
+[2017-06-29T09:53:30+00:00] INFO: Processing openstack-identity_register[Grant 'admin' Role to neutron User for service Tenant] action grant_role (openstack-network::identity_registration line 86)
+[2017-06-29T09:53:37+00:00] INFO: Role 'admin' already granted to User 'neutron' in Tenant 'service'
+[2017-06-29T09:53:37+00:00] INFO: Processing openstack-identity_register[Register Service Tenant] action create_tenant (openstack-compute::identity_registration line 47)
+[2017-06-29T09:53:40+00:00] INFO: Tenant 'service' already exists.. Not creating.
+[2017-06-29T09:53:40+00:00] INFO: Tenant UUID: d7470451757e42c7b2dd466cb483b541
+[2017-06-29T09:53:40+00:00] INFO: Processing openstack-identity_register[Register Service User] action create_user (openstack-compute::identity_registration line 57)
+[2017-06-29T09:53:43+00:00] INFO: User 'nova' already exists
+[2017-06-29T09:53:46+00:00] INFO: Processing openstack-identity_register[Grant 'admin' Role to Service User for Service Tenant] action grant_role (openstack-compute::identity_registration line 68)
+[2017-06-29T09:53:54+00:00] INFO: Role 'admin' already granted to User 'nova' in Tenant 'service'
+[2017-06-29T09:53:54+00:00] INFO: Processing openstack-identity_register[Register Compute Service] action create_service (openstack-compute::identity_registration line 79)
+[2017-06-29T09:53:57+00:00] INFO: Service Type 'compute' already exists..
+[2017-06-29T09:53:57+00:00] INFO: Service UUID: 01c0e40e94d34b779482188910cfe6e2
+[2017-06-29T09:54:00+00:00] INFO: Processing openstack-identity_register[Register Compute Endpoint] action create_endpoint (openstack-compute::identity_registration line 90)
+[2017-06-29T09:54:07+00:00] INFO: Endpoint already exists for Service Type 'compute'.
+[2017-06-29T09:54:10+00:00] INFO: Processing openstack-identity_register[Register EC2 Service] action create_service (openstack-compute::identity_registration line 104)
+[2017-06-29T09:54:13+00:00] INFO: Service Type 'ec2' already exists..
+[2017-06-29T09:54:13+00:00] INFO: Service UUID: 63b03ccee5fa4f57b6231643f34cb8e4
+[2017-06-29T09:54:17+00:00] INFO: Processing openstack-identity_register[Register EC2 Endpoint] action create_endpoint (openstack-compute::identity_registration line 115)
+[2017-06-29T09:54:23+00:00] INFO: Endpoint already exists for Service Type 'ec2'.
+[2017-06-29T09:54:26+00:00] INFO: Processing openstack-identity_register[Register Service Tenant] action create_tenant (openstack-bare-metal::identity_registration line 37)
+[2017-06-29T09:54:29+00:00] INFO: Tenant 'service' already exists.. Not creating.
+[2017-06-29T09:54:29+00:00] INFO: Tenant UUID: d7470451757e42c7b2dd466cb483b541
+[2017-06-29T09:54:29+00:00] INFO: Processing openstack-identity_register[Register Ironic bare metal Service] action create_service (openstack-bare-metal::identity_registration line 46)
+[2017-06-29T09:54:33+00:00] INFO: Service Type 'baremetal' already exists..
+[2017-06-29T09:54:33+00:00] INFO: Service UUID: 0c4bbb0b39fc4cc297523d6536026b2f
+[2017-06-29T09:54:36+00:00] INFO: Processing openstack-identity_register[Register Ironic bare metal Endpoint] action create_endpoint (openstack-bare-metal::identity_registration line 56)
+[2017-06-29T09:54:42+00:00] INFO: Endpoint already exists for Service Type 'baremetal'.
+[2017-06-29T09:54:46+00:00] INFO: Processing openstack-identity_register[Register Ironic bare metal Service User] action create_user (openstack-bare-metal::identity_registration line 68)
+[2017-06-29T09:54:49+00:00] INFO: User 'ironic' already exists
+[2017-06-29T09:54:53+00:00] INFO: Processing openstack-identity_register[Grant admin Role to Ironic Service User for Ironic Service Tenant] action grant_role (openstack-bare-metal::identity_registration line 78)
+[2017-06-29T09:54:59+00:00] INFO: Role 'admin' already granted to User 'ironic' in Tenant 'service'
+[2017-06-29T09:54:59+00:00] INFO: Processing openstack-identity_register[Register Service Tenant] action create_tenant (openstack-telemetry::identity_registration line 39)
+[2017-06-29T09:55:02+00:00] INFO: Tenant 'service' already exists.. Not creating.
+[2017-06-29T09:55:02+00:00] INFO: Tenant UUID: d7470451757e42c7b2dd466cb483b541
+[2017-06-29T09:55:02+00:00] INFO: Processing openstack-identity_register[Register Service User] action create_user (openstack-telemetry::identity_registration line 49)
+[2017-06-29T09:55:06+00:00] INFO: User 'ceilometer' already exists
+[2017-06-29T09:55:09+00:00] INFO: Processing openstack-identity_register[Grant 'admin' Role to Service User for Service Tenant] action grant_role (openstack-telemetry::identity_registration line 60)
+[2017-06-29T09:55:15+00:00] INFO: Role 'admin' already granted to User 'ceilometer' in Tenant 'service'
+[2017-06-29T09:55:15+00:00] INFO: Processing openstack-identity_register[Register Metering Service] action create_service (openstack-telemetry::identity_registration line 70)
+[2017-06-29T09:55:19+00:00] INFO: Service Type 'metering' already exists..
+[2017-06-29T09:55:19+00:00] INFO: Service UUID: a7a89d0fddbc4cf7bfd5e821872155e4
+[2017-06-29T09:55:22+00:00] INFO: Processing openstack-identity_register[Register Metering Endpoint] action create_endpoint (openstack-telemetry::identity_registration line 80)
+[2017-06-29T09:55:28+00:00] INFO: Endpoint already exists for Service Type 'metering'.
+[2017-06-29T09:55:31+00:00] INFO: Processing openstack-identity_register[Register Heat Orchestration Service] action create_service (openstack-orchestration::identity_registration line 50)
+[2017-06-29T09:55:35+00:00] INFO: Service Type 'orchestration' already exists..
+[2017-06-29T09:55:35+00:00] INFO: Service UUID: c9cbd22745554688b9ae930092170893
+[2017-06-29T09:55:38+00:00] INFO: Processing openstack-identity_register[Register Heat Orchestration Endpoint] action create_endpoint (openstack-orchestration::identity_registration line 61)
+[2017-06-29T09:55:44+00:00] INFO: Endpoint already exists for Service Type 'orchestration'.
+[2017-06-29T09:55:47+00:00] INFO: Processing openstack-identity_register[Register Heat Cloudformation Service] action create_service (openstack-orchestration::identity_registration line 78)
+[2017-06-29T09:55:50+00:00] INFO: Service Type 'cloudformation' already exists..
+[2017-06-29T09:55:50+00:00] INFO: Service UUID: b72fb7fed57b49f593d2287c22f6351a
+[2017-06-29T09:55:53+00:00] INFO: Processing openstack-identity_register[Register Heat Cloudformation Endpoint] action create_endpoint (openstack-orchestration::identity_registration line 89)
+[2017-06-29T09:56:00+00:00] INFO: Endpoint already exists for Service Type 'cloudformation'.
+[2017-06-29T09:56:03+00:00] INFO: Processing openstack-identity_register[Register Service Tenant] action create_tenant (openstack-orchestration::identity_registration line 103)
+[2017-06-29T09:56:06+00:00] INFO: Tenant 'service' already exists.. Not creating.
+[2017-06-29T09:56:06+00:00] INFO: Tenant UUID: d7470451757e42c7b2dd466cb483b541
+[2017-06-29T09:56:06+00:00] INFO: Processing openstack-identity_register[Register Heat Service User] action create_user (openstack-orchestration::identity_registration line 114)
+[2017-06-29T09:56:09+00:00] INFO: User 'heat' already exists
+[2017-06-29T09:56:13+00:00] INFO: Processing openstack-identity_register[Grant 'service' Role to heat User for service Tenant] action grant_role (openstack-orchestration::identity_registration line 127)
+[2017-06-29T09:56:19+00:00] INFO: Role 'service' already granted to User 'heat' in Tenant 'service'
+[2017-06-29T09:56:19+00:00] INFO: Processing openstack-identity_register[Create '' Role for template defined users] action create_role (openstack-orchestration::identity_registration line 138)
+[2017-06-29T09:56:19+00:00] INFO: Processing chef_gem[chef-rewind] action install (hopper-repo::os-block-storage-registration line 1)
+[2017-06-29T09:56:19+00:00] INFO: Processing openstack-identity_register[Register Service Tenant] action create_tenant (openstack-block-storage::identity_registration line 43)
+[2017-06-29T09:56:22+00:00] INFO: Tenant 'service' already exists.. Not creating.
+[2017-06-29T09:56:22+00:00] INFO: Tenant UUID: d7470451757e42c7b2dd466cb483b541
+[2017-06-29T09:56:22+00:00] INFO: Processing openstack-identity_register[Register Cinder V2 Volume Service] action create_service (openstack-block-storage::identity_registration line 52)
+[2017-06-29T09:56:25+00:00] INFO: Service Type 'volumev2' already exists..
+[2017-06-29T09:56:25+00:00] INFO: Service UUID: 2cb03ff59882447d8624b007dd803450
+[2017-06-29T09:56:28+00:00] INFO: Processing openstack-identity_register[Register Cinder V2 Volume Endpoint] action create_endpoint (openstack-block-storage::identity_registration line 65)
+[2017-06-29T09:56:34+00:00] INFO: Endpoint already exists for Service Type 'volumev2'.
+[2017-06-29T09:56:38+00:00] INFO: Processing openstack-identity_register[Register Cinder Service User] action create_user (openstack-block-storage::identity_registration line 78)
+[2017-06-29T09:56:41+00:00] INFO: User 'cinder' already exists
+[2017-06-29T09:56:44+00:00] INFO: Processing openstack-identity_register[Grant service Role to Cinder Service User for Cinder Service Tenant] action grant_role (openstack-block-storage::identity_registration line 88)
+[2017-06-29T09:56:52+00:00] INFO: Role 'service' already granted to User 'cinder' in Tenant 'service'
+[2017-06-29T09:56:52+00:00] INFO: Processing openstack-identity_register[Register Cinder V1 Volume Service] action create_service (hopper-repo::os-block-storage-registration line 32)
+[2017-06-29T09:56:55+00:00] INFO: Service Type 'volume' already exists..
+[2017-06-29T09:56:55+00:00] INFO: Service UUID: 397d9faf7055469eb701a5d2b265e236
+[2017-06-29T09:56:59+00:00] INFO: Processing openstack-identity_register[Register Cinder V1 Volume Endpoint] action create_endpoint (hopper-repo::os-block-storage-registration line 45)
+[2017-06-29T09:57:06+00:00] INFO: Endpoint already exists for Service Type 'volume'.
+[2017-06-29T09:57:09+00:00] INFO: Processing openstack-identity_register[Register Service Tenant] action create_tenant (hopper-repo::os-designate-registration line 31)
+[2017-06-29T09:57:12+00:00] INFO: Tenant 'service' already exists.. Not creating.
+[2017-06-29T09:57:12+00:00] INFO: Tenant UUID: d7470451757e42c7b2dd466cb483b541
+[2017-06-29T09:57:12+00:00] INFO: Processing openstack-identity_register[Register Service User] action create_user (hopper-repo::os-designate-registration line 41)
+[2017-06-29T09:57:15+00:00] INFO: User 'designate' already exists
+[2017-06-29T09:57:19+00:00] INFO: Processing openstack-identity_register[Grant 'admin' Role to Service User for Service Tenant] action grant_role (hopper-repo::os-designate-registration line 52)
+[2017-06-29T09:57:25+00:00] INFO: Role 'admin' already granted to User 'designate' in Tenant 'service'
+[2017-06-29T09:57:25+00:00] INFO: Processing openstack-identity_register[Register Designate Service] action create_service (hopper-repo::os-designate-registration line 62)
+[2017-06-29T09:57:29+00:00] INFO: Service Type 'dns' already exists..
+[2017-06-29T09:57:29+00:00] INFO: Service UUID: 2c4f4d4d09e24b7290ca1aac42fadf15
+[2017-06-29T09:57:32+00:00] INFO: Processing openstack-identity_register[Register Designate Endpoint] action create_endpoint (hopper-repo::os-designate-registration line 72)
+[2017-06-29T09:57:39+00:00] INFO: Endpoint already exists for Service Type 'dns'.
+[2017-06-29T09:57:43+00:00] INFO: Processing execute[create server tenant-dns1.stage1.nephoscale.com] action run (hopper-repo::os-designate-registration line 87)
+[2017-06-29T09:57:52+00:00] INFO: Processing execute[create server tenant-dns2.stage1.nephoscale.com] action run (hopper-repo::os-designate-registration line 87)
+[2017-06-29T09:58:00+00:00] INFO: Processing execute[create server tenant-dns3.stage1.nephoscale.com] action run (hopper-repo::os-designate-registration line 87)
+[2017-06-29T09:58:09+00:00] INFO: Processing ruby_block[discover auto domain for nova and neutron] action run (hopper-repo::os-designate-registration line 101)
+[2017-06-29T09:58:09+00:00] INFO: Processing ruby_block[discover in-addra arpa domain id] action run (hopper-repo::os-designate-registration line 125)
+[2017-06-29T09:58:09+00:00] INFO: Processing ruby_block[create auto domain for nova and neutron] action run (hopper-repo::os-designate-registration line 146)
+[2017-06-29T09:58:13+00:00] INFO: Processing ruby_block[create in-addra arpa domain] action run (hopper-repo::os-designate-registration line 168)
+[2017-06-29T09:58:16+00:00] INFO: Processing openstack-identity_register[Register Service Tenant] action create_tenant (hopper-repo::os-cloudkitty-registration line 29)
+[2017-06-29T09:58:19+00:00] INFO: Tenant 'service' already exists.. Not creating.
+[2017-06-29T09:58:19+00:00] INFO: Tenant UUID: d7470451757e42c7b2dd466cb483b541
+[2017-06-29T09:58:19+00:00] INFO: Processing openstack-identity_register[Register Service User] action create_user (hopper-repo::os-cloudkitty-registration line 39)
+[2017-06-29T09:58:22+00:00] INFO: User 'cloudkitty' already exists
+[2017-06-29T09:58:25+00:00] INFO: Processing openstack-identity_register[Grant 'admin' Role to Service User for Service Tenant] action grant_role (hopper-repo::os-cloudkitty-registration line 50)
+[2017-06-29T09:58:32+00:00] INFO: Role 'admin' already granted to User 'cloudkitty' in Tenant 'service'
+[2017-06-29T09:58:32+00:00] INFO: Processing openstack-identity_register[Register cloudkitty Service] action create_service (hopper-repo::os-cloudkitty-registration line 60)
+[2017-06-29T09:58:35+00:00] INFO: Service Type 'rating' already exists..
+[2017-06-29T09:58:35+00:00] INFO: Service UUID: a30082b93b994bf5be199953a84f3a23
+[2017-06-29T09:58:38+00:00] INFO: Processing openstack-identity_register[Register cloudkitty Endpoint] action create_endpoint (hopper-repo::os-cloudkitty-registration line 70)
+[2017-06-29T09:58:45+00:00] INFO: Endpoint already exists for Service Type 'rating'.
+[2017-06-29T09:58:48+00:00] INFO: Processing ruby_block[create billing role] action run (hopper-repo::os-cloudkitty-registration line 84)
+[2017-06-29T09:58:52+00:00] INFO: Processing ruby_block[discover billing role] action run (hopper-repo::os-cloudkitty-registration line 103)
+[2017-06-29T09:58:52+00:00] INFO: Processing ruby_block[create billing rating role] action run (hopper-repo::os-cloudkitty-registration line 124)
+[2017-06-29T09:58:56+00:00] INFO: Processing directory[/opt/keys] action create (hopper-repo::os-cloudkitty-registration line 182)
+[2017-06-29T09:58:56+00:00] INFO: Processing cookbook_file[/opt/keys/git_deploy_openstack_tools_key] action create (hopper-repo::os-cloudkitty-registration line 186)
+[2017-06-29T09:58:56+00:00] INFO: Processing git[/opt/openstack-tools] action sync (hopper-repo::os-cloudkitty-registration line 193)
+[2017-06-29T09:58:56+00:00] INFO: Processing cron[billing engine] action create (hopper-repo::os-cloudkitty-registration line 200)
+[2017-06-29T09:58:56+00:00] INFO: Processing openstack-identity_register[Register Service Tenant] action create_tenant (hopper-repo::os-signup-registration line 29)
+[2017-06-29T09:59:00+00:00] INFO: Tenant 'service' already exists.. Not creating.
+[2017-06-29T09:59:00+00:00] INFO: Tenant UUID: d7470451757e42c7b2dd466cb483b541
+[2017-06-29T09:59:00+00:00] INFO: Processing openstack-identity_register[Register Service User] action create_user (hopper-repo::os-signup-registration line 39)
+[2017-06-29T09:59:03+00:00] INFO: User 'urbane' already exists
+[2017-06-29T09:59:07+00:00] INFO: Processing openstack-identity_register[Grant 'admin' Role to Service User for Service Tenant] action grant_role (hopper-repo::os-signup-registration line 50)
+[2017-06-29T09:59:13+00:00] INFO: Role 'admin' already granted to User 'urbane' in Tenant 'service'
+[2017-06-29T09:59:13+00:00] INFO: Processing openstack-identity_register[Register urbane Service] action create_service (hopper-repo::os-signup-registration line 60)
+[2017-06-29T09:59:16+00:00] INFO: Service Type 'signup' already exists..
+[2017-06-29T09:59:16+00:00] INFO: Service UUID: ad3df278a3bb456db86b1a436f59d3c2
+[2017-06-29T09:59:20+00:00] INFO: Processing openstack-identity_register[Register urbane Endpoint] action create_endpoint (hopper-repo::os-signup-registration line 70)
+[2017-06-29T09:59:26+00:00] INFO: Endpoint already exists for Service Type 'signup'.
+[2017-06-29T09:59:29+00:00] INFO: Processing openstack-identity_register[Register Service Tenant] action create_tenant (hopper-repo::os-nephoscale-registration line 29)
+[2017-06-29T09:59:32+00:00] INFO: Tenant 'service' already exists.. Not creating.
+[2017-06-29T09:59:32+00:00] INFO: Tenant UUID: d7470451757e42c7b2dd466cb483b541
+[2017-06-29T09:59:32+00:00] INFO: Processing openstack-identity_register[Register Service User] action create_user (hopper-repo::os-nephoscale-registration line 39)
+[2017-06-29T09:59:36+00:00] INFO: User 'sidecar' already exists
+[2017-06-29T09:59:39+00:00] INFO: Processing openstack-identity_register[Grant 'admin' Role to Service User for Service Tenant] action grant_role (hopper-repo::os-nephoscale-registration line 50)
+[2017-06-29T09:59:46+00:00] INFO: Role 'admin' already granted to User 'sidecar' in Tenant 'service'
+[2017-06-29T09:59:46+00:00] INFO: Processing openstack-identity_register[Register Sidecar Service] action create_service (hopper-repo::os-nephoscale-registration line 60)
+[2017-06-29T09:59:49+00:00] INFO: Service Type 'nephoscale' already exists..
+[2017-06-29T09:59:49+00:00] INFO: Service UUID: 1332e9f4411e4ae0b6dceb56226d8826
+[2017-06-29T09:59:52+00:00] INFO: Processing openstack-identity_register[Register sidecar Endpoint] action create_endpoint (hopper-repo::os-nephoscale-registration line 70)
+[2017-06-29T09:59:59+00:00] INFO: Endpoint already exists for Service Type 'nephoscale'.
+[2017-06-29T10:00:03+00:00] INFO: Processing execute[nova-manage db sync] action run (hopper-repo::os-compute-setup line 30)
+[2017-06-29T10:00:10+00:00] INFO: execute[nova-manage db sync] ran successfully
+[2017-06-29T10:00:10+00:00] INFO: Processing package[python-neutronclient] action upgrade (hopper-repo::os-compute-setup line 109)
+[2017-06-29T10:00:10+00:00] INFO: Processing package[python-pyparsing] action upgrade (hopper-repo::os-compute-setup line 109)
+[2017-06-29T10:00:10+00:00] INFO: Processing cookbook_file[/usr/local/bin/add_floaters.py] action create (hopper-repo::os-compute-setup line 115)
+[2017-06-29T10:00:10+00:00] INFO: Processing execute[neutron floating create] action run (hopper-repo::os-compute-setup line 129)
+[2017-06-29T10:00:14+00:00] INFO: Processing directory[/var/lib/nova/.ssh] action create (hopper-repo::os-compute-setup line 141)
+[2017-06-29T10:00:14+00:00] INFO: Processing execute[ssh-keygen] action run (hopper-repo::os-compute-setup line 148)
+[2017-06-29T10:00:14+00:00] INFO: Processing ruby_block[expose public key in attribute] action nothing (hopper-repo::os-compute-setup line 154)
+[2017-06-29T10:00:14+00:00] INFO: Processing package[python-glanceclient] action upgrade (hopper-repo::os-image-upload line 31)
+[2017-06-29T10:00:14+00:00] INFO: Processing hopper-repo_image[Image setup for precise] action upload (hopper-repo::os-image-upload line 52)
+[2017-06-29T10:00:14+00:00] INFO: Processing execute[Uploading qcow2 image precise] action run (/var/cache/chef/cookbooks/hopper-repo/providers/image.rb line 75)
+[2017-06-29T10:00:24+00:00] INFO: Processing hopper-repo_image[Image setup for centos] action upload (hopper-repo::os-image-upload line 52)
+[2017-06-29T10:00:24+00:00] INFO: Processing execute[Uploading qcow2 image centos] action run (/var/cache/chef/cookbooks/hopper-repo/providers/image.rb line 75)
+[2017-06-29T10:00:35+00:00] INFO: Chef Run complete in 826.917294233 seconds
+[2017-06-29T10:00:35+00:00] INFO: Running report handlers
+[2017-06-29T10:00:35+00:00] INFO: Report handlers complete
